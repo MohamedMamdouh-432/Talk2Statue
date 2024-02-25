@@ -1,8 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 
-class Talk2StatueBlocObserver extends BlocObserver {
-  const Talk2StatueBlocObserver();
+class AppBlocObserver extends BlocObserver {
+  const AppBlocObserver();
 
   @override
   void onEvent(Bloc<dynamic, dynamic> bloc, Object? event) {

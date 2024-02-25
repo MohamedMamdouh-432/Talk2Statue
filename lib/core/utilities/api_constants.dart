@@ -1,8 +1,8 @@
 import 'package:talk2statue/core/utilities/app_enums.dart';
 
 class ApiConstants {
-  static const String baseUrl = 'https://dooha.pythonanywhere.com';
-  static const String objRecEndPoint = 'obj_rec';
+  static const String baseUrl = 'https://gpapp-s75tsx6xfa-as.a.run.app';
+  static const String objRecEndPoint = 'obj';
   static const String objRecUrl = '$baseUrl/$objRecEndPoint';
   static const String openaikey =
       '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';
