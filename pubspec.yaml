@@ -18,6 +18,7 @@ dependencies:
   just_audio: ^0.9.36
   path_provider: ^2.1.2
   stylish_bottom_bar: ^1.0.3
+  dots_indicator: ^3.0.0
 
 dev_dependencies:
   flutter_test:
