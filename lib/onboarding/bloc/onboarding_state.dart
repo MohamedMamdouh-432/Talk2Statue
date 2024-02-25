@@ -1,5 +1,6 @@
 part of 'onboarding_bloc.dart';
 
+// ignore: must_be_immutable
 class OnboardingState extends Equatable {
   int pageIdx;
   bool getStarted;

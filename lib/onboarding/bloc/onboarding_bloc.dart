@@ -9,8 +9,8 @@ part 'onboarding_event.dart';
 part 'onboarding_state.dart';
 
 class OnboardingBloc extends Bloc<OnboardingEvent, OnboardingState> {
-  late PageController pController;
-  late ValueNotifier<double> pNotifier;
+  late PageController pController = PageController();
+  late ValueNotifier<double> pNotifier = ValueNotifier(0.0);
 
   OnboardingBloc() : super(OnboardingState()) {
     on<OnboardingInitialEvent>(_onBoradingInitialAction);
@@ -22,8 +22,6 @@ class OnboardingBloc extends Bloc<OnboardingEvent, OnboardingState> {
   void pageListener() => pNotifier.value = pController.page!;
 
   void _onBoradingInitialAction(event, emit) {
-    pNotifier = ValueNotifier(0.0);
-    pController = PageController();
     pController.addListener(pageListener);
     emit(state.copyWith(
       pageIdx: 0,
