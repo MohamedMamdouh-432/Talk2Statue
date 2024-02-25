@@ -43,6 +43,9 @@ class AppView extends StatelessWidget {
       theme: AppConstants.theme,
       debugShowCheckedModeBanner: false,
       onGenerateRoute: RouteGenerator.generateRoute,
+      home: Scaffold(
+        appBar: AppBar(),
+      ),
     );
   }
 }

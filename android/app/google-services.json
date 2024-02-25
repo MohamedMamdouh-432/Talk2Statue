@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "416413437512",
+    "project_id": "talk2statue-ed0cf",
+    "storage_bucket": "talk2statue-ed0cf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:416413437512:android:c628c71dbe7b6ffdce127d",
+        "android_client_info": {
+          "package_name": "com.example.talk2statue"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAvffgl9brRLwB6CIivkdpCBBph4MuUMmo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
