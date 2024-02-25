@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:talk2statue/onboarding/view/onboarding_view.dart';
 
 class RouteGenerator {
   static Route<dynamic>? generateRoute(RouteSettings settings) {
-    // final args = settings.arguments;
-
     switch (settings.name) {
-      //  case AuthenticationScreen.routeName:
-      //   return MaterialPageRoute(builder: (_) => const AuthenticationScreen());
+      case OnBoardingView.routeName:
+        return MaterialPageRoute(builder: (_) => const OnBoardingView());
     }
+    return null;
   }
 }
