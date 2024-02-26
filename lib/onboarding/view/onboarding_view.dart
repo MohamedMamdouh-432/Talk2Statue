@@ -1,6 +1,7 @@
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:talk2statue/Authentication/presentation/views/login.dart';
 import 'package:talk2statue/core/services/popback_manager.dart';
 import 'package:talk2statue/core/utilities/app_constants.dart';
 import 'package:talk2statue/core/utilities/media_query_data.dart';
@@ -79,6 +80,69 @@ class _OnBoardingViewState extends State<OnBoardingView> {
                     ),
                   ),
                 ),
+<<<<<<< HEAD
+                Row(
+                  mainAxisAlignment:
+                      state.pageIdx + 1 !=
+                              state.pdataList.length
+                          ? MainAxisAlignment.spaceAround
+                          : MainAxisAlignment.center,
+                  children: [
+                    Visibility(
+                      visible: state.pageIdx + 1 !=
+                          state.pdataList.length,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          context
+                              .read<OnboardingBloc>()
+                              .add(OnboardingDisposeEvent());
+                           Navigator.pushReplacementNamed(
+                               context, LoginPage.routeName);
+                        },
+                        style: ElevatedButton.styleFrom(
+                          elevation: 15,
+                          backgroundColor:
+                              Theme.of(context).colorScheme.primary,
+                        ),
+                        child: const Text(
+                          'Skip',
+                          style: TextStyle(
+                            fontSize: 20,
+                            color: Colors.white,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ),
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        if (state.pageIdx + 1 ==
+                            state.pdataList.length) {
+                          context
+                              .read<OnboardingBloc>()
+                              .add(OnboardingDisposeEvent());
+                           Navigator.pushReplacementNamed(
+                               context, LoginPage.routeName);
+                        } else
+                          context
+                              .read<OnboardingBloc>()
+                              .add(OnboardingPageNextedEvent());
+                      },
+                      style: ElevatedButton.styleFrom(
+                          elevation: 15,
+                          foregroundColor: Colors.white,
+                          backgroundColor:
+                              Theme.of(context).colorScheme.primary),
+                      child: state.pageIdx + 1 ==
+                              state.pdataList.length
+                          ? const Text(
+                              'Get Started',
+                              style: TextStyle(fontSize: 18),
+                            )
+                          : const Icon(Icons.arrow_forward_ios_outlined),
+                    ),
+                  ],
+=======
                 ElevatedButton(
                   onPressed: () {
                     if (state.pageIdx + 1 == state.pdataList.length) {
@@ -103,6 +167,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
                           style: TextStyle(fontSize: 18),
                         )
                       : const Icon(Icons.arrow_forward_ios_outlined),
+>>>>>>> 17349e79ed7dc98b60f4825496d4bba296f9937d
                 ),
                 DotsIndicator(
                   dotsCount:
