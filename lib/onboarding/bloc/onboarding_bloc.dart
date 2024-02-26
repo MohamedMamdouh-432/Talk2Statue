@@ -52,15 +52,12 @@ class OnboardingBloc extends Bloc<OnboardingEvent, OnboardingState> {
     }
   }
 
-  @override
-  Future<void> close() {
+  void _onDispose(event, emit) {
     pController.removeListener(pageListener);
     pController.dispose();
     pNotifier.dispose();
-    return super.close();
-  }
-
-  FutureOr<void> _onDispose(event, emit) async {
-    await close();
+    emit(state.copyWith(
+      getStarted: true,
+    ));
   }
 }
