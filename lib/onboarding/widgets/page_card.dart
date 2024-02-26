@@ -14,11 +14,14 @@ class PageCard extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Image.asset(
-          pdata.imgPath,
-          width: double.infinity,
-          fit: BoxFit.contain,
-          height: context.height * 0.48,
+        ClipRRect(
+          borderRadius: BorderRadius.circular(30),
+          child: Image.asset(
+            pdata.imgPath,
+            width: double.infinity,
+            fit: BoxFit.fitWidth,
+            height: context.height * 0.45,
+          ),
         ),
         const SizedBox(height: 10),
         Column(
@@ -29,7 +32,7 @@ class PageCard extends StatelessWidget {
               textScaler: const TextScaler.linear(2),
               textAlign: TextAlign.center,
             ),
-            const SizedBox(height: 30),
+            const SizedBox(height: 10),
             Text(
               pdata.desc,
               textScaler: const TextScaler.linear(1.15),
@@ -37,6 +40,7 @@ class PageCard extends StatelessWidget {
               style: const TextStyle(
                 height: 1.5,
                 fontWeight: FontWeight.w300,
+                color: Colors.black54,
               ),
             ),
           ],
