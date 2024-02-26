@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:talk2statue/Authentication/bloc/login_cubit.dart';
 import 'package:talk2statue/core/route_generator.dart';
 import 'package:talk2statue/core/utilities/app_constants.dart';
 import 'package:talk2statue/onboarding/bloc/onboarding_bloc.dart';
@@ -38,6 +39,7 @@ class Talk2Statue extends StatelessWidget {
             statueRecognitionService: statueRecognitionService,
           ),
         ),
+        BlocProvider(create: (context)=>LoginCubit())
       ],
       child: const AppView(),
     );
