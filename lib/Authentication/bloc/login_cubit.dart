@@ -7,8 +7,8 @@ class LoginCubit extends Cubit<LoginStates>{
     return BlocProvider.of(context);
   }
   bool isChecked = false;
-  void toggleCheckbox(bool value){
-     value=!value;
+  void toggleCheckbox(){
+     isChecked=!isChecked;
      emit(ToggleCheckboxState());
   }
 }

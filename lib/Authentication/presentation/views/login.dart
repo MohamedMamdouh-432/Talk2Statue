@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:talk2statue/Authentication/data/datasource/google_sign_in.dart';
 import 'package:talk2statue/Authentication/presentation/views/sign_up.dart';
+import 'package:talk2statue/Authentication/presentation/views/test.dart';
 import 'package:talk2statue/Authentication/presentation/widgets/login_widgets.dart';
 import 'package:talk2statue/core/utilities/media_query_data.dart';
 
@@ -30,7 +32,11 @@ class _LoginPageState extends State<LoginPage> {
               customTextButton(
                   title: 'Forget Password?', buttonFunction: () {}),
               ElevatedButton.icon(
-                onPressed: () {},
+                onPressed: ()async {
+                  showLoading(context);
+                  await signInWithGoogle();
+                  Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (_){return Test();}), (route) => false);
+                },
                 icon: Image.asset(
                   'assets/images/google.png',
                   height: 24,
@@ -48,7 +54,7 @@ class _LoginPageState extends State<LoginPage> {
                   customTextButton(
                       title: 'Sign Up',
                       buttonFunction: (){
-                        Navigator.pushReplacementNamed(context, SignUpPage.routeName);
+                        Navigator.pushNamed(context, SignUpPage.routeName);
                       })
                 ],
               ),

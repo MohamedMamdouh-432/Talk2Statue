@@ -1,14 +1,17 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:talk2statue/Authentication/data/datasource/validate_input.dart';
 import 'package:talk2statue/core/utilities/app_constants.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 PreferredSizeWidget? loginAppBar(title) {
   return AppBar(
     title: Text(title),
   );
 }
+
 Widget customFormField(
-    {controller, required hint, required icon, obscureText = false}) {
+    { controller, required hint, required icon, obscureText = false}) {
   return Form(
     child: Padding(
       padding: const EdgeInsets.all(16.0),
@@ -74,7 +77,7 @@ Widget customButton({required buttonFunction, required title}) {
   );
 }
 
-Widget customTextButton({required title,required buttonFunction}) {
+Widget customTextButton({required title, required buttonFunction}) {
   return TextButton(
     onPressed: buttonFunction,
     child: Text(
@@ -82,4 +85,64 @@ Widget customTextButton({required title,required buttonFunction}) {
       style: TextStyle(color: Colors.black),
     ),
   );
+}
+
+ showLoading(context){
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AnimatedContainer(
+        duration: const Duration(milliseconds: 800),
+        curve: Curves.fastLinearToSlowEaseIn,
+        child: Dialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
+          ),
+          elevation: 0,
+          backgroundColor: Colors.transparent,
+          child: Stack(
+            children: [
+              Center(
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                  child: Container(
+                    height: 200,
+                    width: 200,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      shape: BoxShape.rectangle,
+                      borderRadius: BorderRadius.circular(20),
+                      boxShadow: const [
+                        BoxShadow(
+                          color: Colors.black26,
+                          blurRadius: 10,
+                          offset: Offset(0, 10),
+                        ),
+                      ],
+                    ),
+                    child: const Center(
+                      child: SpinKitCubeGrid(
+                        color: Color(0xffFFD700),
+                        size: 50,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+    },
+  );
+}
+
+ showAlert({required BuildContext context,required String title ,required Widget body,required dialogType}){
+   return AwesomeDialog(context:context,
+    title: title,
+     body:  body,
+     dialogType: dialogType
+      ).show();
 }

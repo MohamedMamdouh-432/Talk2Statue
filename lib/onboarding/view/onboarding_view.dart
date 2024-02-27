@@ -80,7 +80,6 @@ class _OnBoardingViewState extends State<OnBoardingView> {
                     ),
                   ),
                 ),
-<<<<<<< HEAD
                 Row(
                   mainAxisAlignment:
                       state.pageIdx + 1 !=
@@ -142,32 +141,6 @@ class _OnBoardingViewState extends State<OnBoardingView> {
                           : const Icon(Icons.arrow_forward_ios_outlined),
                     ),
                   ],
-=======
-                ElevatedButton(
-                  onPressed: () {
-                    if (state.pageIdx + 1 == state.pdataList.length) {
-                      context
-                          .read<OnboardingBloc>()
-                          .add(OnboardingDisposeEvent());
-                      // Navigator.pushReplacementNamed(
-                      //     context, AuthenticationScreen.routeName);
-                    } else {
-                      context
-                          .read<OnboardingBloc>()
-                          .add(OnboardingPageNextedEvent());
-                    }
-                  },
-                  style: ElevatedButton.styleFrom(
-                      elevation: 15,
-                      foregroundColor: Colors.white,
-                      backgroundColor: Theme.of(context).colorScheme.primary),
-                  child: state.pageIdx + 1 == state.pdataList.length
-                      ? const Text(
-                          'Get Started',
-                          style: TextStyle(fontSize: 18),
-                        )
-                      : const Icon(Icons.arrow_forward_ios_outlined),
->>>>>>> 17349e79ed7dc98b60f4825496d4bba296f9937d
                 ),
                 DotsIndicator(
                   dotsCount:
