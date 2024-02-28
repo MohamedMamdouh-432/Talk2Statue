@@ -11,29 +11,27 @@ PreferredSizeWidget? loginAppBar(title) {
 }
 
 Widget customFormField(
-    { controller, required hint, required icon, obscureText = false}) {
-  return Form(
-    child: Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: TextFormField(
-        controller: controller,
-        validator: validateInput,
-        obscureText: obscureText,
-        decoration: InputDecoration(
-          filled: true,
-          enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(32.0),
-              borderSide: BorderSide(color: AppConstants.goldColor)),
-          focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(25.0),
-            borderSide: BorderSide(color: AppConstants.goldColor),
-          ),
-          fillColor: Colors.white,
-          hintStyle: TextStyle(fontSize: 19),
-          hintText: hint,
-          hoverColor: Colors.black,
-          suffixIcon: icon,
+    {required controller, required hint, required icon, obscureText = false}) {
+  return Padding(
+    padding: const EdgeInsets.all(16.0),
+    child: TextFormField(
+      controller: controller,
+      validator: validateInput,
+      obscureText: obscureText,
+      decoration: InputDecoration(
+        filled: true,
+        enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(32.0),
+            borderSide: BorderSide(color: AppConstants.goldColor)),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(25.0),
+          borderSide: BorderSide(color: AppConstants.goldColor),
         ),
+        fillColor: Colors.white,
+        hintStyle: TextStyle(fontSize: 19),
+        hintText: hint,
+        hoverColor: Colors.black,
+        suffixIcon: icon,
       ),
     ),
   );
