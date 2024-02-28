@@ -1,7 +1,7 @@
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:talk2statue/Authentication/presentation/views/login.dart';
+import 'package:talk2statue/Authentication/presentation/views/sign_in.dart';
 import 'package:talk2statue/core/services/popback_manager.dart';
 import 'package:talk2statue/core/utilities/app_constants.dart';
 import 'package:talk2statue/core/utilities/media_query_data.dart';
@@ -96,7 +96,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
                               .read<OnboardingBloc>()
                               .add(OnboardingDisposeEvent());
                            Navigator.pushReplacementNamed(
-                               context, LoginPage.routeName);
+                               context, SignInPage.routeName);
                         },
                         style: ElevatedButton.styleFrom(
                           elevation: 15,
@@ -121,7 +121,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
                               .read<OnboardingBloc>()
                               .add(OnboardingDisposeEvent());
                            Navigator.pushReplacementNamed(
-                               context, LoginPage.routeName);
+                               context, SignInPage.routeName);
                         } else
                           context
                               .read<OnboardingBloc>()

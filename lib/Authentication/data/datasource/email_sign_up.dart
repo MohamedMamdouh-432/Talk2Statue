@@ -1,34 +1,35 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:talk2statue/Authentication/presentation/widgets/login_widgets.dart';
-import 'package:talk2statue/core/utilities/app_constants.dart';
 
  signUp(
-    {required context, required emailAddress, required password}) async {
-  var formData = AppConstants.formState.currentState;
+    {required context, required emailAddress, required password, required formState}) async {
+  var formData = formState.currentState;
   if (formData!.validate()) {
-    print('valod');
     showLoading(context);
     formData.save();
     try {
       final credential =
           await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: emailAddress,
+        email: emailAddress.trim().toString(),
         password: password,
       );
       return credential;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
+        Navigator.pop(context);
         showAlert(
             context: context,
             title: 'Error',
             body: Text(
               'The password provided is too weak',
-              style: TextStyle(fontSize: 16),
+              style: TextStyle(fontSize: 16.sp),
             ),
             dialogType: DialogType.error);
       } else if (e.code == 'email-already-in-use') {
+        Navigator.pop(context);
         showAlert(
             context: context,
             title: 'Error',

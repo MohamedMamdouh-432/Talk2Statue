@@ -5,7 +5,6 @@ import 'package:talk2statue/Authentication/bloc/login_states.dart';
 import 'package:talk2statue/Authentication/data/datasource/email_sign_up.dart';
 import 'package:talk2statue/Authentication/presentation/views/test.dart';
 import 'package:talk2statue/Authentication/presentation/widgets/login_widgets.dart';
-import 'package:talk2statue/core/utilities/app_constants.dart';
 import 'package:talk2statue/core/utilities/media_query_data.dart';
 class SignUpPage extends StatefulWidget {
   static const String routeName = "/signuppage";
@@ -16,6 +15,8 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
+  GlobalKey<FormState> formState = GlobalKey<FormState>();
+  TextEditingController userNameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   @override
@@ -31,10 +32,11 @@ class _SignUpPageState extends State<SignUpPage> {
               child: Column(
                 children: [
                   Form(
-                      key: AppConstants.formState,
+                      key: formState,
                       child: Column(
                         children: [
                           customFormField(
+                              controller: userNameController,
                               hint: 'user name',
                               icon: const Icon(Icons.person)),
                           customFormField(
@@ -67,6 +69,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       buttonFunction: () async {
                         var user = await signUp(
                             context: context,
+                            formState: formState,
                             emailAddress: emailController.text,
                             password: passwordController.text);
                         if (user != null) {
@@ -80,6 +83,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   Image.asset(
                     'assets/images/SignUpx.jpg',
                     height: 0.5 * (context.height),
+                    fit: BoxFit.fitWidth,
                   )
                 ],
               ),
