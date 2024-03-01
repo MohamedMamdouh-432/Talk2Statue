@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:talk2statue/Authentication/presentation/views/sign_in.dart';
 import 'package:talk2statue/Authentication/presentation/views/sign_up.dart';
 import 'package:talk2statue/home/presentation/views/home_page.dart';
+import 'package:talk2statue/home/presentation/views/statue_talker.dart';
 import 'package:talk2statue/onboarding/view/onboarding_view.dart';
 
 class RouteGenerator {
@@ -15,6 +16,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const SignUpPage());
       case HomePage.routeName:
         return MaterialPageRoute(builder: (_) => const HomePage());
+      case StatueTalker.routeName:
+        return MaterialPageRoute(builder: (_)=> const StatueTalker());
     }
     return null;
   }

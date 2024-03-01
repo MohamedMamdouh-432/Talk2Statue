@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:talk2statue/home/presentation/views/statue_talker.dart';
 
 class StatueTalkerComponent extends StatelessWidget {
   const StatueTalkerComponent({super.key});
@@ -8,7 +9,7 @@ class StatueTalkerComponent extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        
+        Navigator.pushNamed(context, StatueTalker.routeName);
       },
       child: Container(
         margin: const EdgeInsets.symmetric(
