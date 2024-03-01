@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -16,7 +14,6 @@ class OnboardingBloc extends Bloc<OnboardingEvent, OnboardingState> {
     on<OnboardingInitialEvent>(_onBoradingInitialAction);
     on<OnboardingChangePageEvent>(_onPageChanged);
     on<OnboardingPageNextedEvent>(_onPageNexted);
-    on<OnboardingDisposeEvent>(_onDispose);
   }
 
   void pageListener() => pNotifier.value = pController.page!;
@@ -38,11 +35,12 @@ class OnboardingBloc extends Bloc<OnboardingEvent, OnboardingState> {
     emit(state.copyWith(pageIdx: event.newIdx));
   }
 
-  void _onPageNexted(event, emit) {
-    if (state.pageIdx + 1 == state.pdataList.length) {
-      emit(state.copyWith(
-        getStarted: true,
-      ));
+  void _onPageNexted(OnboardingPageNextedEvent event, emit) {
+    if (state.pageIdx + 1 == state.pdataList.length || event.skip) {
+      pController.removeListener(pageListener);
+      pController.dispose();
+      pNotifier.dispose();
+      emit(state.copyWith(getStarted: true));
     } else {
       pController.nextPage(
         duration: const Duration(milliseconds: 200),
@@ -50,14 +48,5 @@ class OnboardingBloc extends Bloc<OnboardingEvent, OnboardingState> {
       );
       emit(state.copyWith(pageIdx: state.pageIdx + 1));
     }
-  }
-
-  void _onDispose(event, emit) {
-    pController.removeListener(pageListener);
-    pController.dispose();
-    pNotifier.dispose();
-    emit(state.copyWith(
-      getStarted: true,
-    ));
   }
 }
