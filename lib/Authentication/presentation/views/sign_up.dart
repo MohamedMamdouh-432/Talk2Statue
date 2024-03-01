@@ -3,10 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:talk2statue/Authentication/bloc/login_cubit.dart';
 import 'package:talk2statue/Authentication/bloc/login_states.dart';
 import 'package:talk2statue/Authentication/data/datasource/email_sign_up.dart';
-import 'package:talk2statue/Authentication/presentation/views/test.dart';
+import 'package:talk2statue/Authentication/presentation/views/login.dart';
 import 'package:talk2statue/Authentication/presentation/widgets/login_widgets.dart';
 import 'package:talk2statue/core/utilities/app_constants.dart';
 import 'package:talk2statue/core/utilities/media_query_data.dart';
+
 class SignUpPage extends StatefulWidget {
   static const String routeName = "/signuppage";
   const SignUpPage({super.key});
@@ -70,10 +71,10 @@ class _SignUpPageState extends State<SignUpPage> {
                             emailAddress: emailController.text,
                             password: passwordController.text);
                         if (user != null) {
-                          Navigator.pushAndRemoveUntil(context,
-                              MaterialPageRoute(builder: (_) {
-                            return Test();
-                          }), (route) => false);
+                          Navigator.pushNamed(
+                            context,
+                            LoginPage.routeName,
+                          );
                         }
                       },
                       title: 'Sign Up'),

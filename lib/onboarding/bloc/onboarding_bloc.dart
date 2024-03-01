@@ -14,7 +14,6 @@ class OnboardingBloc extends Bloc<OnboardingEvent, OnboardingState> {
     on<OnboardingInitialEvent>(_onBoradingInitialAction);
     on<OnboardingChangePageEvent>(_onPageChanged);
     on<OnboardingPageNextedEvent>(_onPageNexted);
-    on<OnboardingDisposeEvent>(_onDispose);
   }
 
   void pageListener() => pNotifier.value = pController.page!;
@@ -36,8 +35,9 @@ class OnboardingBloc extends Bloc<OnboardingEvent, OnboardingState> {
     emit(state.copyWith(pageIdx: event.newIdx));
   }
 
-  void _onPageNexted(event, emit) {
-    if (state.pageIdx + 1 == state.pdataList.length) {
+  void _onPageNexted(OnboardingPageNextedEvent event, emit) {
+    if (state.pageIdx + 1 == state.pdataList.length || event.skip) {
+      _onDispose();
       emit(state.copyWith(
         getStarted: true,
       ));
@@ -50,12 +50,9 @@ class OnboardingBloc extends Bloc<OnboardingEvent, OnboardingState> {
     }
   }
 
-  void _onDispose(event, emit) {
+  void _onDispose() {
     pController.removeListener(pageListener);
     pController.dispose();
     pNotifier.dispose();
-    emit(state.copyWith(
-      getStarted: true,
-    ));
   }
 }

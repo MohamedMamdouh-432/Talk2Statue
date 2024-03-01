@@ -4,8 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:talk2statue/Authentication/presentation/widgets/login_widgets.dart';
 import 'package:talk2statue/core/utilities/app_constants.dart';
 
- signUp(
-    {required context, required emailAddress, required password}) async {
+signUp({required context, required emailAddress, required password}) async {
   var formData = AppConstants.formState.currentState;
   if (formData!.validate()) {
     print('valod');
@@ -23,7 +22,7 @@ import 'package:talk2statue/core/utilities/app_constants.dart';
         showAlert(
             context: context,
             title: 'Error',
-            body: Text(
+            body: const Text(
               'The password provided is too weak',
               style: TextStyle(fontSize: 16),
             ),
@@ -32,7 +31,7 @@ import 'package:talk2statue/core/utilities/app_constants.dart';
         showAlert(
             context: context,
             title: 'Error',
-            body: Text(
+            body: const Text(
               'The account already exists for that email.',
               style: TextStyle(fontSize: 16),
             ),
@@ -45,8 +44,7 @@ import 'package:talk2statue/core/utilities/app_constants.dart';
           body: Text('$e'),
           dialogType: DialogType.error);
     }
-  }
-  else{
+  } else {
     print('Not Valid.');
   }
 }

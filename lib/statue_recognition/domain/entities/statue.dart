@@ -1,10 +1,10 @@
 import 'package:equatable/equatable.dart';
 
-class Statue extends Equatable {
+class StatueInfo extends Equatable {
   final String name;
   final String gender;
 
-  const Statue({
+  const StatueInfo({
     required this.name,
     required this.gender,
   });

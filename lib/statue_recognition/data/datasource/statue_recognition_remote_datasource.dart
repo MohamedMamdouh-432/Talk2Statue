@@ -11,7 +11,7 @@ abstract class BaseStatueRecognitionRemoteDataSource {
   const BaseStatueRecognitionRemoteDataSource(Dio dio)
       : _statueRecognitionDio = dio;
 
-  Future<Statue> recognizeStatue(StatueParams params);
+  Future<StatueInfo> recognizeStatue(StatueParams params);
 }
 
 class StatueRecognitionRemoteDataSource
@@ -19,7 +19,7 @@ class StatueRecognitionRemoteDataSource
   StatueRecognitionRemoteDataSource(super.dio);
 
   @override
-  Future<Statue> recognizeStatue(StatueParams params) async {
+  Future<StatueInfo> recognizeStatue(StatueParams params) async {
     try {
       var formData = FormData.fromMap({
         "file": await MultipartFile.fromFile(params.statueImg),

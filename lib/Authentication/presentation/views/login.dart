@@ -4,11 +4,11 @@ import 'package:talk2statue/Authentication/presentation/views/sign_up.dart';
 import 'package:talk2statue/Authentication/presentation/views/test.dart';
 import 'package:talk2statue/Authentication/presentation/widgets/login_widgets.dart';
 import 'package:talk2statue/core/utilities/media_query_data.dart';
+import 'package:talk2statue/home/presentation/views/home_page.dart';
 
 class LoginPage extends StatefulWidget {
   static const String routeName = "/loginpage";
   const LoginPage({super.key});
-
   @override
   State<LoginPage> createState() => _LoginPageState();
 }
@@ -24,18 +24,22 @@ class _LoginPageState extends State<LoginPage> {
             children: [
               customFormField(hint: 'E-mail', icon: const Icon(Icons.email)),
               customFormField(
-                  hint: 'Password', icon: const Icon(Icons.key), obscureText: true),
+                  hint: 'Password',
+                  icon: const Icon(Icons.key),
+                  obscureText: true),
               const SizedBox(
                 height: 20,
               ),
-              customButton(title: 'Sign In', buttonFunction: () {}),
+              customButton(title: 'Sign In', buttonFunction: () {
+                Navigator.pushNamed(context, HomePage.routeName);
+              }),
               customTextButton(
                   title: 'Forget Password?', buttonFunction: () {}),
               ElevatedButton.icon(
-                onPressed: ()async {
+                onPressed: () async{
                   showLoading(context);
                   await signInWithGoogle();
-                  Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (_){return Test();}), (route) => false);
+                  Navigator.pushNamed(context, HomePage.routeName);
                 },
                 icon: Image.asset(
                   'assets/images/google.png',
@@ -53,7 +57,7 @@ class _LoginPageState extends State<LoginPage> {
                   const Text('Don\'t have an acoount?'),
                   customTextButton(
                       title: 'Sign Up',
-                      buttonFunction: (){
+                      buttonFunction: () {
                         Navigator.pushNamed(context, SignUpPage.routeName);
                       })
                 ],

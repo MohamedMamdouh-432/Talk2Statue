@@ -13,9 +13,11 @@ class StatueRecognitionRepository implements BaseStatueRecognitionRepository {
   StatueRecognitionRepository(this.baseStatueRecognitionRemoteDataSource);
 
   @override
-  Future<Either<Failure, Statue>> recognizeStatue(StatueParams params) async {
+  Future<Either<Failure, StatueInfo>> recognizeStatue(
+      StatueParams params) async {
     try {
-      final results = await baseStatueRecognitionRemoteDataSource.recognizeStatue(params);
+      final results =
+          await baseStatueRecognitionRemoteDataSource.recognizeStatue(params);
       return Right(results);
     } on ServerException catch (se) {
       return Left(ServerFailure(se.exceptionMessage));

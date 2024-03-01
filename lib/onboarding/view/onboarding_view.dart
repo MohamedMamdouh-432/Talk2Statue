@@ -26,20 +26,27 @@ class _OnBoardingViewState extends State<OnBoardingView> {
   Widget build(BuildContext context) {
     return PopBackManager(
       Scaffold(
-        body: BlocBuilder<OnboardingBloc, OnboardingState>(
-          builder: (context, state) => Container(
-            padding: EdgeInsets.all(AppConstants.screenPadding),
-            width: double.infinity,
-            height: double.infinity,
+        backgroundColor: AppConstants.onBoardingScaffoldColor,
+        body: BlocConsumer<OnboardingBloc, OnboardingState>(
+          listener: (context, state) {
+            if (state.getStarted) {
+              Navigator.pushReplacementNamed(
+                context,
+                LoginPage.routeName,
+              );
+            }
+          },
+          builder: (context, state) => Padding(
+            padding: const EdgeInsets.all(20),
             child: Column(
               children: [
-                SizedBox(height: context.height * 0.04),
+                SizedBox(height: context.height * 0.035),
                 Align(
                   alignment: Alignment.centerRight,
                   child: TextButton(
                     onPressed: () => context
                         .read<OnboardingBloc>()
-                        .add(OnboardingDisposeEvent()),
+                        .add(OnboardingPageNextedEvent(skip: true)),
                     child: const Text(
                       'Skip',
                       style: TextStyle(fontSize: 20),
@@ -81,19 +88,9 @@ class _OnBoardingViewState extends State<OnBoardingView> {
                   ),
                 ),
                 ElevatedButton(
-                  onPressed: () {
-                    if (state.pageIdx + 1 == state.pdataList.length) {
-                      context
-                          .read<OnboardingBloc>()
-                          .add(OnboardingDisposeEvent());
-                      // Navigator.pushReplacementNamed(
-                      //     context, AuthenticationScreen.routeName);
-                    } else {
-                      context
-                          .read<OnboardingBloc>()
-                          .add(OnboardingPageNextedEvent());
-                    }
-                  },
+                  onPressed: () => context
+                      .read<OnboardingBloc>()
+                      .add(OnboardingPageNextedEvent()),
                   style: ElevatedButton.styleFrom(
                       elevation: 15,
                       foregroundColor: Colors.white,

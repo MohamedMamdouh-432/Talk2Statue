@@ -1,7 +1,7 @@
 part of 'statue_recognition_bloc.dart';
 
 class StatueRecognitionState extends Equatable {
-  final Statue? statue;
+  final StatueInfo? statue;
   final RequestState requestState;
   final String message;
 
@@ -12,7 +12,7 @@ class StatueRecognitionState extends Equatable {
   });
 
   StatueRecognitionState copyWith({
-    Statue? statue,
+    StatueInfo? statue,
     RequestState? requestState,
     String? message,
   }) {
@@ -22,7 +22,7 @@ class StatueRecognitionState extends Equatable {
       message: message ?? this.message,
     );
   }
-  
+
   @override
   List<Object> get props => [
         statue!,
