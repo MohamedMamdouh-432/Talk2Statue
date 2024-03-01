@@ -11,7 +11,7 @@ class CurvedAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.backgroundColor = AppConstants.primaryColor,
     required this.preferredSize,
   }) : super(key: key);
-
+ 
   @override
   Widget build(BuildContext context) {
     return CustomPaint(
