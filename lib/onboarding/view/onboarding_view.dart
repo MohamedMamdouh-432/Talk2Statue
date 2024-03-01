@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:talk2statue/Authentication/presentation/views/sign_in.dart';
 import 'package:talk2statue/core/services/popback_manager.dart';
-import 'package:talk2statue/core/utilities/app_constants.dart';
 import 'package:talk2statue/core/utilities/media_query_data.dart';
 import 'package:talk2statue/onboarding/bloc/onboarding_bloc.dart';
 import 'package:talk2statue/onboarding/widgets/page_card.dart';
@@ -26,20 +25,26 @@ class _OnBoardingViewState extends State<OnBoardingView> {
   Widget build(BuildContext context) {
     return PopBackManager(
       Scaffold(
-        body: BlocBuilder<OnboardingBloc, OnboardingState>(
-          builder: (context, state) => Container(
-            padding: EdgeInsets.all(AppConstants.screenPadding),
-            width: double.infinity,
-            height: double.infinity,
+        body: BlocConsumer<OnboardingBloc, OnboardingState>(
+          listener: (context, state) {
+            if (state.getStarted) {
+              Navigator.pushReplacementNamed(
+                context,
+                SignInPage.routeName,
+              );
+            }
+          },
+          builder: (context, state) => Padding(
+            padding: const EdgeInsets.all(30),
             child: Column(
               children: [
-                SizedBox(height: context.height * 0.04),
+                SizedBox(height: context.height * 0.035),
                 Align(
                   alignment: Alignment.centerRight,
                   child: TextButton(
                     onPressed: () => context
                         .read<OnboardingBloc>()
-                        .add(OnboardingDisposeEvent()),
+                        .add(OnboardingPageNextedEvent(skip: true)),
                     child: const Text(
                       'Skip',
                       style: TextStyle(fontSize: 20),
@@ -80,67 +85,20 @@ class _OnBoardingViewState extends State<OnBoardingView> {
                     ),
                   ),
                 ),
-                Row(
-                  mainAxisAlignment:
-                      state.pageIdx + 1 !=
-                              state.pdataList.length
-                          ? MainAxisAlignment.spaceAround
-                          : MainAxisAlignment.center,
-                  children: [
-                    Visibility(
-                      visible: state.pageIdx + 1 !=
-                          state.pdataList.length,
-                      child: ElevatedButton(
-                        onPressed: () {
-                          context
-                              .read<OnboardingBloc>()
-                              .add(OnboardingDisposeEvent());
-                           Navigator.pushReplacementNamed(
-                               context, SignInPage.routeName);
-                        },
-                        style: ElevatedButton.styleFrom(
-                          elevation: 15,
-                          backgroundColor:
-                              Theme.of(context).colorScheme.primary,
-                        ),
-                        child: const Text(
-                          'Skip',
-                          style: TextStyle(
-                            fontSize: 20,
-                            color: Colors.white,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      ),
-                    ),
-                    ElevatedButton(
-                      onPressed: () {
-                        if (state.pageIdx + 1 ==
-                            state.pdataList.length) {
-                          context
-                              .read<OnboardingBloc>()
-                              .add(OnboardingDisposeEvent());
-                           Navigator.pushReplacementNamed(
-                               context, SignInPage.routeName);
-                        } else
-                          context
-                              .read<OnboardingBloc>()
-                              .add(OnboardingPageNextedEvent());
-                      },
-                      style: ElevatedButton.styleFrom(
-                          elevation: 15,
-                          foregroundColor: Colors.white,
-                          backgroundColor:
-                              Theme.of(context).colorScheme.primary),
-                      child: state.pageIdx + 1 ==
-                              state.pdataList.length
-                          ? const Text(
-                              'Get Started',
-                              style: TextStyle(fontSize: 18),
-                            )
-                          : const Icon(Icons.arrow_forward_ios_outlined),
-                    ),
-                  ],
+                ElevatedButton(
+                  onPressed: () => context
+                      .read<OnboardingBloc>()
+                      .add(OnboardingPageNextedEvent()),
+                  style: ElevatedButton.styleFrom(
+                      elevation: 15,
+                      foregroundColor: Colors.white,
+                      backgroundColor: Theme.of(context).colorScheme.primary),
+                  child: state.pageIdx + 1 == state.pdataList.length
+                      ? const Text(
+                          'Get Started',
+                          style: TextStyle(fontSize: 18),
+                        )
+                      : const Icon(Icons.arrow_forward_ios_outlined),
                 ),
                 DotsIndicator(
                   dotsCount:
