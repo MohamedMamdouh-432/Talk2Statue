@@ -20,7 +20,7 @@ class PageCard extends StatelessWidget {
             pdata.imgPath,
             width: double.infinity,
             fit: BoxFit.fitWidth,
-            height: context.height * 0.45,
+            height: context.height * 0.4,
           ),
         ),
         const SizedBox(height: 10),
@@ -29,16 +29,14 @@ class PageCard extends StatelessWidget {
           children: [
             Text(
               pdata.title,
-              textScaler: const TextScaler.linear(2),
+              textScaler: const TextScaler.linear(1.8),
               textAlign: TextAlign.center,
             ),
-            const SizedBox(height: 10),
             Text(
               pdata.desc,
-              textScaler: const TextScaler.linear(1.15),
+              textScaler: const TextScaler.linear(1.13),
               textAlign: TextAlign.center,
               style: const TextStyle(
-                height: 1.5,
                 fontWeight: FontWeight.w300,
                 color: Colors.black54,
               ),

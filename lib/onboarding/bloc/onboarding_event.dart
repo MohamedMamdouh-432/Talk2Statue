@@ -12,7 +12,8 @@ class OnboardingChangePageEvent extends OnboardingEvent {
   });
 }
 
-class OnboardingPageNextedEvent extends OnboardingEvent {}
-// make dispose event
+class OnboardingPageNextedEvent extends OnboardingEvent {
+  final bool skip;
 
-class OnboardingDisposeEvent extends OnboardingEvent {}
+  OnboardingPageNextedEvent({this.skip = false});
+}
