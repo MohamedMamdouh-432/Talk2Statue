@@ -18,6 +18,13 @@ dependencies:
   just_audio: ^0.9.36
   path_provider: ^2.1.2
   stylish_bottom_bar: ^1.0.3
+  google_sign_in: ^6.2.1
+  dots_indicator: ^3.0.0
+  firebase_core: ^2.25.4
+  firebase_auth: ^4.17.5
+  flutter_spinkit: ^5.2.0
+  awesome_dialog: ^3.2.0
+  flutter_screenutil: ^5.9.0
 
 dev_dependencies:
   flutter_test:
@@ -32,3 +39,6 @@ flutter_launcher_icons:
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/
+    - assets/images/

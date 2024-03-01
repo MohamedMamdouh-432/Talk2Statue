@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 
 class AppConstants {
-  static Color primaryColor = const Color.fromARGB(255, 200, 138, 94);
-
+  static const Color primaryColor = Color(0xffF6D779);
+  static const double screenPadding = 10;
+  static const Color goldColor = Color(0xffFFD700);
+  static const Color onBoardingScaffoldColor =
+      Color.fromARGB(255, 243, 231, 199);
+  static GlobalKey<FormState> formState = GlobalKey<FormState>();
   static ThemeData theme = ThemeData(
     useMaterial3: true,
     colorSchemeSeed: primaryColor,
