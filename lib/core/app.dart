@@ -4,7 +4,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:talk2statue/Authentication/bloc/login_cubit.dart';
 import 'package:talk2statue/core/route_generator.dart';
 import 'package:talk2statue/core/utilities/app_constants.dart';
+import 'package:talk2statue/home/bloc/home_cubit.dart';
 import 'package:talk2statue/home/presentation/views/home_page.dart';
+import 'package:talk2statue/home/presentation/views/statue_talker.dart';
 import 'package:talk2statue/onboarding/bloc/onboarding_bloc.dart';
 import 'package:talk2statue/onboarding/view/onboarding_view.dart';
 import 'package:talk2statue/speech_transcription/domain/services/create_speech_from_text.dart';
@@ -46,7 +48,8 @@ class Talk2Statue extends StatelessWidget {
               statueRecognitionService: statueRecognitionService,
             ),
           ),
-          BlocProvider(create: (context)=>LoginCubit())
+          BlocProvider(create: (context)=>LoginCubit()),
+          BlocProvider(create: (context)=>HomeCubit())
         ],
         child: const AppView(),
       );

@@ -17,7 +17,7 @@ class RouteGenerator {
       case HomePage.routeName:
         return MaterialPageRoute(builder: (_) => const HomePage());
       case StatueTalker.routeName:
-         return MaterialPageRoute(builder: (_)=>const StatueTalker());
+        return MaterialPageRoute(builder: (_)=> const StatueTalker());
     }
     return null;
   }
