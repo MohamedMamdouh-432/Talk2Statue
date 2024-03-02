@@ -59,19 +59,19 @@ class StatueTalker extends StatelessWidget {
                     onPressed: () async{
                       await cubit.selectImageFromCamera(ImageSource.camera);
                     },
-                    icon: Icon(Icons.camera),
-                    label: Text('Scan Statue'),
+                    icon: const Icon(Icons.camera),
+                    label: const Text('Scan Statue'),
                   ),
                   ElevatedButton.icon(
                     onPressed: () async {
                       await cubit.selectImageFromCamera(ImageSource.gallery);
                     },
-                    icon: Icon(Icons.photo),
-                    label: Text('From Gallery'),
+                    icon: const Icon(Icons.photo),
+                    label: const Text('From Gallery'),
                   ),
                 ],
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
                 if (cubit.imageName!=null)
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -79,17 +79,17 @@ class StatueTalker extends StatelessWidget {
                   alignment: Alignment.centerLeft,
                   child: Text(
                     'Image: ${cubit.imageName}',
-                    style: TextStyle(fontSize: 18),
+                    style: const TextStyle(fontSize: 18),
                   ),
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               SizedBox(
                 width: 200.w,
                 height: 60.h,
                 child: ElevatedButton(
                   onPressed: () {
-                    (cubit.imageName!=null)?Navigator.push(context, MaterialPageRoute(builder: (_)=>Test())) :null;
+                    (cubit.imageName!=null)?Navigator.push(context, MaterialPageRoute(builder: (_)=>const Test())) :null;
                   },
                   style: ElevatedButton.styleFrom(),
                   child: Text(
