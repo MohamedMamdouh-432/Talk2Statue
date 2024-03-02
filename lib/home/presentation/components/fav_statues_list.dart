@@ -9,7 +9,7 @@ class FavStatuesList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 90,
-      margin: const EdgeInsets.only(top: 5, bottom: 15),
+      margin: const EdgeInsets.only(top: 5),
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: statueImages.length,

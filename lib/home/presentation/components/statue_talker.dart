@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:talk2statue/core/utilities/media_query_data.dart';
 import 'package:talk2statue/home/presentation/views/statue_talker.dart';
 
 class StatueTalkerComponent extends StatelessWidget {
@@ -8,14 +9,12 @@ class StatueTalkerComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        Navigator.pushNamed(context, StatueTalker.routeName);
-      },
+      onTap: () => Navigator.pushNamed(
+        context,
+        StatueTalker.routeName,
+      ),
       child: Container(
-        margin: const EdgeInsets.symmetric(
-          horizontal: 30,
-          vertical: 15,
-        ),
+        width: context.width - 80,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(30),
           border: Border.all(
@@ -70,7 +69,7 @@ class StatueTalkerComponent extends StatelessWidget {
                   Text(
                     'When you found statue you wish to talk to and have curiousity to know more about it\'s life, family, position, history and The events he witnessed.',
                     overflow: TextOverflow.ellipsis,
-                    maxLines: 3,
+                    maxLines: 2,
                     style: GoogleFonts.lato(
                       color: Colors.blueGrey,
                     ),

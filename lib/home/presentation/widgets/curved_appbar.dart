@@ -1,17 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:talk2statue/core/utilities/app_constants.dart';
+import 'package:talk2statue/home/presentation/views/statue_talker.dart';
 
 class CurvedAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   final Size preferredSize;
   final Color backgroundColor;
+  final IconData icon;
+  final bool inHome;
 
   const CurvedAppBar({
     Key? key,
-    this.backgroundColor = AppConstants.primaryColor,
     required this.preferredSize,
+    this.backgroundColor = AppConstants.primaryColor,
+    this.icon = Icons.arrow_back_ios_new_outlined,
+    this.inHome = false,
   }) : super(key: key);
- 
+
   @override
   Widget build(BuildContext context) {
     return CustomPaint(
@@ -23,15 +28,21 @@ class CurvedAppBar extends StatelessWidget implements PreferredSizeWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             IconButton(
+              onPressed: () => inHome
+                  ? Scaffold.of(context).openDrawer()
+                  : Navigator.pop(context),
               iconSize: 30,
-              icon: const Icon(Icons.menu),
-              onPressed: () => Scaffold.of(context).openDrawer(),
+              icon: Icon(icon),
             ),
-            IconButton(
-              onPressed: () {},
-              iconSize: 35,
-              icon: const Icon(Icons.fit_screen_outlined),
-            ),
+            if (inHome)
+              IconButton(
+                onPressed: () => Navigator.pushNamed(
+                  context,
+                  StatueTalker.routeName,
+                ),
+                iconSize: 35,
+                icon: const Icon(Icons.fit_screen_outlined),
+              ),
           ],
         ),
       ),

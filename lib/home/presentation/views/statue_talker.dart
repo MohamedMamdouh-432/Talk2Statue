@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:talk2statue/core/utilities/media_query_data.dart';
 import 'package:talk2statue/home/bloc/home_cubit.dart';
 import 'package:talk2statue/home/bloc/home_states.dart';
 import 'package:talk2statue/home/presentation/views/test.dart';
-import 'package:talk2statue/home/presentation/widgets/curved_home_appbar.dart';
+import 'package:talk2statue/home/presentation/widgets/curved_appbar.dart';
 
 class StatueTalker extends StatelessWidget {
   static const String routeName = '/statuetaker';
@@ -15,93 +16,84 @@ class StatueTalker extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:
-          CurvedAppBar(preferredSize: Size.fromHeight(context.height * 0.14)),
-      body: BlocConsumer<HomeCubit,HomeStates>(
-        listener: (BuildContext context, HomeStates state) {  },
+      appBar: CurvedAppBar(
+        preferredSize: Size.fromHeight(context.height * 0.14),
+      ),
+      body: BlocBuilder<HomeCubit, HomeStates>(
         builder: (BuildContext context, HomeStates state) {
-          var cubit = HomeCubit.get(context); 
+          var cubit = HomeCubit.get(context);
           return SingleChildScrollView(
-          child: Column(
-            children: [
-              Image.asset(
-                'assets/images/onboarding3.png',
-                height: (context.height) * 0.35,
-                width: double.infinity,
-                fit: BoxFit.cover,
-              ),
-              Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      'Speak To Statue',
-                      style:
-                          TextStyle(fontSize: 24.sp, fontWeight: FontWeight.bold),
-                    )),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 4),
-                child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    'When you found statue you wish to talk to and have curiousity to know more about it\'s life, family, position, history and The events he witnessed.',
-                    style: TextStyle(
-                      fontSize: 20.sp,
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(15, 0, 15, 30),
+              child: Column(
+                children: [
+                  Image.asset(
+                    'assets/images/onboarding3.png',
+                    width: double.infinity,
+                    fit: BoxFit.cover,
+                  ),
+                  Container(
+                    margin: const EdgeInsets.only(top: 10, bottom: 10),
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'Speak to The Statue',
+                        style: GoogleFonts.lato(
+                          fontSize: 22.sp,
+                          fontWeight: FontWeight.bold,
+                          color: Theme.of(context).colorScheme.primary,
+                        ),
+                      ),
                     ),
                   ),
-                ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  ElevatedButton.icon(
-                    onPressed: () async{
-                      await cubit.selectImageFromCamera(ImageSource.camera);
-                    },
-                    icon: const Icon(Icons.camera),
-                    label: const Text('Scan Statue'),
+                  Text(
+                    "When you found statue you wish to see and talk. Imagine being able to converse with the Most Powerful Ancient Egyptian Statues who shaped the past .\n\nHere's the magic:\n\n"
+                    "1. Scan and Discover: Simply use your phone's CAMERA to scan any statue or pick one from GALLERY .\n\n"
+                    "2. Hear their Story: Once identified, the statue comes to life! Listen as the figure speaks in their own voice, sharing their fascinating story, wisdom, and experiences .",
+                    style: TextStyle(
+                      fontSize: 14.sp,
+                      color: Colors.black54,
+                    ),
                   ),
-                  ElevatedButton.icon(
-                    onPressed: () async {
-                      await cubit.selectImageFromCamera(ImageSource.gallery);
-                    },
-                    icon: const Icon(Icons.photo),
-                    label: const Text('From Gallery'),
+                  const SizedBox(height: 20),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      ElevatedButton.icon(
+                        onPressed: () async => await cubit
+                            .selectImageFromCamera(ImageSource.camera),
+                        icon: const Icon(Icons.camera_outlined),
+                        label: const Text('Scan Statue'),
+                      ),
+                      ElevatedButton.icon(
+                        onPressed: () async => await cubit
+                            .selectImageFromCamera(ImageSource.gallery),
+                        icon: const Icon(Icons.photo_library_outlined),
+                        label: const Text('From Gallery'),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 30),
+                  SizedBox(
+                    width: 200.w,
+                    height: 40.h,
+                    child: ElevatedButton(
+                      onPressed: cubit.imageName == null
+                          ? null
+                          : () => Navigator.push(context,
+                              MaterialPageRoute(builder: (_) => const Test())),
+                      style: ElevatedButton.styleFrom(),
+                      child: Text(
+                        "Let's Begin",
+                        style: TextStyle(fontSize: 20.sp),
+                      ),
+                    ),
                   ),
                 ],
               ),
-              const SizedBox(height: 20),
-                if (cubit.imageName!=null)
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    'Image: ${cubit.imageName}',
-                    style: const TextStyle(fontSize: 18),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 20),
-              SizedBox(
-                width: 200.w,
-                height: 60.h,
-                child: ElevatedButton(
-                  onPressed: () {
-                    (cubit.imageName!=null)?Navigator.push(context, MaterialPageRoute(builder: (_)=>const Test())) :null;
-                  },
-                  style: ElevatedButton.styleFrom(),
-                  child: Text(
-                    'Start',
-                    style: TextStyle(fontSize: 20.sp),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        );
-         },
+            ),
+          );
+        },
       ),
     );
   }
