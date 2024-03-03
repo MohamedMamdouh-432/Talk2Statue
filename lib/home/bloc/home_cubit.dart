@@ -9,11 +9,9 @@ class HomeCubit extends Cubit<HomeStates>{
    static HomeCubit get(context) {
     return BlocProvider.of(context);
   }
-  var pickedImage;
-  var imageName;
-  String? imagePath;
+  String? imageName, imagePath;
   Future<void> selectImageFromCamera(ImageSource source) async {
-     pickedImage = await ImagePicker().pickImage(source: source);
+    final pickedImage = await ImagePicker().pickImage(source: source);
     if (pickedImage != null) {
       imageName  = extractFileName(pickedImage.path);
       await saveImage(pickedImage.path);
