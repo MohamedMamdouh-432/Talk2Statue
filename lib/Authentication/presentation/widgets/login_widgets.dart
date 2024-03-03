@@ -1,8 +1,8 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:talk2statue/Authentication/data/datasource/validate_input.dart';
 import 'package:talk2statue/core/utilities/app_constants.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 PreferredSizeWidget? loginAppBar(title) {
   return AppBar(
@@ -22,13 +22,13 @@ Widget customFormField(
         filled: true,
         enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(32.0),
-            borderSide: BorderSide(color: AppConstants.goldColor)),
+            borderSide: const BorderSide(color: AppConstants.goldColor)),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(25.0),
-          borderSide: BorderSide(color: AppConstants.goldColor),
+          borderSide: const BorderSide(color: AppConstants.goldColor),
         ),
         fillColor: Colors.white,
-        hintStyle: TextStyle(fontSize: 19),
+        hintStyle: const TextStyle(fontSize: 19),
         hintText: hint,
         hoverColor: Colors.black,
         suffixIcon: icon,
@@ -44,7 +44,7 @@ Widget customButton({required buttonFunction, required title}) {
     decoration: BoxDecoration(
       borderRadius:
           BorderRadius.circular(30.0), // Adjust the border radius as needed
-      gradient: LinearGradient(
+      gradient: const LinearGradient(
         colors: [
           AppConstants.goldColor,
           Colors.white,
@@ -63,7 +63,7 @@ Widget customButton({required buttonFunction, required title}) {
         child: Center(
           child: Text(
             title,
-            style: TextStyle(
+            style: const TextStyle(
               color: Colors.black, // Text color
               fontSize: 16, // Text size
               fontWeight: FontWeight.bold, // Text weight
@@ -80,12 +80,12 @@ Widget customTextButton({required title, required buttonFunction}) {
     onPressed: buttonFunction,
     child: Text(
       title,
-      style: TextStyle(color: Colors.black),
+      style: const TextStyle(color: Colors.black),
     ),
   );
 }
 
- showLoading(context){
+showLoading(context) {
   showDialog(
     context: context,
     builder: (BuildContext context) {
@@ -137,10 +137,12 @@ Widget customTextButton({required title, required buttonFunction}) {
   );
 }
 
- showAlert({required BuildContext context,required String title ,required Widget body,required dialogType}){
-   return AwesomeDialog(context:context,
-    title: title,
-     body:  body,
-     dialogType: dialogType
-      ).show();
+showAlert(
+    {required BuildContext context,
+    required String title,
+    required Widget body,
+    required dialogType}) {
+  return AwesomeDialog(
+          context: context, title: title, body: body, dialogType: dialogType)
+      .show();
 }

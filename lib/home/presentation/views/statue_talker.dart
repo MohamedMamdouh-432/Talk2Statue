@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:talk2statue/conversation/presentation/views/conversation_page.dart';
+import 'package:talk2statue/conversation/presentation/views/conversation_view.dart';
 import 'package:talk2statue/core/utilities/media_query_data.dart';
 import 'package:talk2statue/home/bloc/home_cubit.dart';
 import 'package:talk2statue/home/bloc/home_states.dart';
@@ -82,7 +82,7 @@ class StatueTalker extends StatelessWidget {
                           ? null
                           : () => Navigator.pushNamed(
                                 context,
-                                ConversationPage.routeName,
+                                ConversationView.routeName,
                               ),
                       style: ElevatedButton.styleFrom(),
                       child: Row(

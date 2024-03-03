@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:talk2statue/Authentication/bloc/login_cubit.dart';
+import 'package:talk2statue/conversation/presentation/bloc/conversation_bloc.dart';
 import 'package:talk2statue/core/route_generator.dart';
 import 'package:talk2statue/core/utilities/app_constants.dart';
 import 'package:talk2statue/home/bloc/home_cubit.dart';
-import 'package:talk2statue/home/presentation/views/home_page.dart';
+import 'package:talk2statue/home/presentation/views/home_view.dart';
 import 'package:talk2statue/onboarding/bloc/onboarding_bloc.dart';
-import 'package:talk2statue/speech_transcription/domain/services/create_speech_from_text.dart';
-import 'package:talk2statue/speech_transcription/domain/services/transcribe_audio_to_text.dart';
-import 'package:talk2statue/speech_transcription/presentation/controllers/speech_transcription_bloc/speech_transcription_bloc.dart';
+import 'package:talk2statue/conversation/domain/services/create_speech_from_text.dart';
+import 'package:talk2statue/conversation/domain/services/transcribe_audio_to_text.dart';
+import 'package:talk2statue/statue_recognition/bloc/statue_recognition_bloc.dart';
 import 'package:talk2statue/statue_recognition/domain/services/recognize_statue.dart';
-import 'package:talk2statue/statue_recognition/presentation/controllers/bloc/statue_recognition_bloc.dart';
 
 class Talk2Statue extends StatelessWidget {
   final AudioTranscriptionService audioTranscriptionService;
@@ -36,7 +36,7 @@ class Talk2Statue extends StatelessWidget {
           providers: [
             BlocProvider(create: (context) => OnboardingBloc()),
             BlocProvider(
-              create: (context) => SpeechTranscriptionBloc(
+              create: (context) => ConversationBloc(
                 audioTranscriptionService: audioTranscriptionService,
                 speechCreateService: speechCreatingService,
               ),
@@ -65,7 +65,7 @@ class AppView extends StatelessWidget {
       theme: AppConstants.theme,
       debugShowCheckedModeBanner: false,
       onGenerateRoute: RouteGenerator.generateRoute,
-      initialRoute: HomePage.routeName,
+      initialRoute: HomeView.routeName,
     );
   }
 }

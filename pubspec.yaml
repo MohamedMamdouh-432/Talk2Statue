@@ -28,6 +28,7 @@ dependencies:
   image_picker: ^1.0.7
   flutter_sound: ^9.2.13
   conditional_builder_null_safety: ^0.0.6
+  animated_loading_indicators: ^1.0.0+4
 
 dev_dependencies:
   flutter_test:
