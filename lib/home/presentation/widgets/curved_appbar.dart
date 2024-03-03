@@ -1,4 +1,7 @@
+import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:talk2statue/core/utilities/app_constants.dart';
 import 'package:talk2statue/home/presentation/views/statue_talker.dart';
 
@@ -8,6 +11,7 @@ class CurvedAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Color backgroundColor;
   final IconData icon;
   final bool inHome;
+  final String? head;
 
   const CurvedAppBar({
     Key? key,
@@ -15,6 +19,7 @@ class CurvedAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.backgroundColor = AppConstants.primaryColor,
     this.icon = Icons.arrow_back_ios_new_outlined,
     this.inHome = false,
+    this.head,
   }) : super(key: key);
 
   @override
@@ -34,8 +39,20 @@ class CurvedAppBar extends StatelessWidget implements PreferredSizeWidget {
               iconSize: 30,
               icon: Icon(icon),
             ),
-            if (inHome)
-              IconButton(
+            ConditionalBuilder(
+              condition: head != null,
+              builder: (context) => Text(
+                head!,
+                style: GoogleFonts.lato(
+                  fontSize: 22.sp,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              fallback: (context) => const SizedBox(),
+            ),
+            ConditionalBuilder(
+              condition: inHome,
+              builder: (context) => IconButton(
                 onPressed: () => Navigator.pushNamed(
                   context,
                   StatueTalker.routeName,
@@ -43,6 +60,8 @@ class CurvedAppBar extends StatelessWidget implements PreferredSizeWidget {
                 iconSize: 35,
                 icon: const Icon(Icons.fit_screen_outlined),
               ),
+              fallback: (context) => const SizedBox(),
+            ),
           ],
         ),
       ),

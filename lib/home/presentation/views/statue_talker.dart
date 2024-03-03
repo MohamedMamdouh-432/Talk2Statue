@@ -3,10 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:talk2statue/conversation/presentation/views/conversation_page.dart';
 import 'package:talk2statue/core/utilities/media_query_data.dart';
 import 'package:talk2statue/home/bloc/home_cubit.dart';
 import 'package:talk2statue/home/bloc/home_states.dart';
-import 'package:talk2statue/home/presentation/views/test.dart';
 import 'package:talk2statue/home/presentation/widgets/curved_appbar.dart';
 
 class StatueTalker extends StatelessWidget {
@@ -80,12 +80,20 @@ class StatueTalker extends StatelessWidget {
                     child: ElevatedButton(
                       onPressed: cubit.imageName == null
                           ? null
-                          : () => Navigator.push(context,
-                              MaterialPageRoute(builder: (_) => const Test())),
+                          : () => Navigator.pushNamed(
+                                context,
+                                ConversationPage.routeName,
+                              ),
                       style: ElevatedButton.styleFrom(),
-                      child: Text(
-                        "Let's Begin",
-                        style: TextStyle(fontSize: 20.sp),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Text(
+                            "Let's Begin",
+                            style: TextStyle(fontSize: 20.sp),
+                          ),
+                          const Icon(Icons.arrow_forward_ios_outlined)
+                        ],
                       ),
                     ),
                   ),

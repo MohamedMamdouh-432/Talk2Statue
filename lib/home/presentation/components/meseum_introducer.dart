@@ -38,7 +38,12 @@ class MeseumIntroducerComponent extends StatelessWidget {
               ),
             ),
             Container(
-              margin: const EdgeInsets.only(left: 15, right: 5, bottom: 10),
+              margin: const EdgeInsets.only(
+                top: 10,
+                left: 15,
+                right: 5,
+                bottom: 10,
+              ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
@@ -49,6 +54,7 @@ class MeseumIntroducerComponent extends StatelessWidget {
                       style: GoogleFonts.lato(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
+                        color: Theme.of(context).colorScheme.primary,
                       ),
                     ),
                   ),
