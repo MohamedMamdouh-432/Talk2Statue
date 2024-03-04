@@ -5,7 +5,7 @@ import 'package:talk2statue/Authentication/presentation/views/sign_in.dart';
 import 'package:talk2statue/core/services/popback_manager.dart';
 import 'package:talk2statue/core/utilities/media_query_data.dart';
 import 'package:talk2statue/onboarding/bloc/onboarding_bloc.dart';
-import 'package:talk2statue/onboarding/widgets/page_card.dart';
+import 'package:talk2statue/onboarding/components/page_component.dart';
 
 class OnBoardingView extends StatefulWidget {
   static const String routeName = "/onboardingpage";
@@ -76,7 +76,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
                             transform: Matrix4.identity()
                               ..setEntry(3, 2, .1)
                               ..rotateY(rotateVal),
-                            child: PageCard(
+                            child: PageComponent(
                               pdata: state.pdataList[state.pageIdx],
                             ),
                           );

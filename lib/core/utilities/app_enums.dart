@@ -4,16 +4,19 @@ enum SpeechModel {
 }
 
 enum SpeechVoice {
-  alloy, 
-  echo, 
-  fable, 
-  onyx, 
-  nova, 
+  alloy,
+  echo,
+  fable,
+  onyx,
+  nova,
   shimmer,
 }
 
 enum RequestState {
-  requested,
+  initialized,
+  recordingOn,
+  recordingOff,
+  recordingCompleted,
   onProgress,
   successful,
   failure,

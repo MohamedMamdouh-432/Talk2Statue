@@ -4,8 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:talk2statue/Authentication/presentation/widgets/login_widgets.dart';
 
- signUp(
-    {required context, required emailAddress, required password, required formState}) async {
+signUp(
+    {required context,
+    required emailAddress,
+    required password,
+    required formState}) async {
   var formData = formState.currentState;
   if (formData!.validate()) {
     showLoading(context);
@@ -33,7 +36,7 @@ import 'package:talk2statue/Authentication/presentation/widgets/login_widgets.da
         showAlert(
             context: context,
             title: 'Error',
-            body: Text(
+            body: const Text(
               'The account already exists for that email.',
               style: TextStyle(fontSize: 16),
             ),
@@ -46,8 +49,7 @@ import 'package:talk2statue/Authentication/presentation/widgets/login_widgets.da
           body: Text('$e'),
           dialogType: DialogType.error);
     }
-  }
-  else{
+  } else {
     print('Not Valid.');
   }
 }
