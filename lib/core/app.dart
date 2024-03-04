@@ -2,14 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:talk2statue/Authentication/bloc/login_cubit.dart';
+import 'package:talk2statue/conversation/domain/services/create_speech_from_text.dart';
+import 'package:talk2statue/conversation/domain/services/replay_visitor_question.dart';
+import 'package:talk2statue/conversation/domain/services/transcribe_audio_to_text.dart';
 import 'package:talk2statue/conversation/presentation/bloc/conversation_bloc.dart';
 import 'package:talk2statue/core/route_generator.dart';
 import 'package:talk2statue/core/utilities/app_constants.dart';
 import 'package:talk2statue/home/bloc/home_cubit.dart';
 import 'package:talk2statue/home/presentation/views/home_view.dart';
 import 'package:talk2statue/onboarding/bloc/onboarding_bloc.dart';
-import 'package:talk2statue/conversation/domain/services/create_speech_from_text.dart';
-import 'package:talk2statue/conversation/domain/services/transcribe_audio_to_text.dart';
 import 'package:talk2statue/statue_recognition/bloc/statue_recognition_bloc.dart';
 import 'package:talk2statue/statue_recognition/domain/services/recognize_statue.dart';
 
@@ -17,12 +18,14 @@ class Talk2Statue extends StatelessWidget {
   final AudioTranscriptionService audioTranscriptionService;
   final SpeechCreatingService speechCreatingService;
   final StatueRecognitionService statueRecognitionService;
+  final GPTReplayingVisitorQuestionService gptReplayingVisitorQuestionService;
 
   const Talk2Statue({
     super.key,
     required this.speechCreatingService,
     required this.audioTranscriptionService,
     required this.statueRecognitionService,
+    required this.gptReplayingVisitorQuestionService,
   });
 
   @override
@@ -39,6 +42,8 @@ class Talk2Statue extends StatelessWidget {
               create: (context) => ConversationBloc(
                 audioTranscriptionService: audioTranscriptionService,
                 speechCreateService: speechCreatingService,
+                gptReplayingVisitorQuestionService:
+                    gptReplayingVisitorQuestionService,
               ),
             ),
             BlocProvider(

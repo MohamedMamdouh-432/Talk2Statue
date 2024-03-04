@@ -66,13 +66,14 @@ class ConversationRemoteDataSources extends BaseConversationRemoteDataSources {
         data: {
           "model": 'tts-1',
           "input": params.text,
-          "voice": params.voiceModel,
+          "response_format": 'wav',
+          "voice": ApiConstants.voiceModels[params.voiceModel],
         },
         options: Options(responseType: ResponseType.bytes),
       );
 
       if (response.statusCode == 200) {
-        const fileName = 'speech.mp3';
+        const fileName = 'statue_speech.wav';
         final directory = await getApplicationDocumentsDirectory();
         final filePath = '${directory.path}/$fileName';
         final file = File(filePath);

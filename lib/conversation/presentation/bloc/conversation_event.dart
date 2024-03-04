@@ -31,6 +31,12 @@ class StatueReplayEventRequested extends ConversationEvent {
   List<Object> get props => [voiceModel];
 }
 
+class StatueTalkingEventRequested extends ConversationEvent {
+  const StatueTalkingEventRequested();
+  @override
+  List<Object> get props => [];
+}
+
 class ConversationDisposeEvent extends ConversationEvent {
   const ConversationDisposeEvent();
   @override

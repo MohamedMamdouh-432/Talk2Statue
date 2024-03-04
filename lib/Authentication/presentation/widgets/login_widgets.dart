@@ -143,6 +143,9 @@ showAlert(
     required Widget body,
     required dialogType}) {
   return AwesomeDialog(
-          context: context, title: title, body: body, dialogType: dialogType)
-      .show();
+    context: context,
+    title: title,
+    body: body,
+    dialogType: dialogType,
+  ).show();
 }

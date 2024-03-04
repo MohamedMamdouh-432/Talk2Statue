@@ -17,7 +17,6 @@ dependencies:
   file_picker: ^6.1.1
   just_audio: ^0.9.36
   path_provider: ^2.1.2
-  stylish_bottom_bar: ^1.0.3
   google_sign_in: ^6.2.1
   dots_indicator: ^3.0.0
   firebase_core: ^2.25.4
@@ -26,10 +25,9 @@ dependencies:
   awesome_dialog: ^3.2.0
   flutter_screenutil: ^5.9.0
   image_picker: ^1.0.7
-  flutter_sound: ^9.2.13
   conditional_builder_null_safety: ^0.0.6
-  animated_loading_indicators: ^1.0.0+4
   http: ^1.2.0
+  record: ^5.0.4
 
 dev_dependencies:
   flutter_test:

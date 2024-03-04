@@ -6,7 +6,7 @@ class StatueRecognitionState extends Equatable {
   final String message;
 
   const StatueRecognitionState({
-    this.statue = const Statue(name: '', gender: 'Male'),
+    this.statue = const Statue(name: '', gender: ''),
     this.requestState = RequestState.initialized,
     this.message = '',
   });

@@ -6,6 +6,7 @@ import 'package:talk2statue/conversation/data/datasource/conversation_remote_dat
 import 'package:talk2statue/conversation/data/repository/conversation_repository.dart';
 import 'package:talk2statue/conversation/domain/repository/base_conversation_repository.dart';
 import 'package:talk2statue/conversation/domain/services/create_speech_from_text.dart';
+import 'package:talk2statue/conversation/domain/services/replay_visitor_question.dart';
 import 'package:talk2statue/conversation/domain/services/transcribe_audio_to_text.dart';
 import 'package:talk2statue/core/app.dart';
 import 'package:talk2statue/core/app_observer.dart';
@@ -23,7 +24,7 @@ void main(List<String> args) async {
   );
   Bloc.observer = const AppBlocObserver();
   final appDio = Dio();
-  BaseConversationRepository bstr = ConversationRepository(
+  BaseConversationRepository bcr = ConversationRepository(
     ConversationRemoteDataSources(appDio),
   );
   BaseStatueRecognitionRepository bsrr =
@@ -31,9 +32,11 @@ void main(List<String> args) async {
 
   runApp(
     Talk2Statue(
-      speechCreatingService: SpeechCreatingService(bstr),
-      audioTranscriptionService: AudioTranscriptionService(bstr),
+      speechCreatingService: SpeechCreatingService(bcr),
+      audioTranscriptionService: AudioTranscriptionService(bcr),
       statueRecognitionService: StatueRecognitionService(bsrr),
+      gptReplayingVisitorQuestionService:
+          GPTReplayingVisitorQuestionService(bcr),
     ),
   );
 }
