@@ -29,6 +29,7 @@ dependencies:
   flutter_sound: ^9.2.13
   conditional_builder_null_safety: ^0.0.6
   animated_loading_indicators: ^1.0.0+4
+  http: ^1.2.0
 
 dev_dependencies:
   flutter_test:

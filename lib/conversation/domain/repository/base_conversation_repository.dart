@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:talk2statue/conversation/domain/entities/audio_parameter.dart';
 import 'package:talk2statue/conversation/domain/entities/conversation_data.dart';
+import 'package:talk2statue/conversation/domain/entities/gpt_answer_parameter.dart';
 import 'package:talk2statue/conversation/domain/entities/speech_parameter.dart';
 import 'package:talk2statue/core/error/failure.dart';
 
@@ -9,4 +10,6 @@ abstract class BaseConversationRepository {
       AudioParams params);
   Future<Either<Failure, ConversationData>> createTextSpeech(
       SpeechParams params);
+  Future<Either<Failure, ConversationData>> replaytoVisitorQuestion(
+      GPTAnswerParams params);
 }

@@ -99,7 +99,7 @@ class ConversationBloc extends Bloc<ConversationEvent, ConversationState> {
     // Start to Call STT Service
     final sttResult =
         await audioTranscriptionService(AudioParams(state.userAudioFilePath));
-    sttResult.fold((l) => error = l.errorMessage, (r) => data = r.text);
+    sttResult.fold((l) => error = l.errorMessage, (r) => data = r.transcribedText);
     if (sttResult.isLeft()) {
       emit(
         state.copyWith(
@@ -129,7 +129,7 @@ class ConversationBloc extends Bloc<ConversationEvent, ConversationState> {
       (r) => emit(
         state.copyWith(
           requestState: RequestState.successful,
-          statueAudioFilePath: r.filePath,
+          statueAudioFilePath: r.speechFilePath,
         ),
       ),
     );

@@ -1,17 +1,20 @@
 import 'package:equatable/equatable.dart';
 
 class ConversationData extends Equatable {
-  final String text;
-  final String filePath;
+  final String transcribedText;
+  final String speechFilePath;
+  final String gptAnswerText;
 
   const ConversationData({
-    this.text = '',
-    this.filePath = '',
+    this.transcribedText = '',
+    this.speechFilePath = '',
+    this.gptAnswerText = '',
   });
 
   @override
   List<Object> get props => [
-        text,
-        filePath,
+        transcribedText,
+        speechFilePath,
+        gptAnswerText,
       ];
 }
