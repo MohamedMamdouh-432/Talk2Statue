@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:equatable/equatable.dart';
@@ -30,8 +31,10 @@ class ConversationBloc extends Bloc<ConversationEvent, ConversationState> {
     required this.gptReplayingVisitorQuestionService,
   }) : super(const ConversationState()) {
     on<ConversationInitialEvent>(_onInitializeConversation);
+    on<ConversationStatuePreperationEvent>(_onprepareStatue);
     on<VisitorStartRecordingEventRequested>(_onStartRecordingVisitorVoice);
     on<VisitorStopRecordingEventRequested>(_onStopRecordingVisitorVoice);
+    on<ReinitializationRecordingEventRequested>(_onReinitializeRecording);
     on<StatueReplayEventRequested>(_onStatueReplaying);
     on<StatueTalkingEventRequested>(_onStatueBeginTalking);
     on<ConversationDisposeEvent>(_onDisposeConversation);
@@ -52,6 +55,36 @@ class ConversationBloc extends Bloc<ConversationEvent, ConversationState> {
         state.copyWith(
           message: e.toString(),
           requestState: RequestState.failure,
+        ),
+      );
+    }
+  }
+
+  Future<void> _onprepareStatue(
+      ConversationStatuePreperationEvent event, emit) async {
+    final String msg =
+        'Please put in your consideration that you will be asked questions about Statue called ${event.statueName}, so any answer will be like ${event.statueName} talking about ${event.statuePronounce}self';
+    log(msg);
+    try {
+      final gptResult =
+          await gptReplayingVisitorQuestionService(GPTAnswerParams(msg));
+      gptResult.fold(
+          (l) => emit(state.copyWith(
+                message: l.errorMessage,
+                requestState: RequestState.failure,
+              )), (r) {
+        log('ChatGPT Answer: ${r.gptAnswerText}');
+        emit(
+          state.copyWith(
+            requestState: RequestState.prepared,
+          ),
+        );
+      });
+    } catch (e) {
+      emit(
+        state.copyWith(
+          requestState: RequestState.failure,
+          message: e.toString(),
         ),
       );
     }
@@ -99,6 +132,14 @@ class ConversationBloc extends Bloc<ConversationEvent, ConversationState> {
     }
   }
 
+  Future<void> _onReinitializeRecording(event, emit) async {
+    emit(
+      state.copyWith(
+        requestState: RequestState.recordingOff,
+      ),
+    );
+  }
+
   Future<void> _onStatueReplaying(
       StatueReplayEventRequested event, emit) async {
     String error = '', data = '';
@@ -120,7 +161,7 @@ class ConversationBloc extends Bloc<ConversationEvent, ConversationState> {
       );
       return;
     }
-    print('Trancribed Text: $data');
+    log('Trancribed Text: $data');
     // Start to Call GPT Service
     final gptResult =
         await gptReplayingVisitorQuestionService(GPTAnswerParams(data));
@@ -135,7 +176,7 @@ class ConversationBloc extends Bloc<ConversationEvent, ConversationState> {
       );
       return;
     }
-    print('GPT Answer: $data');
+    log('GPT Answer: $data');
     // Start to Call TTS Service
     final ttsResult = await speechCreateService(
       SpeechParams(
@@ -163,21 +204,23 @@ class ConversationBloc extends Bloc<ConversationEvent, ConversationState> {
     try {
       await statuePlayer.setAudioSource(
           AudioSource.uri(Uri.parse(state.statueAudioFilePath)));
+      emit(state.copyWith(requestState: RequestState.statueTalking));
       await statuePlayer.play();
       emit(state.copyWith(
-        requestState: RequestState.recordingOff,
+        requestState: RequestState.Done,
       ));
     } catch (e) {
       emit(
         state.copyWith(
           message: e.toString(),
-          requestState: RequestState.failure,
+          requestState: RequestState.Failed,
         ),
       );
     }
   }
 
   Future<void> _onDisposeConversation(event, emit) async {
-    statueRecorder.dispose();
+    await statuePlayer.dispose();
+    await statueRecorder.dispose();
   }
 }

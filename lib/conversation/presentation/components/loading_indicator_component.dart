@@ -8,7 +8,7 @@ class ConversationLoadingIndicator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
-      duration: const Duration(milliseconds: 800),
+      duration: const Duration(milliseconds: 2000),
       curve: Curves.fastLinearToSlowEaseIn,
       child: Dialog(
         shape: RoundedRectangleBorder(
@@ -37,7 +37,7 @@ class ConversationLoadingIndicator extends StatelessWidget {
                   child: SpinKitPouringHourGlassRefined(
                     color: AppConstants.primaryColor,
                     size: 100,
-                    duration: Duration(milliseconds: 1500),
+                    duration: Duration(milliseconds: 2000),
                   ),
                 ),
               ),

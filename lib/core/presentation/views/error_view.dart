@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:talk2statue/core/utilities/app_constants.dart';
 
 class ErrorView extends StatelessWidget {
   final String errorMessage;
@@ -16,14 +17,25 @@ class ErrorView extends StatelessWidget {
         children: [
           const Icon(
             Icons.error_outline,
-            color: Color.fromARGB(255, 130, 35, 28),
-            size: 50,
+            color: AppConstants.erroColor,
+            size: 70,
           ),
+          const SizedBox(height: 20),
           Text(
-            errorMessage,
+            'Oops ! $errorMessage',
+            textScaler: const TextScaler.linear(1.8),
+            textAlign: TextAlign.center,
+            style: GoogleFonts.lato(
+              color: AppConstants.erroColor,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const SizedBox(height: 20),
+          Text(
+            'Try Again after while 😅',
             textScaler: const TextScaler.linear(1.8),
             style: GoogleFonts.lato(
-              color: const Color.fromARGB(255, 130, 35, 28),
+              color: AppConstants.erroColor,
               fontWeight: FontWeight.bold,
             ),
           ),

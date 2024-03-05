@@ -14,10 +14,14 @@ enum SpeechVoice {
 
 enum RequestState {
   initialized,
-  recordingOn,
+  prepared,
   recordingOff,
+  recordingOn,
   recordingCompleted,
   onProgress,
   successful,
   failure,
+  statueTalking,
+  Done,
+  Failed,
 }

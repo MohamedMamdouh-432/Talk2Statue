@@ -1,5 +1,5 @@
-import 'dart:io';
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:http/http.dart' as http;
@@ -48,7 +48,7 @@ class ConversationRemoteDataSources extends BaseConversationRemoteDataSources {
       }
     } catch (e) {
       throw ServerException(
-        exceptionMessage: 'Error while Handling Request',
+        exceptionMessage: 'Error in transcribeAudioFile $e',
       );
     }
   }
@@ -88,7 +88,7 @@ class ConversationRemoteDataSources extends BaseConversationRemoteDataSources {
       }
     } catch (e) {
       throw ServerException(
-        exceptionMessage: 'Error while Handling Request',
+        exceptionMessage: 'Error in createTextSpeech $e',
       );
     }
   }
@@ -106,7 +106,7 @@ class ConversationRemoteDataSources extends BaseConversationRemoteDataSources {
         Uri.parse('https://api.openai.com/v1/chat/completions'),
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer ',
+          'Authorization': 'Bearer ${ApiConstants.openaikey}',
         },
         body: jsonEncode({
           "model": "gpt-3.5-turbo",
@@ -131,15 +131,19 @@ class ConversationRemoteDataSources extends BaseConversationRemoteDataSources {
           }
         }
         throw ServerException(
-            exceptionMessage:
-                'Received a 429 error without a valid Retry-After header.');
+          exceptionMessage:
+              'Received a 429 error without a valid Retry-After header.',
+        );
       } else {
         throw ServerException(
-            exceptionMessage:
-                'Failed to send bot message. Status code: ${response.statusCode}');
+          exceptionMessage:
+              'Failed to send bot message. Status code: ${response.statusCode}',
+        );
       }
     } catch (e) {
-      throw ServerException(exceptionMessage: e.toString());
+      throw ServerException(
+        exceptionMessage: 'Error in replaytoVisitorQuestion $e',
+      );
     }
   }
 }
