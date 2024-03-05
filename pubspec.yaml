@@ -28,6 +28,7 @@ dependencies:
   conditional_builder_null_safety: ^0.0.6
   http: ^1.2.0
   record: ^5.0.4
+  avatar_glow: ^3.0.1
 
 dev_dependencies:
   flutter_test:

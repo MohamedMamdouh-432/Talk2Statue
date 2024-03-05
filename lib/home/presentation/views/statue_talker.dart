@@ -52,7 +52,7 @@ class StatueTalker extends StatelessWidget {
                     "2. Hear their Story: Once identified, the statue comes to life! Listen as the figure speaks in their own voice, sharing their fascinating story, wisdom, and experiences .",
                     style: TextStyle(
                       fontSize: 14.sp,
-                      color: Colors.black54,
+                      color: const Color.fromARGB(255, 56, 107, 133),
                     ),
                   ),
                   const SizedBox(height: 20),

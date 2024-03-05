@@ -202,13 +202,23 @@ class ConversationBloc extends Bloc<ConversationEvent, ConversationState> {
 
   Future<void> _onStatueBeginTalking(event, emit) async {
     try {
+      emit(state.copyWith(requestState: RequestState.statueTalking));
       await statuePlayer.setAudioSource(
           AudioSource.uri(Uri.parse(state.statueAudioFilePath)));
-      emit(state.copyWith(requestState: RequestState.statueTalking));
+
+      if (statuePlayer.processingState != ProcessingState.ready) {
+        await statuePlayer.processingStateStream
+            .firstWhere((state) => state == ProcessingState.ready);
+      }
+
       await statuePlayer.play();
-      emit(state.copyWith(
-        requestState: RequestState.Done,
-      ));
+
+      if (statuePlayer.processingState != ProcessingState.completed) {
+        await statuePlayer.processingStateStream
+            .firstWhere((state) => state == ProcessingState.completed);
+      }
+
+      emit(state.copyWith(requestState: RequestState.Done));
     } catch (e) {
       emit(
         state.copyWith(
