@@ -14,15 +14,12 @@ class ConversationInitialEvent extends ConversationEvent {
 
 class ConversationStatuePreperationEvent extends ConversationEvent {
   final String statueName;
-  final String statuePronounce;
   const ConversationStatuePreperationEvent({
     required this.statueName,
-    required this.statuePronounce,
   });
   @override
   List<Object> get props => [
         statueName,
-        statuePronounce,
       ];
 }
 

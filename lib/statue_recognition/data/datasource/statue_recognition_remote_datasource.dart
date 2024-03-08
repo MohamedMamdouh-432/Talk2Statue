@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
 import 'package:talk2statue/core/error/error_exceptions.dart';
 import 'package:talk2statue/core/utilities/api_constants.dart';
@@ -20,12 +22,18 @@ class StatueRecognitionRemoteDataSource
 
   @override
   Future<Statue> recognizeStatue(StatueParams params) async {
+    if (params.statueImg == null)
+      log("It's Null");
+    else
+      log(params.statueImg);
     try {
       var formData = FormData.fromMap({
         "file": await MultipartFile.fromFile(params.statueImg),
       });
-      var response = await _statueRecognitionDio.post(ApiConstants.objRecUrl,
-          data: formData);
+      var response = await _statueRecognitionDio.post(
+        ApiConstants.objRecUrl,
+        data: formData,
+      );
       if (response.statusCode == 200) {
         return StatueModel.fromJson(response.data);
       } else {
@@ -35,7 +43,7 @@ class StatueRecognitionRemoteDataSource
       }
     } catch (e) {
       throw ServerException(
-        exceptionMessage: 'Error while Handling Request',
+        exceptionMessage: 'Error while Handling Request => $e',
       );
     }
   }

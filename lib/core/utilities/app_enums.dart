@@ -8,20 +8,30 @@ enum SpeechVoice {
   echo,
   fable,
   onyx,
-  nova,
-  shimmer,
+  nova, // for female
+  shimmer, // for female
 }
 
-enum RequestState {
-  initialized,
-  prepared,
-  recordingOff,
-  recordingOn,
-  recordingCompleted,
-  onProgress,
-  successful,
-  failure,
-  statueTalking,
+enum ConversationRequestState {
+  Initialized,
+  Prepared,
+  RecordingStopped,
+  RecordingStarted,
+  RecordingCompleted,
+  OnProgress,
+  Successful,
+  Failure,
+  StatueTalking,
   Done,
   Failed,
+}
+
+enum RecongnitionRequestState {
+  Declared,
+  Initialized,
+  OnProgress,
+  SuccessfulInCapturing,
+  SuccessfulInRecognizing,
+  FailedInCapturing,
+  FailedInRecognizing,
 }

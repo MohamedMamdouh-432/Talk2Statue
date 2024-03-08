@@ -8,11 +8,10 @@ import 'package:talk2statue/conversation/domain/services/transcribe_audio_to_tex
 import 'package:talk2statue/conversation/presentation/bloc/conversation_bloc.dart';
 import 'package:talk2statue/core/route_generator.dart';
 import 'package:talk2statue/core/utilities/app_constants.dart';
-import 'package:talk2statue/home/bloc/home_cubit.dart';
 import 'package:talk2statue/onboarding/bloc/onboarding_bloc.dart';
 import 'package:talk2statue/onboarding/view/onboarding_view.dart';
-import 'package:talk2statue/statue_recognition/bloc/statue_recognition_bloc.dart';
 import 'package:talk2statue/statue_recognition/domain/services/recognize_statue.dart';
+import 'package:talk2statue/statue_recognition/presentation/bloc/statue_recognition_bloc.dart';
 
 class Talk2Statue extends StatelessWidget {
   final SpeechCreatingService speechCreatingService;
@@ -52,7 +51,6 @@ class Talk2Statue extends StatelessWidget {
               ),
             ),
             BlocProvider(create: (context) => LoginCubit()),
-            BlocProvider(create: (context) => HomeCubit())
           ],
           child: const AppView(),
         );

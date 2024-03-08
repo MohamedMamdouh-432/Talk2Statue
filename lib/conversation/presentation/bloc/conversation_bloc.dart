@@ -47,14 +47,14 @@ class ConversationBloc extends Bloc<ConversationEvent, ConversationState> {
       appDir = await getApplicationDocumentsDirectory();
       emit(
         state.copyWith(
-          requestState: RequestState.recordingOff,
+          requestState: ConversationRequestState.RecordingStopped,
         ),
       );
     } catch (e) {
       emit(
         state.copyWith(
-          message: e.toString(),
-          requestState: RequestState.failure,
+          message: '_onInitializeConversation : $e',
+          requestState: ConversationRequestState.Failure,
         ),
       );
     }
@@ -62,8 +62,8 @@ class ConversationBloc extends Bloc<ConversationEvent, ConversationState> {
 
   Future<void> _onprepareStatue(
       ConversationStatuePreperationEvent event, emit) async {
-    final String msg =
-        'Please put in your consideration that you will be asked questions about Statue called ${event.statueName}, so any answer will be like ${event.statueName} talking about ${event.statuePronounce}self';
+    String msg =
+        "I'm a tourist in Egypt, please act as king ${event.statueName} and chat with me to know more about you, start with greeting word to me";
     log(msg);
     try {
       final gptResult =
@@ -71,20 +71,20 @@ class ConversationBloc extends Bloc<ConversationEvent, ConversationState> {
       gptResult.fold(
           (l) => emit(state.copyWith(
                 message: l.errorMessage,
-                requestState: RequestState.failure,
+                requestState: ConversationRequestState.Failure,
               )), (r) {
         log('ChatGPT Answer: ${r.gptAnswerText}');
         emit(
           state.copyWith(
-            requestState: RequestState.prepared,
+            requestState: ConversationRequestState.Prepared,
           ),
         );
       });
     } catch (e) {
       emit(
         state.copyWith(
-          requestState: RequestState.failure,
-          message: e.toString(),
+          requestState: ConversationRequestState.Failure,
+          message: '_onprepareStatue : $e',
         ),
       );
     }
@@ -99,15 +99,15 @@ class ConversationBloc extends Bloc<ConversationEvent, ConversationState> {
         );
         emit(
           state.copyWith(
-            requestState: RequestState.recordingOn,
+            requestState: ConversationRequestState.RecordingStarted,
           ),
         );
       }
     } catch (e) {
       emit(
         state.copyWith(
-          requestState: RequestState.failure,
-          message: e.toString(),
+          requestState: ConversationRequestState.Failure,
+          message: '_onStartRecordingVisitorVoice : $e',
         ),
       );
     }
@@ -119,14 +119,14 @@ class ConversationBloc extends Bloc<ConversationEvent, ConversationState> {
       emit(
         state.copyWith(
           userAudioFilePath: audioPath,
-          requestState: RequestState.recordingCompleted,
+          requestState: ConversationRequestState.RecordingCompleted,
         ),
       );
     } catch (e) {
       emit(
         state.copyWith(
-          requestState: RequestState.failure,
-          message: e.toString(),
+          requestState: ConversationRequestState.Failure,
+          message: '_onStopRecordingVisitorVoice : $e',
         ),
       );
     }
@@ -135,7 +135,7 @@ class ConversationBloc extends Bloc<ConversationEvent, ConversationState> {
   Future<void> _onReinitializeRecording(event, emit) async {
     emit(
       state.copyWith(
-        requestState: RequestState.recordingOff,
+        requestState: ConversationRequestState.RecordingStopped,
       ),
     );
   }
@@ -145,7 +145,7 @@ class ConversationBloc extends Bloc<ConversationEvent, ConversationState> {
     String error = '', data = '';
 
     // Emit Service is Started in Progress
-    emit(state.copyWith(requestState: RequestState.onProgress));
+    emit(state.copyWith(requestState: ConversationRequestState.OnProgress));
 
     // Start to Call STT Service
     final sttResult =
@@ -156,7 +156,7 @@ class ConversationBloc extends Bloc<ConversationEvent, ConversationState> {
       emit(
         state.copyWith(
           message: error,
-          requestState: RequestState.failure,
+          requestState: ConversationRequestState.Failure,
         ),
       );
       return;
@@ -171,7 +171,7 @@ class ConversationBloc extends Bloc<ConversationEvent, ConversationState> {
       emit(
         state.copyWith(
           message: error,
-          requestState: RequestState.failure,
+          requestState: ConversationRequestState.Failure,
         ),
       );
       return;
@@ -188,12 +188,12 @@ class ConversationBloc extends Bloc<ConversationEvent, ConversationState> {
       (l) => emit(
         state.copyWith(
           message: l.errorMessage,
-          requestState: RequestState.failure,
+          requestState: ConversationRequestState.Failure,
         ),
       ),
       (r) => emit(
         state.copyWith(
-          requestState: RequestState.successful,
+          requestState: ConversationRequestState.Successful,
           statueAudioFilePath: r.speechFilePath,
         ),
       ),
@@ -202,7 +202,8 @@ class ConversationBloc extends Bloc<ConversationEvent, ConversationState> {
 
   Future<void> _onStatueBeginTalking(event, emit) async {
     try {
-      emit(state.copyWith(requestState: RequestState.statueTalking));
+      emit(
+          state.copyWith(requestState: ConversationRequestState.StatueTalking));
       await statuePlayer.setAudioSource(
           AudioSource.uri(Uri.parse(state.statueAudioFilePath)));
 
@@ -218,12 +219,12 @@ class ConversationBloc extends Bloc<ConversationEvent, ConversationState> {
             .firstWhere((state) => state == ProcessingState.completed);
       }
 
-      emit(state.copyWith(requestState: RequestState.Done));
+      emit(state.copyWith(requestState: ConversationRequestState.Done));
     } catch (e) {
       emit(
         state.copyWith(
           message: e.toString(),
-          requestState: RequestState.Failed,
+          requestState: ConversationRequestState.Failed,
         ),
       );
     }

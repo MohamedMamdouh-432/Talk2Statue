@@ -14,12 +14,13 @@ class StatueRecordingButton extends StatelessWidget {
     return BlocBuilder<ConversationBloc, ConversationState>(
       builder: (context, state) {
         return InkWell(
-          onTap: state.requestState == RequestState.recordingOff ||
-                  state.requestState == RequestState.prepared
+          onTap: state.requestState ==
+                      ConversationRequestState.RecordingStopped ||
+                  state.requestState == ConversationRequestState.Prepared
               ? () => context
                   .read<ConversationBloc>()
                   .add(const VisitorStartRecordingEventRequested())
-              : state.requestState == RequestState.recordingOn
+              : state.requestState == ConversationRequestState.RecordingStarted
                   ? () => context
                       .read<ConversationBloc>()
                       .add(const VisitorStopRecordingEventRequested())
@@ -33,8 +34,10 @@ class StatueRecordingButton extends StatelessWidget {
                 glowColor: AppConstants.goldColor,
                 startDelay: const Duration(milliseconds: 100),
                 curve: Curves.easeInOut,
-                animate: state.requestState == RequestState.recordingOn ||
-                    state.requestState == RequestState.statueTalking,
+                animate: state.requestState ==
+                        ConversationRequestState.RecordingStarted ||
+                    state.requestState ==
+                        ConversationRequestState.StatueTalking,
                 child: Material(
                   elevation: 20,
                   color: Colors.blueGrey,
@@ -42,12 +45,16 @@ class StatueRecordingButton extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.all(15),
                     child: Icon(
-                      state.requestState == RequestState.recordingOff ||
-                              state.requestState == RequestState.prepared
+                      state.requestState ==
+                                  ConversationRequestState.RecordingStopped ||
+                              state.requestState ==
+                                  ConversationRequestState.Prepared
                           ? Icons.mic_outlined
-                          : state.requestState == RequestState.recordingOn
+                          : state.requestState ==
+                                  ConversationRequestState.RecordingStarted
                               ? Icons.stop_circle
-                              : state.requestState == RequestState.statueTalking
+                              : state.requestState ==
+                                      ConversationRequestState.StatueTalking
                                   ? Icons.pause_circle
                                   : Icons.mic_off_outlined,
                       size: 50,
