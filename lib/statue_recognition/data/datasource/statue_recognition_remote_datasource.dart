@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:dio/dio.dart';
 import 'package:talk2statue/core/error/error_exceptions.dart';
 import 'package:talk2statue/core/utilities/api_constants.dart';
@@ -22,10 +20,6 @@ class StatueRecognitionRemoteDataSource
 
   @override
   Future<Statue> recognizeStatue(StatueParams params) async {
-    if (params.statueImg == null)
-      log("It's Null");
-    else
-      log(params.statueImg);
     try {
       var formData = FormData.fromMap({
         "file": await MultipartFile.fromFile(params.statueImg),
