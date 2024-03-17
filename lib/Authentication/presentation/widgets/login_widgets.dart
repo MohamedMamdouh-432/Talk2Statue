@@ -137,11 +137,12 @@ showLoading(context) {
   );
 }
 
-showAlert(
-    {required BuildContext context,
-    required String title,
-    required Widget body,
-    required dialogType}) {
+showAlert({
+  required BuildContext context,
+  required String title,
+  required Widget body,
+  required dialogType,
+}) {
   return AwesomeDialog(
     context: context,
     title: title,

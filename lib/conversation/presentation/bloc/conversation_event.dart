@@ -12,6 +12,17 @@ class ConversationInitialEvent extends ConversationEvent {
   List<Object> get props => [];
 }
 
+class ConversationStatuePreperationEvent extends ConversationEvent {
+  final String statueName;
+  const ConversationStatuePreperationEvent({
+    required this.statueName,
+  });
+  @override
+  List<Object> get props => [
+        statueName,
+      ];
+}
+
 class VisitorStartRecordingEventRequested extends ConversationEvent {
   const VisitorStartRecordingEventRequested();
   @override
@@ -20,6 +31,12 @@ class VisitorStartRecordingEventRequested extends ConversationEvent {
 
 class VisitorStopRecordingEventRequested extends ConversationEvent {
   const VisitorStopRecordingEventRequested();
+  @override
+  List<Object> get props => [];
+}
+
+class ReinitializationRecordingEventRequested extends ConversationEvent {
+  const ReinitializationRecordingEventRequested();
   @override
   List<Object> get props => [];
 }

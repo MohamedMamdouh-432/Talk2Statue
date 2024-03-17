@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:talk2statue/core/utilities/app_constants.dart';
-import 'package:talk2statue/home/presentation/views/statue_talker.dart';
+import 'package:talk2statue/statue_recognition/presentation/views/talk_to_statue_view.dart';
 
 class CurvedAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
@@ -55,7 +55,7 @@ class CurvedAppBar extends StatelessWidget implements PreferredSizeWidget {
               builder: (context) => IconButton(
                 onPressed: () => Navigator.pushNamed(
                   context,
-                  StatueTalker.routeName,
+                  TalkToStatueView.routeName,
                 ),
                 iconSize: 35,
                 icon: const Icon(Icons.fit_screen_outlined),

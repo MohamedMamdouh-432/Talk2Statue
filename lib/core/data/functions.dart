@@ -5,27 +5,25 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:talk2statue/Authentication/presentation/widgets/login_widgets.dart';
-import 'package:talk2statue/conversation/presentation/bloc/conversation_bloc.dart';
+import 'package:talk2statue/conversation/presentation/views/conversation_view.dart';
 import 'package:talk2statue/core/utilities/app_enums.dart';
+import 'package:talk2statue/statue_recognition/presentation/bloc/statue_recognition_bloc.dart';
+import 'package:talk2statue/statue_recognition/presentation/components/statue_capture_window.dart';
 
-void showMessage(
-  BuildContext c,
-  String s,
-  DialogType dType,
-) {
+void showMessage(BuildContext c, String s, DialogType dType) {
   showAlert(
     context: c,
     title: s,
     body: Padding(
-      padding: const EdgeInsets.all(40),
-      child: Text(s),
+      padding: const EdgeInsets.all(10),
+      child: Text(
+        s,
+        textScaler: const TextScaler.linear(1.35),
+      ),
     ),
     dialogType: dType,
   );
-  // Delay the dismissal of the dialog
-  Future.delayed(const Duration(seconds: 5), () {
-    Navigator.of(c).pop();
-  });
+  Future.delayed(const Duration(seconds: 5), () => Navigator.of(c).pop());
 }
 
 String extractFileName(String filePath) {
@@ -37,28 +35,47 @@ Future<String> saveFileLocally(String filePath) async {
   final Directory appDir = await getApplicationDocumentsDirectory();
   final String fileName = filePath.split('/').last;
   final String fPath = '${appDir.path}/$fileName';
-
   final File newImage = File(filePath);
   await newImage.copy(fPath);
-  print('File/Image saved at: $fPath');
   return fPath;
 }
 
-IconData properIcon(RequestState s) {
-  if (s == RequestState.recordingOff)
-    return Icons.mic_outlined;
-  else if (s == RequestState.recordingOn) return Icons.stop_circle;
-  return Icons.mic_off_outlined;
-}
-
-Function()? properTapAction(BuildContext c, RequestState s) {
-  if (s == RequestState.recordingOff)
-    return () => c
-        .read<ConversationBloc>()
-        .add(const VisitorStartRecordingEventRequested());
-  else if (s == RequestState.recordingOn)
-    return () => c
-        .read<ConversationBloc>()
-        .add(const VisitorStopRecordingEventRequested());
-  return null;
+showImageCapturingWindow(BuildContext ctx) {
+  return AwesomeDialog(
+    context: ctx,
+    body: const StatueCapturingWindow(),
+    dialogType: DialogType.noHeader,
+    btnOk: BlocBuilder<StatueRecognitionBloc, StatueRecognitionState>(
+      builder: (context, state) {
+        return ElevatedButton(
+          onPressed: state.requestState !=
+                  RecongnitionRequestState.SuccessfulInCapturing
+              ? null
+              : () {
+                  context
+                      .read<StatueRecognitionBloc>()
+                      .add(const StatueRecognitionEventRequested());
+                  Navigator.pop(ctx);
+                  Navigator.pushNamed(context, ConversationView.routeName);
+                },
+          child: const Text(
+            'OK',
+            textScaler: TextScaler.linear(1.3),
+          ),
+        );
+      },
+    ),
+    btnCancel: ElevatedButton(
+      onPressed: () {
+        ctx
+            .read<StatueRecognitionBloc>()
+            .add(const StatueUndoCapturingEventRequested());
+        Navigator.pop(ctx);
+      },
+      child: const Text(
+        'Cancel',
+        textScaler: TextScaler.linear(1.3),
+      ),
+    ),
+  ).show();
 }

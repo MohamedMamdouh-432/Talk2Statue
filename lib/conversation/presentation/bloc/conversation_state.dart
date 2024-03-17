@@ -3,20 +3,20 @@ part of 'conversation_bloc.dart';
 class ConversationState extends Equatable {
   final String userAudioFilePath;
   final String statueAudioFilePath;
-  final RequestState requestState;
+  final ConversationRequestState requestState;
   final String message;
 
   const ConversationState({
     this.userAudioFilePath = '',
     this.statueAudioFilePath = '',
     this.message = '',
-    this.requestState = RequestState.initialized,
+    this.requestState = ConversationRequestState.Initialized,
   });
 
   ConversationState copyWith({
     String? userAudioFilePath,
     String? statueAudioFilePath,
-    RequestState? requestState,
+    ConversationRequestState? requestState,
     String? message,
   }) {
     return ConversationState(

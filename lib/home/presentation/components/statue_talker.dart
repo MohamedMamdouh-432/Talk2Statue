@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:talk2statue/core/utilities/media_query_data.dart';
-import 'package:talk2statue/home/presentation/views/statue_talker.dart';
+import 'package:talk2statue/statue_recognition/presentation/views/talk_to_statue_view.dart';
 
 class StatueTalkerComponent extends StatelessWidget {
   const StatueTalkerComponent({super.key});
@@ -11,7 +11,7 @@ class StatueTalkerComponent extends StatelessWidget {
     return InkWell(
       onTap: () => Navigator.pushNamed(
         context,
-        StatueTalker.routeName,
+        TalkToStatueView.routeName,
       ),
       child: Container(
         width: context.width - 80,
