@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:talk2statue/Authentication/presentation/views/sign_in.dart';
 import 'package:talk2statue/core/services/popback_manager.dart';
+import 'package:talk2statue/core/utilities/app_constants.dart';
 import 'package:talk2statue/core/utilities/media_query_data.dart';
 import 'package:talk2statue/onboarding/bloc/onboarding_bloc.dart';
 import 'package:talk2statue/onboarding/components/page_component.dart';
@@ -92,7 +93,8 @@ class _OnBoardingViewState extends State<OnBoardingView> {
                   style: ElevatedButton.styleFrom(
                       elevation: 15,
                       foregroundColor: Colors.white,
-                      backgroundColor: Theme.of(context).colorScheme.primary),
+                      backgroundColor:
+                          AppConstants.primaryColor.withOpacity(0.7)),
                   child: state.pageIdx + 1 == state.pdataList.length
                       ? const Text(
                           'Get Started',
@@ -112,6 +114,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
                         borderRadius: BorderRadius.circular(10)),
                     activeSize: const Size(30, 10),
                     spacing: const EdgeInsets.all(10),
+                    activeColor: AppConstants.primaryColor.withOpacity(0.65),
                   ),
                 ),
               ],
