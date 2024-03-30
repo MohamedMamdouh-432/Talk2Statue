@@ -2,7 +2,7 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:talk2statue/Authentication/data/datasource/validate_input.dart';
-import 'package:talk2statue/core/utilities/app_constants.dart';
+import 'package:talk2statue/core/utils/app_constants.dart';
 
 PreferredSizeWidget? loginAppBar(title) {
   return AppBar(

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:talk2statue/core/utilities/app_constants.dart';
+import 'package:talk2statue/core/utils/app_constants.dart';
 
 class ErrorView extends StatelessWidget {
   final String errorMessage;

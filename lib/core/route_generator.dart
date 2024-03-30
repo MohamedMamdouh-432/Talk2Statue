@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:talk2statue/Authentication/presentation/views/sign_in.dart';
 import 'package:talk2statue/Authentication/presentation/views/sign_up.dart';
-import 'package:talk2statue/conversation/presentation/views/conversation_view.dart';
-import 'package:talk2statue/home/presentation/views/home_view.dart';
+import 'package:talk2statue/conversation/views/conversation_view.dart';
+import 'package:talk2statue/home/views/home_view.dart';
 import 'package:talk2statue/onboarding/view/onboarding_view.dart';
-import 'package:talk2statue/statue_recognition/presentation/views/talk_to_statue_view.dart';
+import 'package:talk2statue/statue_recognition/views/talk_to_statue_view.dart';
 
 class RouteGenerator {
   static Route<dynamic>? generateRoute(RouteSettings settings) {

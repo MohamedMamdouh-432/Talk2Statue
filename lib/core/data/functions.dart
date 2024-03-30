@@ -5,10 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:talk2statue/Authentication/presentation/widgets/login_widgets.dart';
-import 'package:talk2statue/conversation/presentation/views/conversation_view.dart';
-import 'package:talk2statue/core/utilities/app_enums.dart';
-import 'package:talk2statue/statue_recognition/presentation/bloc/statue_recognition_bloc.dart';
-import 'package:talk2statue/statue_recognition/presentation/components/statue_capture_window.dart';
+import 'package:talk2statue/conversation/views/conversation_view.dart';
+import 'package:talk2statue/core/utils/app_enums.dart';
+import 'package:talk2statue/statue_recognition/bloc/statue_recognition_bloc.dart';
+import 'package:talk2statue/statue_recognition/widgets/statue_capture_window.dart';
 
 void showMessage(BuildContext c, String s, DialogType dType) {
   showAlert(

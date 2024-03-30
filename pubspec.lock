@@ -161,14 +161,21 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.10.1"
+  data_repository:
+    dependency: "direct main"
+    description:
+      path: "packages/data_repository"
+      relative: true
+    source: path
+    version: "0.0.0"
   dio:
     dependency: "direct main"
     description:
       name: dio
-      sha256: "797e1e341c3dd2f69f2dad42564a6feff3bfb87187d05abb93b9609e6f1645c3"
+      sha256: "0978e9a3e45305a80a7210dbeaf79d6ee8bee33f70c8e542dc654c952070217f"
       url: "https://pub.dev"
     source: hosted
-    version: "5.4.0"
+    version: "5.4.2+1"
   dots_indicator:
     dependency: "direct main"
     description:
@@ -177,6 +184,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.0"
+  either_dart:
+    dependency: transitive
+    description:
+      name: either_dart
+      sha256: "0b57f6a9410ce0ba2cc340220109f545bf4bad1b06b242219f0af11ab9e84f0e"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0"
   equatable:
     dependency: "direct main"
     description:
@@ -608,6 +623,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.5"
+  models_repository:
+    dependency: transitive
+    description:
+      path: "packages/models_repository"
+      relative: true
+    source: path
+    version: "0.0.0"
   nested:
     dependency: transitive
     description:
@@ -918,5 +940,5 @@ packages:
     source: hosted
     version: "3.1.2"
 sdks:
-  dart: ">=3.3.0 <4.0.0"
+  dart: ">=3.3.2 <4.0.0"
   flutter: ">=3.19.0"
