@@ -3,8 +3,8 @@ import 'package:talk2statue/Authentication/data/datasource/email_sign_in.dart';
 import 'package:talk2statue/Authentication/data/datasource/google_sign_in.dart';
 import 'package:talk2statue/Authentication/presentation/views/sign_up.dart';
 import 'package:talk2statue/Authentication/presentation/widgets/login_widgets.dart';
-import 'package:talk2statue/core/utilities/media_query_data.dart';
-import 'package:talk2statue/home/presentation/views/home_view.dart';
+import 'package:talk2statue/core/utils/media_query_data.dart';
+import 'package:talk2statue/home/views/home_view.dart';
 
 class SignInPage extends StatefulWidget {
   static const String routeName = "/signinpage";

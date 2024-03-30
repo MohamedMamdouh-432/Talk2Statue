@@ -29,6 +29,8 @@ dependencies:
   http: ^1.2.0
   record: ^5.0.4
   avatar_glow: ^3.0.1
+  data_repository: 
+    path: packages/data_repository
 
 dev_dependencies:
   flutter_test:

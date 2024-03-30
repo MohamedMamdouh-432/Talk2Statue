@@ -1,0 +1,14 @@
+name: data_repository
+description: Dart package which manages data throughout the app which includes, feed posts content and so on.
+publish_to: none
+
+environment:
+  sdk: '>=3.3.2 <4.0.0'
+
+dependencies: 
+  models_repository: 
+    path: ../models_repository
+  dio: ^5.4.2+1
+  either_dart: any
+  path_provider: ^2.1.2
+  http: ^1.2.1
