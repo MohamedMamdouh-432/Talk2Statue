@@ -1,10 +1,10 @@
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:talk2statue/Authentication/presentation/views/sign_in.dart';
-import 'package:talk2statue/core/services/popback_manager.dart';
+import 'package:talk2statue/authentication/views/sign_in.dart';
+import 'package:talk2statue/shared/services/popback_manager.dart';
 import 'package:talk2statue/core/utils/app_constants.dart';
-import 'package:talk2statue/core/utils/media_query_data.dart';
+import 'package:talk2statue/core/utils/media_query_provider.dart';
 import 'package:talk2statue/onboarding/bloc/onboarding_bloc.dart';
 import 'package:talk2statue/onboarding/components/page_component.dart';
 

@@ -1,10 +1,10 @@
 import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:models_repository/models_repository.dart';
 import 'package:talk2statue/conversation/bloc/conversation_bloc.dart';
 import 'package:talk2statue/core/utils/app_constants.dart';
-import 'package:talk2statue/core/utils/app_enums.dart';
-import 'package:talk2statue/core/utils/media_query_data.dart';
+import 'package:talk2statue/core/utils/media_query_provider.dart';
 
 class StatueRecordingButton extends StatelessWidget {
   const StatueRecordingButton({super.key});

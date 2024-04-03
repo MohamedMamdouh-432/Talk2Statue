@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:either_dart/either.dart';
-import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -122,24 +122,24 @@ class AuthenticationFailure {
 }
 
 class AuthenticationRepository {
-  final firebase_auth.FirebaseAuth _firebaseAuth;
+  final FirebaseAuth _fireAuth;
   final FirebaseFirestore _firestore;
   final GoogleSignIn _googleSignIn;
   final SharedPreferences _sharedPreference;
   String? _userId;
 
   AuthenticationRepository({
-    firebase_auth.FirebaseAuth? firebaseAuth,
-    GoogleSignIn? googleSignIn,
-    FirebaseFirestore? firestore,
+    required FirebaseAuth firebaseAuth,
+    required GoogleSignIn googleSignIn,
+    required FirebaseFirestore firestore,
     required SharedPreferences sharedPreferences,
-  })  : _firebaseAuth = firebaseAuth ?? firebase_auth.FirebaseAuth.instance,
-        _googleSignIn = googleSignIn ?? GoogleSignIn.standard(),
-        _firestore = firestore ?? FirebaseFirestore.instance,
+  })  : _fireAuth = firebaseAuth,
+        _firestore = firestore,
+        _googleSignIn = googleSignIn,
         _sharedPreference = sharedPreferences;
 
   bool get userExists => _userId != null;
-  
+
   Future<String?> get userId async {
     _userId = _sharedPreference.getString('userId');
     if (_userId == null || _userId == '' || _userId!.isEmpty) return null;
@@ -153,8 +153,8 @@ class AuthenticationRepository {
     required String name,
   }) async {
     try {
-      firebase_auth.UserCredential userCredentials =
-          await _firebaseAuth.createUserWithEmailAndPassword(
+      UserCredential userCredentials =
+          await _fireAuth.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
@@ -166,7 +166,7 @@ class AuthenticationRepository {
       await _sharedPreference.setBool('first_time', false);
 
       return Right(null);
-    } on firebase_auth.FirebaseAuthException catch (e) {
+    } on FirebaseAuthException catch (e) {
       return Left(SignUpWithEmailAndPasswordFailure.fromCode(e.code));
     } catch (_) {
       throw const SignUpWithEmailAndPasswordFailure();
@@ -175,24 +175,24 @@ class AuthenticationRepository {
 
   Future<void> logInWithGoogle() async {
     try {
-      late final firebase_auth.AuthCredential credential;
+      late final AuthCredential credential;
       if (kIsWeb) {
-        final googleProvider = firebase_auth.GoogleAuthProvider();
-        final userCredential = await _firebaseAuth.signInWithPopup(
+        final googleProvider = GoogleAuthProvider();
+        final userCredential = await _fireAuth.signInWithPopup(
           googleProvider,
         );
         credential = userCredential.credential!;
       } else {
         final googleUser = await _googleSignIn.signIn();
         final googleAuth = await googleUser!.authentication;
-        credential = firebase_auth.GoogleAuthProvider.credential(
+        credential = GoogleAuthProvider.credential(
           accessToken: googleAuth.accessToken,
           idToken: googleAuth.idToken,
         );
       }
 
-      await _firebaseAuth.signInWithCredential(credential);
-    } on firebase_auth.FirebaseAuthException catch (e) {
+      await _fireAuth.signInWithCredential(credential);
+    } on FirebaseAuthException catch (e) {
       throw LogInWithGoogleFailure.fromCode(e.code);
     } catch (_) {
       throw const LogInWithGoogleFailure();
@@ -204,8 +204,8 @@ class AuthenticationRepository {
     required String password,
   }) async {
     try {
-      firebase_auth.UserCredential userCredentials =
-          await _firebaseAuth.signInWithEmailAndPassword(
+      UserCredential userCredentials =
+          await _fireAuth.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
@@ -217,7 +217,7 @@ class AuthenticationRepository {
       return Right(_userId!);
     } on LogInWithEmailAndPasswordFailure catch (e) {
       return Left(AuthenticationFailure(message: e.message));
-    } on firebase_auth.FirebaseAuthException catch (e) {
+    } on FirebaseAuthException catch (e) {
       return Left(AuthenticationFailure(
           message: LogInWithEmailAndPasswordFailure.fromCode(e.code).message));
     } catch (_) {
@@ -231,7 +231,7 @@ class AuthenticationRepository {
 
       await _sharedPreference.remove('userId');
       await Future.wait([
-        _firebaseAuth.signOut(),
+        _fireAuth.signOut(),
         _googleSignIn.signOut(),
       ]);
     } catch (_) {

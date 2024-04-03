@@ -42,10 +42,10 @@ class ResetRecordingEventRequested extends ConversationEvent {
 }
 
 class StatueReplayEventRequested extends ConversationEvent {
-  final SpeechVoice voiceModel;
-  const StatueReplayEventRequested(this.voiceModel);
+  final String speechVoice;
+  const StatueReplayEventRequested(this.speechVoice);
   @override
-  List<Object> get props => [voiceModel];
+  List<Object> get props => [speechVoice];
 }
 
 class StatueTalkingEventRequested extends ConversationEvent {

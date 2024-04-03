@@ -1,5 +1,3 @@
-import 'package:models_repository/models_repository.dart';
-
 class ApiConstants {
   static const String openaikey =
       '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';
@@ -11,12 +9,15 @@ class ApiConstants {
   static const String openaiGPTCompletionUrl =
       'https://api.openai.com/v1/chat/completions';
 
-  static const Map<SpeechVoice, String> voiceModels = {
-    SpeechVoice.alloy: "alloy",
-    SpeechVoice.echo: "echo",
-    SpeechVoice.fable: "fable",
-    SpeechVoice.onyx: "onyx",
-    SpeechVoice.nova: "nova",
-    SpeechVoice.shimmer: "shimmer",
-  };
+  static const List<String> femaleVoices = [
+    "nova",
+    "shimmer",
+  ];
+
+  static const List<String> maleVoices = [
+    "echo",
+    "onyx",
+    "fable",
+    "alloy",
+  ];
 }

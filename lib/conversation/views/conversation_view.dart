@@ -1,15 +1,19 @@
+import 'dart:io';
+import 'dart:math';
+
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
+import 'package:data_repository/data_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:models_repository/models_repository.dart';
 import 'package:talk2statue/conversation/bloc/conversation_bloc.dart';
 import 'package:talk2statue/conversation/components/loading_indicator_component.dart';
 import 'package:talk2statue/conversation/widgets/statue_record_button.dart';
-import 'package:talk2statue/core/data/functions.dart';
-import 'package:talk2statue/core/utils/app_enums.dart';
-import 'package:talk2statue/core/utils/media_query_data.dart';
-import 'package:talk2statue/home/widgets/curved_appbar.dart';
-import 'package:talk2statue/statue_recognition/bloc/statue_recognition_bloc.dart';
+import 'package:talk2statue/shared/data/functions.dart';
+import 'package:talk2statue/core/utils/media_query_provider.dart';
+import 'package:talk2statue/shared/widgets/curved_appbar.dart';
+import 'package:talk2statue/home/controllers/statue_recognition_bloc/recognition_bloc.dart';
 
 class ConversationView extends StatefulWidget {
   static const String routeName = '/conversation';
@@ -31,10 +35,15 @@ class _ConversationViewState extends State<ConversationView> {
       listenWhen: (prev, cur) => prev != cur,
       listener: (context, state) {
         if (state.requestState == ConversationRequestState.RecordingCompleted) {
+          String voiceSound;
+          if (context.read<RecognitionBloc>().state.statueGender == 'male')
+            voiceSound = ApiConstants.maleVoices[Random().nextInt(4)];
+          else
+            voiceSound = ApiConstants.femaleVoices[Random().nextInt(2)];
           context
               .read<ConversationBloc>()
-              .add(const StatueReplayEventRequested(SpeechVoice.nova));
-          showMessage(context, 'Recording is Completed', DialogType.success);
+              .add(StatueReplayEventRequested(voiceSound));
+          showMessage(context, 'Recording is Completed', DialogType.success, 2);
         } else if (state.requestState == ConversationRequestState.Successful) {
           context
               .read<ConversationBloc>()
@@ -44,6 +53,7 @@ class _ConversationViewState extends State<ConversationView> {
             context,
             'Oops! Forgive Me , I don\'t Undersatnd your question😅',
             DialogType.error,
+            2,
           );
           context
               .read<ConversationBloc>()
@@ -53,6 +63,7 @@ class _ConversationViewState extends State<ConversationView> {
             context,
             'Oops! Forgive Me , I don\'t Try Again😅',
             DialogType.error,
+            2,
           );
           context
               .read<ConversationBloc>()
@@ -63,7 +74,7 @@ class _ConversationViewState extends State<ConversationView> {
               .add(const ResetRecordingEventRequested());
         }
       },
-      child: BlocConsumer<StatueRecognitionBloc, StatueRecognitionState>(
+      child: BlocConsumer<RecognitionBloc, StatueRecognitionState>(
         buildWhen: (prev, cur) => prev != cur,
         listenWhen: (prev, cur) => prev != cur,
         listener: (context, state) {
@@ -80,6 +91,7 @@ class _ConversationViewState extends State<ConversationView> {
               context,
               'Oops ! ${state.message} \nTry Again after while 😅',
               DialogType.error,
+              2,
             );
             Navigator.pop(context);
           }
@@ -107,22 +119,25 @@ class _ConversationViewState extends State<ConversationView> {
                   fallback: (_) => ConditionalBuilder(
                     condition: state.requestState ==
                         RecongnitionRequestState.SuccessfulInRecognizing,
-                    builder: (_) => Column(
-                      children: [
-                        ClipRRect(
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(30)),
-                          child: Image.file(
-                            state.statueImage!,
-                            fit: BoxFit.fitWidth,
-                            width: double.infinity,
-                            height: context.height * 0.6,
-                            filterQuality: FilterQuality.high,
+                    builder: (_) {
+                      final File statueImageFile = File(state.statueImagePath);
+                      return Column(
+                        children: [
+                          ClipRRect(
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(30)),
+                            child: Image.file(
+                              statueImageFile,
+                              fit: BoxFit.fitWidth,
+                              width: double.infinity,
+                              height: context.height * 0.6,
+                              filterQuality: FilterQuality.high,
+                            ),
                           ),
-                        ),
-                        const StatueRecordingButton(),
-                      ],
-                    ),
+                          const StatueRecordingButton(),
+                        ],
+                      );
+                    },
                     fallback: (_) => const SizedBox(),
                   ),
                 ),

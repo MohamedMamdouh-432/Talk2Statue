@@ -1,25 +1,32 @@
+import 'package:authentication_repository/authentication_repository.dart';
 import 'package:data_repository/data_repository.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:talk2statue/Authentication/bloc/login_cubit.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:talk2statue/authentication/cubit/login_cubit.dart';
+import 'package:talk2statue/authentication/views/sign_in.dart';
 import 'package:talk2statue/conversation/bloc/conversation_bloc.dart';
 import 'package:talk2statue/core/route_generator.dart';
 import 'package:talk2statue/core/utils/app_constants.dart';
+import 'package:talk2statue/home/controllers/statue_recognition_bloc/recognition_bloc.dart';
 import 'package:talk2statue/onboarding/bloc/onboarding_bloc.dart';
 import 'package:talk2statue/onboarding/view/onboarding_view.dart';
-import 'package:talk2statue/statue_recognition/bloc/statue_recognition_bloc.dart';
+import 'package:user_repository/user_repository.dart';
 
 class Talk2Statue extends StatelessWidget {
-  final Dio appDio;
-  final DataRepository dataRepository;
+  final DataRepository dataRepo;
+  final UserRepository userRepo;
+  final SharedPreferences sharedPref;
+  final AuthenticationRepository authRepo;
 
   const Talk2Statue({
     super.key,
-    required this.appDio,
-    required this.dataRepository,
+    required this.dataRepo,
+    required this.authRepo,
+    required this.userRepo,
+    required this.sharedPref,
   });
 
   @override
@@ -29,24 +36,20 @@ class Talk2Statue extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (context, child) {
-        return RepositoryProvider(
-          create: (context) => DataRepository(dio: appDio),
+        return MultiRepositoryProvider(
+          providers: [
+            RepositoryProvider.value(value: dataRepo),
+            RepositoryProvider.value(value: authRepo),
+            RepositoryProvider.value(value: userRepo),
+          ],
           child: MultiBlocProvider(
             providers: [
-              BlocProvider(create: (context) => OnboardingBloc()),
-              BlocProvider(
-                create: (context) => ConversationBloc(
-                  dataRepository: dataRepository,
-                ),
-              ),
-              BlocProvider(
-                create: (context) => StatueRecognitionBloc(
-                  dataRepository: dataRepository,
-                ),
-              ),
-              BlocProvider(create: (context) => LoginCubit()),
+              BlocProvider(create: (_) => OnboardingBloc()),
+              BlocProvider(create: (_) => LoginCubit()),
+              BlocProvider(create: (_) => RecognitionBloc(dataRepo: dataRepo)),
+              BlocProvider(create: (_) => ConversationBloc(dataRepo: dataRepo)),
             ],
-            child: const AppView(),
+            child: AppView(sharedPref: sharedPref),
           ),
         );
       },
@@ -55,7 +58,11 @@ class Talk2Statue extends StatelessWidget {
 }
 
 class AppView extends StatelessWidget {
-  const AppView({super.key});
+  final SharedPreferences sharedPref;
+  const AppView({
+    super.key,
+    required this.sharedPref,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -67,11 +74,14 @@ class AppView extends StatelessWidget {
         systemNavigationBarIconBrightness: Brightness.light,
       ),
     );
+
     return MaterialApp(
       theme: AppConstants.theme,
       debugShowCheckedModeBanner: false,
       onGenerateRoute: RouteGenerator.generateRoute,
-      initialRoute: OnBoardingView.routeName,
+      initialRoute: sharedPref.getBool('newToApp?')!
+          ? OnBoardingView.routeName
+          : SignInPage.routeName,
     );
   }
 }

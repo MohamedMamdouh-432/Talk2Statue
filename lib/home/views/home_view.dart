@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:talk2statue/core/utils/app_constants.dart';
-import 'package:talk2statue/core/utils/media_query_data.dart';
+import 'package:talk2statue/core/utils/media_query_provider.dart';
 import 'package:talk2statue/home/components/fav_statues_list.dart';
-import 'package:talk2statue/home/components/meseum_introducer.dart';
-import 'package:talk2statue/home/components/statue_talker.dart';
-import 'package:talk2statue/home/widgets/curved_appbar.dart';
-import 'package:talk2statue/home/widgets/drawer_element.dart';
+import 'package:talk2statue/home/components/home_drawer.dart';
+import 'package:talk2statue/home/components/introduce_museum_card.dart';
+import 'package:talk2statue/home/components/talk_to_statue_card.dart';
+import 'package:talk2statue/shared/widgets/curved_appbar.dart';
 import 'package:talk2statue/home/widgets/search_statue_bar.dart';
 
 class HomeView extends StatelessWidget {
@@ -21,37 +19,7 @@ class HomeView extends StatelessWidget {
         inHome: true,
         icon: Icons.menu,
       ),
-      drawer: Drawer(
-        elevation: 30,
-        child: Column(
-          children: [
-            SizedBox(
-              height: context.height * 0.48,
-              child: UserAccountsDrawerHeader(
-                accountName: const Text('Ahmed Amin'),
-                accountEmail: const Text('ahmedamin@gmail.com'),
-                currentAccountPicture: const CircleAvatar(
-                  backgroundImage: AssetImage('assets/profile_picture.jpeg'),
-                ),
-                currentAccountPictureSize: Size.square(200.h),
-                decoration: const BoxDecoration(
-                  color: AppConstants.drawerColor,
-                ),
-              ),
-            ),
-            DrawerElement(
-              iconData: Icons.favorite_border,
-              text: 'Favourite Statues',
-              onTap: () {},
-            ),
-            DrawerElement(
-              iconData: Icons.logout_outlined,
-              text: 'Logout',
-              onTap: () {},
-            ),
-          ],
-        ),
-      ),
+      drawer: const HomeDrawer(),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.fromLTRB(10, 0, 10, 30),
@@ -69,9 +37,9 @@ class HomeView extends StatelessWidget {
               ),
               const FavStatuesList(),
               const SizedBox(height: 20),
-              const MeseumIntroducerComponent(),
+              const IntroduceMuseumCard(),
               const SizedBox(height: 20),
-              const StatueTalkerComponent(),
+              const TalkToStatueCard(),
             ],
           ),
         ),
