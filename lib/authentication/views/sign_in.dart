@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:talk2statue/authentication/data/email_sign_in.dart';
 import 'package:talk2statue/authentication/data/google_sign_in.dart';
 import 'package:talk2statue/authentication/views/sign_up.dart';
 import 'package:talk2statue/authentication/widgets/login_widgets.dart';
-import 'package:talk2statue/core/utils/media_query_provider.dart';
 import 'package:talk2statue/home/views/home_view.dart';
 
 class SignInPage extends StatefulWidget {

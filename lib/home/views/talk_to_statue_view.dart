@@ -4,10 +4,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:models_repository/models_repository.dart';
-import 'package:talk2statue/shared/data/functions.dart';
 import 'package:talk2statue/core/utils/app_constants.dart';
-import 'package:talk2statue/core/utils/media_query_provider.dart';
 import 'package:talk2statue/home/controllers/statue_recognition_bloc/recognition_bloc.dart';
+import 'package:talk2statue/shared/data/functions.dart';
 
 class TalkToStatueView extends StatelessWidget {
   static const String routeName = '/talk2statueview';
@@ -25,7 +24,7 @@ class TalkToStatueView extends StatelessWidget {
               context, 'Statue Image Picked Well', DialogType.success, 2);
       },
       child: Scaffold(
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+        extendBody: true,
         body: CustomScrollView(
           slivers: [
             SliverAppBar(
@@ -41,7 +40,7 @@ class TalkToStatueView extends StatelessWidget {
             ),
             SliverToBoxAdapter(
               child: Padding(
-                padding: const EdgeInsets.fromLTRB(15, 0, 15, 90),
+                padding: const EdgeInsets.fromLTRB(15, 0, 15, 70),
                 child: Column(
                   children: [
                     Container(
@@ -158,19 +157,25 @@ class TalkToStatueView extends StatelessWidget {
             )
           ],
         ),
-        floatingActionButton: SizedBox(
-          width: 0.9 * context.width,
-          child: FloatingActionButton.extended(
-            elevation: 10,
-            onPressed: () => showImageCapturingWindow(context),
+        bottomNavigationBar: Container(
+          margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(30),
+          ),
+          child: ElevatedButton.icon(
             icon: Icon(
               Icons.camera_outlined,
               size: 25.sp,
-              color: AppConstants.kohlyColor,
             ),
             label: Text(
               "Let's Begin",
               style: AppConstants.boldStyle.copyWith(fontSize: 15.sp),
+            ),
+            onPressed: () => showImageCapturingWindow(context),
+            style: ElevatedButton.styleFrom(
+              elevation: 30,
+              foregroundColor: AppConstants.kohlyColor,
+              backgroundColor: AppConstants.primaryColor,
             ),
           ),
         ),

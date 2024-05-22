@@ -2,6 +2,7 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:talk2statue/authentication/widgets/login_widgets.dart';
 
@@ -27,7 +28,7 @@ signIn({
       print(e.code);
       switch (e.code) {
         case 'invalid-email':
-          Navigator.pop(context);
+          Get.back();
           showAlert(
               context: context,
               title: 'Error',
@@ -38,7 +39,7 @@ signIn({
               dialogType: DialogType.error);
           break;
         case 'wrong-password':
-          Navigator.pop(context);
+          Get.back();
           showAlert(
               context: context,
               title: 'Error',
@@ -49,7 +50,7 @@ signIn({
               dialogType: DialogType.error);
           break;
         case 'invalid-credential':
-          Navigator.pop(context);
+          Get.back();
           showAlert(
               context: context,
               title: 'Error',
@@ -60,7 +61,7 @@ signIn({
               dialogType: DialogType.error);
           break;
         case 'user-disabled':
-          Navigator.pop(context);
+          Get.back();
           showAlert(
               context: context,
               title: 'Error',

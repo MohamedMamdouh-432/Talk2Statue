@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 import 'package:models_repository/models_repository.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:talk2statue/authentication/widgets/login_widgets.dart';
@@ -11,7 +12,11 @@ import 'package:talk2statue/home/controllers/statue_recognition_bloc/recognition
 import 'package:talk2statue/home/widgets/statue_capture_window.dart';
 
 void showMessage(
-    BuildContext c, String s, DialogType dType, int durationValue) {
+  BuildContext c,
+  String s,
+  DialogType dType,
+  int durationValue,
+) {
   showAlert(
     context: c,
     title: s,
@@ -56,7 +61,7 @@ showImageCapturingWindow(BuildContext ctx) {
                   context
                       .read<RecognitionBloc>()
                       .add(const StatueRecognitionEventRequested());
-                  Navigator.pop(ctx);
+                  Get.back();
                   Navigator.pushNamed(context, ConversationView.routeName);
                 },
           child: const Text(
@@ -71,7 +76,7 @@ showImageCapturingWindow(BuildContext ctx) {
         ctx
             .read<RecognitionBloc>()
             .add(const StatueUndoCapturingEventRequested());
-        Navigator.pop(ctx);
+        Get.back();
       },
       child: const Text(
         'Cancel',

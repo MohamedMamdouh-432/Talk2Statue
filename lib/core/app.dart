@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:talk2statue/authentication/cubit/login_cubit.dart';
 import 'package:talk2statue/authentication/views/sign_in.dart';
@@ -75,7 +76,7 @@ class AppView extends StatelessWidget {
       ),
     );
 
-    return MaterialApp(
+    return GetMaterialApp(
       theme: AppConstants.theme,
       debugShowCheckedModeBanner: false,
       onGenerateRoute: RouteGenerator.generateRoute,

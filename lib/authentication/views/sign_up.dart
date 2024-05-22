@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 import 'package:talk2statue/authentication/cubit/login_cubit.dart';
 import 'package:talk2statue/authentication/cubit/login_states.dart';
 import 'package:talk2statue/authentication/data/email_sign_up.dart';
 import 'package:talk2statue/authentication/views/sign_in.dart';
 import 'package:talk2statue/authentication/widgets/login_widgets.dart';
-import 'package:talk2statue/core/utils/media_query_provider.dart';
+
 
 class SignUpPage extends StatefulWidget {
   static const String routeName = "/signuppage";

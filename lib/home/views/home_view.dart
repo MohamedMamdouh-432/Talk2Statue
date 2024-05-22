@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:talk2statue/core/utils/media_query_provider.dart';
+import 'package:get/get.dart';
 import 'package:talk2statue/home/components/fav_statues_list.dart';
 import 'package:talk2statue/home/components/home_drawer.dart';
 import 'package:talk2statue/home/components/introduce_museum_card.dart';
 import 'package:talk2statue/home/components/talk_to_statue_card.dart';
-import 'package:talk2statue/shared/widgets/curved_appbar.dart';
 import 'package:talk2statue/home/widgets/search_statue_bar.dart';
+import 'package:talk2statue/shared/widgets/curved_appbar.dart';
 
 class HomeView extends StatelessWidget {
   static const String routeName = '/home';

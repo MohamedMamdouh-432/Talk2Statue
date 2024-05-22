@@ -6,14 +6,14 @@ import 'package:conditional_builder_null_safety/conditional_builder_null_safety.
 import 'package:data_repository/data_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 import 'package:models_repository/models_repository.dart';
 import 'package:talk2statue/conversation/bloc/conversation_bloc.dart';
 import 'package:talk2statue/conversation/components/loading_indicator_component.dart';
 import 'package:talk2statue/conversation/widgets/statue_record_button.dart';
-import 'package:talk2statue/shared/data/functions.dart';
-import 'package:talk2statue/core/utils/media_query_provider.dart';
-import 'package:talk2statue/shared/widgets/curved_appbar.dart';
 import 'package:talk2statue/home/controllers/statue_recognition_bloc/recognition_bloc.dart';
+import 'package:talk2statue/shared/data/functions.dart';
+import 'package:talk2statue/shared/widgets/curved_appbar.dart';
 
 class ConversationView extends StatefulWidget {
   static const String routeName = '/conversation';
@@ -93,7 +93,7 @@ class _ConversationViewState extends State<ConversationView> {
               DialogType.error,
               2,
             );
-            Navigator.pop(context);
+            Get.back();
           }
         },
         builder: (context, state) {

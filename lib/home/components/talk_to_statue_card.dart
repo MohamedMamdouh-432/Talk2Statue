@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:talk2statue/core/utils/media_query_provider.dart';
 import 'package:talk2statue/home/views/talk_to_statue_view.dart';
 
 class TalkToStatueCard extends StatelessWidget {

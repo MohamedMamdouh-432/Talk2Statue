@@ -1,6 +1,7 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:get/get.dart';
 import 'package:talk2statue/authentication/data/validate_input.dart';
 import 'package:talk2statue/core/utils/app_constants.dart';
 
@@ -97,7 +98,7 @@ showLoading(context) {
               Center(
                 child: GestureDetector(
                   onTap: () {
-                    Navigator.pop(context);
+                    Get.back();
                   },
                   child: Container(
                     height: 200,
