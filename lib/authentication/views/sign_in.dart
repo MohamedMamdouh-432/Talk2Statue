@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:talk2statue/authentication/data/email_sign_in.dart';
 import 'package:talk2statue/authentication/data/google_sign_in.dart';
-import 'package:talk2statue/authentication/views/sign_up.dart';
 import 'package:talk2statue/authentication/widgets/login_widgets.dart';
-import 'package:talk2statue/home/views/home_view.dart';
+import 'package:talk2statue/core/utils/route_manager.dart';
 
 class SignInPage extends StatefulWidget {
   static const String routeName = "/signinpage";
@@ -54,7 +53,7 @@ class _SignInPageState extends State<SignInPage> {
                         emailAddress: emailController.text,
                         password: passwordController.text);
                     if (user != null) {
-                      Navigator.pushNamed(context, HomeView.routeName);
+                      Get.toNamed(RouteManager.homeRoute);
                     }
                   }),
               customTextButton(
@@ -63,7 +62,7 @@ class _SignInPageState extends State<SignInPage> {
                 onPressed: () async {
                   showLoading(context);
                   await signInWithGoogle();
-                  Navigator.pushNamed(context, HomeView.routeName);
+                  Get.toNamed(RouteManager.homeRoute);
                 },
                 icon: Image.asset(
                   'assets/images/google.png',
@@ -82,7 +81,7 @@ class _SignInPageState extends State<SignInPage> {
                   customTextButton(
                       title: 'Sign Up',
                       buttonFunction: () {
-                        Navigator.pushNamed(context, SignUpPage.routeName);
+                        Get.toNamed(RouteManager.signUpRoute);
                       })
                 ],
               ),

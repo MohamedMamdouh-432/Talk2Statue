@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:talk2statue/core/utils/app_constants.dart';
-import 'package:talk2statue/home/controllers/statue_recognition_bloc/recognition_bloc.dart';
+import 'package:talk2statue/home/bloc/recognition_bloc.dart';
 import 'package:talk2statue/home/widgets/capture_card.dart';
 
 class StatueCapturingWindow extends StatelessWidget {

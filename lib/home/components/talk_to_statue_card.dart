@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:talk2statue/home/views/talk_to_statue_view.dart';
+import 'package:talk2statue/core/utils/route_manager.dart';
 
 class TalkToStatueCard extends StatelessWidget {
   const TalkToStatueCard({super.key});
@@ -10,10 +10,7 @@ class TalkToStatueCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => Navigator.pushNamed(
-        context,
-        TalkToStatueView.routeName,
-      ),
+      onTap: () => Get.toNamed(RouteManager.talkToStatueRoute),
       child: Container(
         width: context.width * 0.8,
         height: 280.h,

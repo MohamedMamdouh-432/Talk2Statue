@@ -1,9 +1,10 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:talk2statue/core/utils/app_constants.dart';
-import 'package:talk2statue/home/views/talk_to_statue_view.dart';
+import 'package:talk2statue/core/utils/route_manager.dart';
 
 class CurvedAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
@@ -53,10 +54,7 @@ class CurvedAppBar extends StatelessWidget implements PreferredSizeWidget {
             ConditionalBuilder(
               condition: inHome,
               builder: (context) => IconButton(
-                onPressed: () => Navigator.pushNamed(
-                  context,
-                  TalkToStatueView.routeName,
-                ),
+                onPressed: () => Get.toNamed(RouteManager.talkToStatueRoute),
                 iconSize: 35,
                 icon: const Icon(Icons.fit_screen_outlined),
               ),

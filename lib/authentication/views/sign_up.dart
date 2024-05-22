@@ -4,9 +4,8 @@ import 'package:get/get.dart';
 import 'package:talk2statue/authentication/cubit/login_cubit.dart';
 import 'package:talk2statue/authentication/cubit/login_states.dart';
 import 'package:talk2statue/authentication/data/email_sign_up.dart';
-import 'package:talk2statue/authentication/views/sign_in.dart';
 import 'package:talk2statue/authentication/widgets/login_widgets.dart';
-
+import 'package:talk2statue/core/utils/route_manager.dart';
 
 class SignUpPage extends StatefulWidget {
   static const String routeName = "/signuppage";
@@ -76,7 +75,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           password: passwordController.text,
                         );
                         if (user != null) {
-                          Navigator.pushNamed(context, SignInPage.routeName);
+                          Get.toNamed(RouteManager.signInRoute);
                         }
                       },
                       title: 'Sign Up'),

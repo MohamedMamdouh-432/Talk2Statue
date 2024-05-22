@@ -7,8 +7,8 @@ import 'package:get/get.dart';
 import 'package:models_repository/models_repository.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:talk2statue/authentication/widgets/login_widgets.dart';
-import 'package:talk2statue/conversation/views/conversation_view.dart';
-import 'package:talk2statue/home/controllers/statue_recognition_bloc/recognition_bloc.dart';
+import 'package:talk2statue/core/utils/route_manager.dart';
+import 'package:talk2statue/home/bloc/recognition_bloc.dart';
 import 'package:talk2statue/home/widgets/statue_capture_window.dart';
 
 void showMessage(
@@ -62,7 +62,7 @@ showImageCapturingWindow(BuildContext ctx) {
                       .read<RecognitionBloc>()
                       .add(const StatueRecognitionEventRequested());
                   Get.back();
-                  Navigator.pushNamed(context, ConversationView.routeName);
+                  Get.toNamed(RouteManager.conversationRoute);
                 },
           child: const Text(
             'OK',

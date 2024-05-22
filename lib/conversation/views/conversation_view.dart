@@ -11,7 +11,7 @@ import 'package:models_repository/models_repository.dart';
 import 'package:talk2statue/conversation/bloc/conversation_bloc.dart';
 import 'package:talk2statue/conversation/components/loading_indicator_component.dart';
 import 'package:talk2statue/conversation/widgets/statue_record_button.dart';
-import 'package:talk2statue/home/controllers/statue_recognition_bloc/recognition_bloc.dart';
+import 'package:talk2statue/home/bloc/recognition_bloc.dart';
 import 'package:talk2statue/shared/data/functions.dart';
 import 'package:talk2statue/shared/widgets/curved_appbar.dart';
 

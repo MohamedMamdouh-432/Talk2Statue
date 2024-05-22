@@ -2,8 +2,8 @@ import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-import 'package:talk2statue/authentication/views/sign_in.dart';
 import 'package:talk2statue/core/utils/app_constants.dart';
+import 'package:talk2statue/core/utils/route_manager.dart';
 import 'package:talk2statue/onboarding/bloc/onboarding_bloc.dart';
 import 'package:talk2statue/onboarding/components/page_component.dart';
 import 'package:talk2statue/shared/services/popback_manager.dart';
@@ -29,10 +29,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
         body: BlocConsumer<OnboardingBloc, OnboardingState>(
           listener: (context, state) {
             if (state.getStarted) {
-              Navigator.pushReplacementNamed(
-                context,
-                SignInPage.routeName,
-              );
+              Get.offNamed(RouteManager.signInRoute);
             }
           },
           builder: (context, state) => Padding(

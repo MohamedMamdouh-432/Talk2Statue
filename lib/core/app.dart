@@ -7,13 +7,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:talk2statue/authentication/cubit/login_cubit.dart';
-import 'package:talk2statue/authentication/views/sign_in.dart';
 import 'package:talk2statue/conversation/bloc/conversation_bloc.dart';
-import 'package:talk2statue/core/route_generator.dart';
 import 'package:talk2statue/core/utils/app_constants.dart';
-import 'package:talk2statue/home/controllers/statue_recognition_bloc/recognition_bloc.dart';
+import 'package:talk2statue/core/utils/route_manager.dart';
+import 'package:talk2statue/home/bloc/recognition_bloc.dart';
 import 'package:talk2statue/onboarding/bloc/onboarding_bloc.dart';
-import 'package:talk2statue/onboarding/view/onboarding_view.dart';
 import 'package:user_repository/user_repository.dart';
 
 class Talk2Statue extends StatelessWidget {
@@ -79,10 +77,10 @@ class AppView extends StatelessWidget {
     return GetMaterialApp(
       theme: AppConstants.theme,
       debugShowCheckedModeBanner: false,
-      onGenerateRoute: RouteGenerator.generateRoute,
+      getPages: RouteManager.appRoutes,
       initialRoute: sharedPref.getBool('newToApp?')!
-          ? OnBoardingView.routeName
-          : SignInPage.routeName,
+          ? RouteManager.onboardingRoute
+          : RouteManager.signInRoute,
     );
   }
 }

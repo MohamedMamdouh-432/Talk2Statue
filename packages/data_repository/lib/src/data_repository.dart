@@ -17,12 +17,11 @@ class DataRepository {
 
   Future<Either<Failure, Statue>> recognizeStatue(String statueImgPath) async {
     try {
-      var formData = FormData.fromMap({
-        "file": await MultipartFile.fromFile(statueImgPath),
-      });
       var response = await dio.post(
         ApiConstants.objRecUrl,
-        data: formData,
+        data: FormData.fromMap({
+          "file": await MultipartFile.fromFile(statueImgPath),
+        }),
       );
       if (response.statusCode == 200) {
         return Right(Statue.fromJson(response.data));
