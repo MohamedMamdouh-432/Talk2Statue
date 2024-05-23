@@ -40,4 +40,7 @@ class OnboardingState extends Equatable {
 
   @override
   List<Object> get props => [pageIdx, getStarted];
+  
+  @override
+  String toString() => 'OnboardingState(pageIdx: $pageIdx, getStarted: $getStarted)';
 }

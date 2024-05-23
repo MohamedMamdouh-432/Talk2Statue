@@ -17,12 +17,11 @@ class DataRepository {
 
   Future<Either<Failure, Statue>> recognizeStatue(String statueImgPath) async {
     try {
-      var formData = FormData.fromMap({
-        "file": await MultipartFile.fromFile(statueImgPath),
-      });
       var response = await dio.post(
         ApiConstants.objRecUrl,
-        data: formData,
+        data: FormData.fromMap({
+          "file": await MultipartFile.fromFile(statueImgPath),
+        }),
       );
       if (response.statusCode == 200) {
         return Right(Statue.fromJson(response.data));
@@ -58,7 +57,7 @@ class DataRepository {
 
   Future<Either<Failure, String>> createTextSpeech(
     String text,
-    SpeechVoice speechVoice,
+    String speechVoice,
   ) async {
     try {
       dio.options.headers = {
@@ -69,10 +68,10 @@ class DataRepository {
       final response = await dio.post<List<int>>(
         ApiConstants.openaiSpeechUrl,
         data: {
-          "model": 'tts-1',
           "input": text,
+          "model": 'tts-1',
+          "voice": speechVoice,
           "response_format": 'wav',
-          "voice": ApiConstants.voiceModels[speechVoice],
         },
         options: Options(responseType: ResponseType.bytes),
       );
@@ -140,7 +139,8 @@ class DataRepository {
     }
   }
 
-  Future<Either<Failure, String>> makeStatueReplaying(String audioFile) async {
+  Future<Either<Failure, String>> makeStatueReplaying(
+      String audioFile, String speechVoice) async {
     try {
       final transcibeResult = await transcribeAudioFile(audioFile);
       if (transcibeResult.isLeft) return Left(transcibeResult.left);
@@ -148,7 +148,7 @@ class DataRepository {
       if (gptResult.isLeft) return Left(gptResult.left);
       final speechResult = await createTextSpeech(
         gptResult.right,
-        SpeechVoice.shimmer,
+        speechVoice,
       );
       if (speechResult.isLeft) return Left(speechResult.left);
       return Right(speechResult.right);

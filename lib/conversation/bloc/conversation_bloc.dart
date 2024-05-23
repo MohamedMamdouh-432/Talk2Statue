@@ -1,26 +1,24 @@
 import 'dart:developer';
-import 'dart:io';
 
 import 'package:data_repository/data_repository.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:just_audio/just_audio.dart';
+import 'package:models_repository/models_repository.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:record/record.dart';
-import 'package:talk2statue/core/utils/app_enums.dart';
 
 part 'conversation_event.dart';
 part 'conversation_state.dart';
 
 class ConversationBloc extends Bloc<ConversationEvent, ConversationState> {
-  late Directory appDir;
   late AudioPlayer statuePlayer;
   late AudioRecorder statueRecorder;
   final DataRepository _dataRepository;
 
   ConversationBloc({
-    required DataRepository dataRepository,
-  })  : _dataRepository = dataRepository,
+    required DataRepository dataRepo,
+  })  : _dataRepository = dataRepo,
         super(ConversationState.initial) {
     on<ConversationInitialEvent>(_onInitializeConversation);
     on<ConversationStatuePreperationEvent>(_onprepareStatue);
@@ -36,7 +34,6 @@ class ConversationBloc extends Bloc<ConversationEvent, ConversationState> {
     try {
       statuePlayer = AudioPlayer();
       statueRecorder = AudioRecorder();
-      appDir = await getApplicationDocumentsDirectory();
       emit(state.copyWith(
           requestState: ConversationRequestState.RecordingStopped));
     } catch (e) {
@@ -79,6 +76,7 @@ class ConversationBloc extends Bloc<ConversationEvent, ConversationState> {
   Future<void> _onStartRecordingVisitorVoice(event, emit) async {
     try {
       if (await statueRecorder.hasPermission()) {
+        final appDir = await getApplicationDocumentsDirectory();
         await statueRecorder.start(
           const RecordConfig(),
           path: '${appDir.path}/visitor_speech.wav',
@@ -129,8 +127,10 @@ class ConversationBloc extends Bloc<ConversationEvent, ConversationState> {
   Future<void> _onStatueReplaying(
       StatueReplayEventRequested event, emit) async {
     emit(state.copyWith(requestState: ConversationRequestState.OnProgress));
-    final result =
-        await _dataRepository.makeStatueReplaying(state.userAudioFilePath);
+    final result = await _dataRepository.makeStatueReplaying(
+      state.userAudioFilePath,
+      event.speechVoice,
+    );
     result.fold(
       (l) => emit(
         state.copyWith(

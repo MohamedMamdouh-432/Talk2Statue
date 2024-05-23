@@ -1,10 +1,10 @@
 import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
+import 'package:models_repository/models_repository.dart';
 import 'package:talk2statue/conversation/bloc/conversation_bloc.dart';
 import 'package:talk2statue/core/utils/app_constants.dart';
-import 'package:talk2statue/core/utils/app_enums.dart';
-import 'package:talk2statue/core/utils/media_query_data.dart';
 
 class StatueRecordingButton extends StatelessWidget {
   const StatueRecordingButton({super.key});
@@ -19,11 +19,11 @@ class StatueRecordingButton extends StatelessWidget {
                   state.requestState == ConversationRequestState.Prepared
               ? () => context
                   .read<ConversationBloc>()
-                  .add(const VisitorStartRecordingEventRequested())
+                  .add(VisitorStartRecordingEventRequested())
               : state.requestState == ConversationRequestState.RecordingStarted
                   ? () => context
                       .read<ConversationBloc>()
-                      .add(const VisitorStopRecordingEventRequested())
+                      .add(VisitorStopRecordingEventRequested())
                   : null,
           child: Container(
             height: context.height * 0.25,

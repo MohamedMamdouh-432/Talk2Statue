@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:talk2statue/core/data/dummy.dart';
+import 'package:talk2statue/shared/data/dummy.dart';
 import 'package:talk2statue/home/widgets/fav_statue_card.dart';
 
 class FavStatuesList extends StatelessWidget {

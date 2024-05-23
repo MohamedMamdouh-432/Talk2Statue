@@ -14,9 +14,9 @@ class ConversationState extends Equatable {
   });
 
   static ConversationState initial = const ConversationState(
-    message: '',
-    userAudioFilePath: '',
-    statueAudioFilePath: '',
+    message: 'No Error',
+    userAudioFilePath: 'none',
+    statueAudioFilePath: 'none',
     requestState: ConversationRequestState.Initialized,
   );
 
@@ -41,4 +41,14 @@ class ConversationState extends Equatable {
         requestState,
         message,
       ];
+
+  @override
+  String toString() {
+    return 'Statue Conversation State(\n'
+        'requestState: $requestState\n'
+        'User Question Audio File Path: $userAudioFilePath\n'
+        'Statue Response Audio File Path: $statueAudioFilePath\n'
+        'Error Message: $message\n'
+        ')';
+  }
 }

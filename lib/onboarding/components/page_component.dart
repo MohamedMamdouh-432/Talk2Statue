@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:talk2statue/core/utils/media_query_data.dart';
+import 'package:get/get.dart';
 import 'package:talk2statue/onboarding/models/pagedata.dart';
 
 class PageComponent extends StatelessWidget {
