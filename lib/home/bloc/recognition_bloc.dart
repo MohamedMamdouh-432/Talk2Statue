@@ -8,21 +8,19 @@ import 'package:talk2statue/shared/data/functions.dart';
 part 'recognition_event.dart';
 part 'recognition_state.dart';
 
-class RecognitionBloc
-    extends Bloc<StatueRecognitionEvent, StatueRecognitionState> {
+class RecognitionBloc extends Bloc<RecognitionEvent, RecognitionState> {
   final DataRepository _dataRepository;
 
   RecognitionBloc({
     required DataRepository dataRepo,
   })  : _dataRepository = dataRepo,
-        super(StatueRecognitionState.initial) {
-    on<StatueCapturingEventRequested>(_onCaptureStatue);
-    on<StatueUndoCapturingEventRequested>(_onUndoCaptureStatue);
-    on<StatueRecognitionEventRequested>(_onRecognizeStatue);
+        super(RecognitionState.initial) {
+    on<CapturingEventRequested>(_onCaptureStatue);
+    on<UndoCapturingEventRequested>(_onUndoCaptureStatue);
+    on<RecognitionEventRequested>(_onRecognizeStatue);
   }
 
-  Future<void> _onCaptureStatue(
-      StatueCapturingEventRequested event, emit) async {
+  Future<void> _onCaptureStatue(CapturingEventRequested event, emit) async {
     try {
       final pickedImage =
           await ImagePicker().pickImage(source: event.captureFrom);
@@ -43,14 +41,10 @@ class RecognitionBloc
   }
 
   Future<void> _onUndoCaptureStatue(event, emit) async {
-    emit(state.copyWith(
-      statueImagePath: '',
-      requestState: RecongnitionRequestState.Initial,
-    ));
+    emit(state.copyWith(requestState: RecongnitionRequestState.Initial));
   }
 
-  Future<void> _onRecognizeStatue(
-      StatueRecognitionEventRequested event, emit) async {
+  Future<void> _onRecognizeStatue(RecognitionEventRequested event, emit) async {
     try {
       emit(state.copyWith(requestState: RecongnitionRequestState.OnProgress));
       final result =
@@ -64,7 +58,7 @@ class RecognitionBloc
         ),
         (right) => emit(
           state.copyWith(
-            message: '',
+            message: 'No Error',
             statueName: right.name,
             statueGender: right.gender,
             requestState: RecongnitionRequestState.SuccessfulInRecognizing,

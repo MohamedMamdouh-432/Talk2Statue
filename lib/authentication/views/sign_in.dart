@@ -6,7 +6,6 @@ import 'package:talk2statue/authentication/widgets/login_widgets.dart';
 import 'package:talk2statue/core/utils/route_manager.dart';
 
 class SignInPage extends StatefulWidget {
-  static const String routeName = "/signinpage";
   const SignInPage({super.key});
 
   @override

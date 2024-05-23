@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:talk2statue/authentication/views/sign_in.dart';
 import 'package:talk2statue/authentication/views/sign_up.dart';
+import 'package:talk2statue/conversation/views/conversation_view.dart';
 import 'package:talk2statue/home/views/home_view.dart';
 import 'package:talk2statue/home/views/talk_to_statue_view.dart';
 import 'package:talk2statue/onboarding/view/onboarding_view.dart';
@@ -33,6 +34,10 @@ class RouteManager {
     GetPage(
       name: talkToStatueRoute,
       page: () => const TalkToStatueView(),
+    ),
+    GetPage(
+      name: conversationRoute,
+      page: () => const ConversationView(),
     ),
   ];
 }

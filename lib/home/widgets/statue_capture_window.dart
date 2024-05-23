@@ -31,13 +31,14 @@ class StatueCapturingWindow extends StatelessWidget {
               iconData: Icons.camera_alt_outlined,
               captureAction: () => context
                   .read<RecognitionBloc>()
-                  .add(const StatueCapturingEventRequested(ImageSource.camera)),
+                  .add(const CapturingEventRequested(ImageSource.camera)),
             ),
             CaptureCard(
               labelData: 'Gallery',
               iconData: Icons.photo_outlined,
-              captureAction: () => context.read<RecognitionBloc>().add(
-                  const StatueCapturingEventRequested(ImageSource.gallery)),
+              captureAction: () => context
+                  .read<RecognitionBloc>()
+                  .add(const CapturingEventRequested(ImageSource.gallery)),
             ),
           ],
         ),

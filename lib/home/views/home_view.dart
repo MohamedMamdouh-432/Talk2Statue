@@ -8,7 +8,6 @@ import 'package:talk2statue/home/widgets/search_statue_bar.dart';
 import 'package:talk2statue/shared/widgets/curved_appbar.dart';
 
 class HomeView extends StatelessWidget {
-  static const String routeName = '/home';
   const HomeView({super.key});
 
   @override

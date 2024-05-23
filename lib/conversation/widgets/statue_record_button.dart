@@ -19,11 +19,11 @@ class StatueRecordingButton extends StatelessWidget {
                   state.requestState == ConversationRequestState.Prepared
               ? () => context
                   .read<ConversationBloc>()
-                  .add(const VisitorStartRecordingEventRequested())
+                  .add(VisitorStartRecordingEventRequested())
               : state.requestState == ConversationRequestState.RecordingStarted
                   ? () => context
                       .read<ConversationBloc>()
-                      .add(const VisitorStopRecordingEventRequested())
+                      .add(VisitorStopRecordingEventRequested())
                   : null,
           child: Container(
             height: context.height * 0.25,

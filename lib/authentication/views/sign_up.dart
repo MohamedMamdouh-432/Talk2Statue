@@ -8,7 +8,6 @@ import 'package:talk2statue/authentication/widgets/login_widgets.dart';
 import 'package:talk2statue/core/utils/route_manager.dart';
 
 class SignUpPage extends StatefulWidget {
-  static const String routeName = "/signuppage";
   const SignUpPage({super.key});
 
   @override

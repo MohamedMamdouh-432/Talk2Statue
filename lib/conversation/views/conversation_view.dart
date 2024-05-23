@@ -16,7 +16,6 @@ import 'package:talk2statue/shared/data/functions.dart';
 import 'package:talk2statue/shared/widgets/curved_appbar.dart';
 
 class ConversationView extends StatefulWidget {
-  static const String routeName = '/conversation';
   const ConversationView({super.key});
   @override
   State<ConversationView> createState() => _ConversationViewState();
@@ -25,7 +24,7 @@ class ConversationView extends StatefulWidget {
 class _ConversationViewState extends State<ConversationView> {
   @override
   void initState() {
-    context.read<ConversationBloc>().add(const ConversationInitialEvent());
+    context.read<ConversationBloc>().add(ConversationInitialEvent());
     super.initState();
   }
 
@@ -47,7 +46,7 @@ class _ConversationViewState extends State<ConversationView> {
         } else if (state.requestState == ConversationRequestState.Successful) {
           context
               .read<ConversationBloc>()
-              .add(const StatueTalkingEventRequested());
+              .add(StatueTalkingEventRequested());
         } else if (state.requestState == ConversationRequestState.Failure) {
           showMessage(
             context,
@@ -57,7 +56,7 @@ class _ConversationViewState extends State<ConversationView> {
           );
           context
               .read<ConversationBloc>()
-              .add(const ResetRecordingEventRequested());
+              .add(ResetRecordingEventRequested());
         } else if (state.requestState == ConversationRequestState.Failed) {
           showMessage(
             context,
@@ -67,14 +66,14 @@ class _ConversationViewState extends State<ConversationView> {
           );
           context
               .read<ConversationBloc>()
-              .add(const ResetRecordingEventRequested());
+              .add(ResetRecordingEventRequested());
         } else if (state.requestState == ConversationRequestState.Done) {
           context
               .read<ConversationBloc>()
-              .add(const ResetRecordingEventRequested());
+              .add(ResetRecordingEventRequested());
         }
       },
-      child: BlocConsumer<RecognitionBloc, StatueRecognitionState>(
+      child: BlocConsumer<RecognitionBloc, RecognitionState>(
         buildWhen: (prev, cur) => prev != cur,
         listenWhen: (prev, cur) => prev != cur,
         listener: (context, state) {

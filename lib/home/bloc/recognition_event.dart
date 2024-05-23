@@ -1,30 +1,20 @@
 part of 'recognition_bloc.dart';
 
-sealed class StatueRecognitionEvent extends Equatable {
-  const StatueRecognitionEvent();
+sealed class RecognitionEvent extends Equatable {
+  const RecognitionEvent();
 
   @override
   List<Object> get props => [];
 }
 
-class StatueCapturingEventRequested extends StatueRecognitionEvent {
+class CapturingEventRequested extends RecognitionEvent {
   final ImageSource captureFrom;
-  const StatueCapturingEventRequested(this.captureFrom);
+  const CapturingEventRequested(this.captureFrom);
 
   @override
   List<Object> get props => [captureFrom];
 }
 
-class StatueUndoCapturingEventRequested extends StatueRecognitionEvent {
-  const StatueUndoCapturingEventRequested();
+class UndoCapturingEventRequested extends RecognitionEvent {}
 
-  @override
-  List<Object> get props => [];
-}
-
-class StatueRecognitionEventRequested extends StatueRecognitionEvent {
-  const StatueRecognitionEventRequested();
-
-  @override
-  List<Object> get props => [];
-}
+class RecognitionEventRequested extends RecognitionEvent {}

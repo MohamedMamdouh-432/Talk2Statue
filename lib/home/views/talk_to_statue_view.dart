@@ -9,19 +9,23 @@ import 'package:talk2statue/home/bloc/recognition_bloc.dart';
 import 'package:talk2statue/shared/data/functions.dart';
 
 class TalkToStatueView extends StatelessWidget {
-  static const String routeName = '/talk2statueview';
   const TalkToStatueView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<RecognitionBloc, StatueRecognitionState>(
+    return BlocListener<RecognitionBloc, RecognitionState>(
       listener: (context, state) {
         if (state.requestState == RecongnitionRequestState.FailedInCapturing)
           showMessage(context, state.message, DialogType.error, 2);
         else if (state.requestState ==
-            RecongnitionRequestState.SuccessfulInCapturing)
+            RecongnitionRequestState.SuccessfulInCapturing) {
           showMessage(
-              context, 'Statue Image Picked Well', DialogType.success, 2);
+            context,
+            'Statue Captured Successfully 🤗 Start your Converstaion Now 🔥',
+            DialogType.success,
+            3,
+          );
+        }
       },
       child: Scaffold(
         extendBody: true,

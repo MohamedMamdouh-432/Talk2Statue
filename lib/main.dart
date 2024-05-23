@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:talk2statue/core/app.dart';
+import 'package:talk2statue/core/app_launcher.dart';
 import 'package:talk2statue/core/app_observer.dart';
 import 'package:talk2statue/firebase_options.dart';
 import 'package:user_repository/user_repository.dart';

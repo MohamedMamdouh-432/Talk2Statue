@@ -1,13 +1,13 @@
 part of 'recognition_bloc.dart';
 
-class StatueRecognitionState extends Equatable {
+class RecognitionState extends Equatable {
   final String statueName;
   final String statueGender;
   final String statueImagePath;
   final String message;
   final RecongnitionRequestState requestState;
 
-  const StatueRecognitionState({
+  const RecognitionState({
     required this.message,
     required this.statueName,
     required this.statueGender,
@@ -15,22 +15,22 @@ class StatueRecognitionState extends Equatable {
     required this.statueImagePath,
   });
 
-  static StatueRecognitionState initial = const StatueRecognitionState(
-    message: '',
+  static RecognitionState initial = const RecognitionState(
+    message: 'No Error',
     statueName: 'UnKnown',
     statueGender: 'Unknown',
-    statueImagePath: '',
+    statueImagePath: 'none',
     requestState: RecongnitionRequestState.Initial,
   );
 
-  StatueRecognitionState copyWith({
+  RecognitionState copyWith({
     String? statueName,
     String? statueGender,
     String? statueImagePath,
     RecongnitionRequestState? requestState,
     String? message,
   }) {
-    return StatueRecognitionState(
+    return RecognitionState(
       statueName: statueName ?? this.statueName,
       message: message ?? this.message,
       statueGender: statueGender ?? this.statueGender,
@@ -47,4 +47,15 @@ class StatueRecognitionState extends Equatable {
         message,
         statueImagePath,
       ];
+
+  @override
+  String toString() {
+    return 'Statue Recognition State(\n'
+        'requestState: $requestState\n'
+        'statueName: $statueName\n'
+        'statueGender: $statueGender\n'
+        'statueImagePath: $statueImagePath\n'
+        'Error Message: $message\n'
+        ')';
+  }
 }

@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:models_repository/models_repository.dart';
 import 'package:path_provider/path_provider.dart';
@@ -20,11 +21,13 @@ void showMessage(
   showAlert(
     context: c,
     title: s,
-    body: Padding(
+    body: Container(
+      height: 120.h,
       padding: const EdgeInsets.all(10),
+      alignment: Alignment.center,
       child: Text(
         s,
-        textScaler: const TextScaler.linear(1.35),
+        textScaler: const TextScaler.linear(1.4),
       ),
     ),
     dialogType: dType,
@@ -51,7 +54,7 @@ showImageCapturingWindow(BuildContext ctx) {
     context: ctx,
     body: const StatueCapturingWindow(),
     dialogType: DialogType.noHeader,
-    btnOk: BlocBuilder<RecognitionBloc, StatueRecognitionState>(
+    btnOk: BlocBuilder<RecognitionBloc, RecognitionState>(
       builder: (context, state) {
         return ElevatedButton(
           onPressed: state.requestState !=
@@ -60,7 +63,10 @@ showImageCapturingWindow(BuildContext ctx) {
               : () {
                   context
                       .read<RecognitionBloc>()
-                      .add(const StatueRecognitionEventRequested());
+                      .add(UndoCapturingEventRequested());
+                  context
+                      .read<RecognitionBloc>()
+                      .add(RecognitionEventRequested());
                   Get.back();
                   Get.toNamed(RouteManager.conversationRoute);
                 },
@@ -73,9 +79,7 @@ showImageCapturingWindow(BuildContext ctx) {
     ),
     btnCancel: ElevatedButton(
       onPressed: () {
-        ctx
-            .read<RecognitionBloc>()
-            .add(const StatueUndoCapturingEventRequested());
+        ctx.read<RecognitionBloc>().add(UndoCapturingEventRequested());
         Get.back();
       },
       child: const Text(

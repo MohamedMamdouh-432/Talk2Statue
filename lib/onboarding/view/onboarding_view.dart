@@ -9,7 +9,6 @@ import 'package:talk2statue/onboarding/components/page_component.dart';
 import 'package:talk2statue/shared/services/popback_manager.dart';
 
 class OnBoardingView extends StatefulWidget {
-  static const String routeName = "/onboardingpage";
   const OnBoardingView({Key? key}) : super(key: key);
   @override
   State<OnBoardingView> createState() => _OnBoardingViewState();
