@@ -61,32 +61,13 @@ flutter_native_splash:
   color_dark: "#F6D880"
   image: assets/logo_splash.png
   image_dark: assets/logo_splash.png
-  android_gravity: center
-  #background_image: "assets/background.png"
-  #background_image_dark: "assets/dark-background.png"
-  #branding_mode: bottom
-  #branding: assets/dart.png
-  #branding_dark: assets/dart_dark.png
 
   android_12:
     color: "#F6D880"
     color_dark: "#F6D880"
     image: assets/logo_splash.png
     image_dark: assets/logo_splash.png
-    android_gravity: center
-    #background_image: "assets/background.png"
-    #background_image_dark: "assets/dark-background.png"
-    #icon_background_color: "#111111"
-    #icon_background_color_dark: "#eeeeee"
-    #branding_mode: bottom
-    #branding: assets/dart.png
-    #branding_dark: assets/dart_dark.png
-    #android: false
-    #ios: false
-    #web: false
-
-  # android_gravity = [bottom, center, center_horizontal, center_vertical, , end, fill, fill_horizontal, fill_vertical, left, right, start, or top]
-
+    
 flutter:
   uses-material-design: true
   assets:
