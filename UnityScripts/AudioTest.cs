@@ -2,9 +2,11 @@ using UnityEngine;
 
 public class AudioTest : MonoBehaviour
 {
+    public BlendshapeController blendshapeController;
+
     void Start()
     {
-        BlendshapeController controller = GetComponent<BlendshapeController>();
-        controller.PlayAudioClip(@"E:\Collage\My GP\Tasks\Task 7\Search for Code (C#)\2016.mp3");
+        string audioFilePath = @"C:\Users\pc\Desktop\2016.mp3";
+        blendshapeController.PlayAudioClip(audioFilePath);
     }
 }

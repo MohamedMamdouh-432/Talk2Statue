@@ -1,15 +1,18 @@
 using System.Collections;
 using System.IO;
 using UnityEngine;
-using UnityEngine.Networking;
-
-// Add this using directive
-using System;
 
 public class BlendshapeController : MonoBehaviour
 {
     public SkinnedMeshRenderer skinnedMeshRenderer;
     public AudioSource audioSource;
+
+    private bool isBlinking = false;
+
+    private void Start()
+    {
+        StartCoroutine(BlinkCoroutine());
+    }
 
     private void Update()
     {
@@ -27,12 +30,39 @@ public class BlendshapeController : MonoBehaviour
             float averageVolume = sum / spectrum.Length;
 
             // Ensure blendshape weights are capped at 100
-            skinnedMeshRenderer.SetBlendShapeWeight(0, Mathf.Clamp(averageVolume * 100, 0, 100)); // `ah`
-            skinnedMeshRenderer.SetBlendShapeWeight(1, Mathf.Clamp(averageVolume * 50, 0, 100));  // `ch`
-            skinnedMeshRenderer.SetBlendShapeWeight(2, Mathf.Clamp(Mathf.Sin(Time.time * 2f) * 50f + 50f, 0, 100)); // `blink`
-            skinnedMeshRenderer.SetBlendShapeWeight(3, Mathf.Clamp(averageVolume * 75, 0, 100));  // `kiss`
+            float ahWeight = Mathf.Clamp(averageVolume * 10000, 0, 100);
+            float chWeight = Mathf.Clamp(averageVolume * 10000, 0, 100);
+            float kissWeight = Mathf.Clamp(averageVolume * 10000, 0, 100);
+
+            skinnedMeshRenderer.SetBlendShapeWeight(0, ahWeight); // `ah`
+            skinnedMeshRenderer.SetBlendShapeWeight(1, chWeight); // `ch`
+            skinnedMeshRenderer.SetBlendShapeWeight(3, kissWeight); // `kiss`
+
+            Debug.Log($"Blendshape Weights - ah: {ahWeight}, ch: {chWeight}, kiss: {kissWeight}");
         }
     }
+
+    private IEnumerator BlinkCoroutine()
+    {
+        while (true)
+        {
+            // Blink for 1 second
+            float blinkTime = 0.5f;
+            float timer = 0f;
+            while (timer < blinkTime)
+            {
+                float blinkWeight = Mathf.Clamp(Mathf.Sin(timer * Mathf.PI / blinkTime) * 100f, 0, 100);
+                skinnedMeshRenderer.SetBlendShapeWeight(2, blinkWeight); // `blink`
+                timer += Time.deltaTime;
+                yield return null;
+            }
+            skinnedMeshRenderer.SetBlendShapeWeight(2, 0f); // Ensure blink is reset to 0
+
+            // Wait for 3 seconds
+            yield return new WaitForSeconds(3f);
+        }
+    }
+
 
     public void PlayAudioClip(string path)
     {
@@ -48,23 +78,48 @@ public class BlendshapeController : MonoBehaviour
             yield break;
         }
 
-        string uri = "file://" + Uri.EscapeUriString(path);
-        Debug.Log("Loading audio from URI: " + uri);
-
-        using (UnityWebRequest www = UnityWebRequestMultimedia.GetAudioClip(uri, AudioType.MPEG))
+        Debug.Log("Loading audio from path: " + path);
+        
+        // Load the audio file from disk
+        var audioType = GetAudioTypeFromPath(path);
+        if (audioType == AudioType.UNKNOWN)
         {
-            yield return www.SendWebRequest();
+            Debug.LogError("Unsupported audio type for path: " + path);
+            yield break;
+        }
+        
+        using (var www = new WWW("file://" + path))
+        {
+            yield return www;
 
-            if (www.result != UnityWebRequest.Result.Success)
+            if (!string.IsNullOrEmpty(www.error))
             {
                 Debug.LogError("Error loading audio: " + www.error);
             }
             else
             {
-                audioSource.clip = DownloadHandlerAudioClip.GetContent(www);
+                audioSource.clip = www.GetAudioClip(false, true, audioType);
                 Debug.Log("Audio clip loaded and ready to play.");
                 audioSource.Play();
             }
         }
     }
+
+    private AudioType GetAudioTypeFromPath(string path)
+    {
+        string extension = Path.GetExtension(path).ToLower();
+        switch (extension)
+        {
+            case ".mp3":
+                return AudioType.MPEG;
+            case ".wav":
+                return AudioType.WAV;
+            case ".ogg":
+                return AudioType.OGGVORBIS;
+            default:
+                return AudioType.UNKNOWN;
+        }
+    }
 }
+
+
