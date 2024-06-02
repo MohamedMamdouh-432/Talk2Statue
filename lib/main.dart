@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:talk2statue/anything/anything.dart';
 import 'package:talk2statue/core/app_launcher.dart';
 import 'package:talk2statue/core/app_observer.dart';
 import 'package:talk2statue/firebase_options.dart';
@@ -26,17 +27,17 @@ void main(List<String> args) async {
   Bloc.observer = const AppBlocObserver();
   sharedPref.getBool('newToApp?') ?? sharedPref.setBool('newToApp?', true);
 
-  runApp(
-    Talk2Statue(
-      sharedPref: sharedPref,
-      dataRepo: DataRepository(dio: appDio),
-      userRepo: UserRepository(sharedPreferences: sharedPref),
-      authRepo: AuthenticationRepository(
-        firebaseAuth: firebaseAuth,
-        googleSignIn: googleSignIn,
-        firestore: firebaseStore,
-        sharedPreferences: sharedPref,
-      ),
-    ),
-  );
+  runApp(HomeViewx()
+      // Talk2Statue(
+      //   sharedPref: sharedPref,
+      //   dataRepo: DataRepository(dio: appDio),
+      //   userRepo: UserRepository(sharedPreferences: sharedPref),
+      //   authRepo: AuthenticationRepository(
+      //     firebaseAuth: firebaseAuth,
+      //     googleSignIn: googleSignIn,
+      //     firestore: firebaseStore,
+      //     sharedPreferences: sharedPref,
+      //   ),
+      // ),
+      );
 }
