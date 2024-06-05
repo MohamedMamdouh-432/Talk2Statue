@@ -1,0 +1,13 @@
+name: models_repository
+description: Dart package which encabsulates all the models (shared and whatnot).
+publish_to: none
+
+environment:
+  sdk: '>=3.3.2 <4.0.0'
+
+dependencies:
+  cloud_firestore: ^4.15.10
+  equatable: ^2.0.0
+  flutter:
+    sdk: flutter
+  
