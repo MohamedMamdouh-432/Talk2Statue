@@ -32,6 +32,6 @@
     "option_development_mode": false,
     "option_enable_debugger": true,
     "option_generate_usym_file": false,
-    "option_jobs": 12
+    "option_jobs": 16
   }
 }

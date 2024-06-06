@@ -11,9 +11,9 @@ using BuildResult = UnityEditor.Build.Reporting.BuildResult;
 //using UnityEditor.AddressableAssets;
 //using UnityEditor.AddressableAssets.Settings;
 
-// namespace FlutterUnityIntegration.Editor
+namespace FlutterUnityIntegration.Editor
 {
-    public class Build // : EditorWindow
+    public class Build : EditorWindow
     {
         private static readonly string ProjectPath = Path.GetFullPath(Path.Combine(Application.dataPath, ".."));
         private static readonly string APKPath = Path.Combine(ProjectPath, "Builds/" + Application.productName + ".apk");
@@ -24,7 +24,7 @@ using BuildResult = UnityEditor.Build.Reporting.BuildResult;
         private static readonly string WebExportPath = Path.GetFullPath(Path.Combine(ProjectPath, "../../web/UnityLibrary"));
         private static readonly string IOSExportPluginPath = Path.GetFullPath(Path.Combine(ProjectPath, "../../ios_xcode/UnityLibrary"));
 
-        private static bool _pluginMode = false;
+        private bool _pluginMode = false;
         private static string _persistentKey = "flutter-unity-widget-pluginMode";
 
         //#region GUI Member Methods
@@ -98,7 +98,7 @@ using BuildResult = UnityEditor.Build.Reporting.BuildResult;
             EditorWindow.GetWindow(typeof(Build));
         }
 
-        private static void OnGUI()
+        private void OnGUI()
         {
             GUILayout.Label("Flutter Unity Widget Settings", EditorStyles.boldLabel);
 
@@ -111,7 +111,7 @@ using BuildResult = UnityEditor.Build.Reporting.BuildResult;
             }
         }
 
-        private static void OnEnable()
+        private void OnEnable()
         {
             _pluginMode = EditorPrefs.GetBool(_persistentKey, false);
         }
@@ -330,11 +330,6 @@ body { padding: 0; margin: 0; overflow: hidden; }
             buildText = buildText.Replace("enableSplit = true", "enable true");
             buildText = buildText.Replace("implementation fileTree(dir: 'libs', include: ['*.jar'])", "implementation(name: 'unity-classes', ext:'jar')");
             buildText = buildText.Replace(" + unityStreamingAssets.tokenize(', ')", "");
-		    buildText = buildText.Replace("commandLineArgs.add(\"--dotnetprofile=unityaot-linux\")", "\n");
-	buildText = buildText.Replace("commandLineArgs.add(\"--enable-debugger\")", "\n");
-	buildText = buildText.Replace("commandLineArgs.add(\"--profiler-report\")", "\n");
-	buildText = buildText.Replace("commandLineArgs.add(\"--profiler-output-file=\" + workingDir + \"/build/il2cpp_\"+ abi + \"_\" + configuration + \"/il2cpp_conv.traceevents\")", "commandLineArgs.add(\"--configuration=\" + configuration)");
-
 
             if(isPlugin)
             {

@@ -9,4 +9,9 @@ public class AudioTest : MonoBehaviour
         string audioFilePath = @"C:\Users\pc\Desktop\2016.mp3";
         blendshapeController.PlayAudioClip(audioFilePath);
     }
+
+    void PlayAud(string filePath){
+        string audioFilePath = @filePath;
+        blendshapeController.PlayAudioClip(audioFilePath);
+    }
 }

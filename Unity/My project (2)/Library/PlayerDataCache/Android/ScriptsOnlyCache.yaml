@@ -4,12 +4,12 @@ ScriptsOnlyBuild:
     - AudioTest
     - BlendshapeController
     - FlutterUnityIntegration.UnityMessageManager
+    - UnityToFlutterCommunicator
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
     Unity.Timeline.Editor.dll:
     - TimelinePreferences
     - UnityEditor.Timeline.SequenceHierarchy
-    - UnityEditor.Timeline.TimelineAssetViewModel
     - UnityEditor.Timeline.TimelineWindow
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -50,11 +50,13 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 19082}
+      Script: {instanceID: 16582}
     - Class: 114
-      Script: {instanceID: 19154}
+      Script: {instanceID: 22958}
     - Class: 114
-      Script: {instanceID: 21104}
+      Script: {instanceID: 22966}
+    - Class: 114
+      Script: {instanceID: 22994}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 137
@@ -66,16 +68,10 @@ ScriptsOnlyBuild:
   scriptHashData:
   - hash:
       serializedVersion: 2
-      Hash: 9104447b683bf70406fa01f12ecb564a
-    assemblyName: UnityEngine.UI
-    namespaceName: UnityEngine.EventSystems
-    className: StandaloneInputModule
-  - hash:
-      serializedVersion: 2
-      Hash: 540882762544409cc4530e60db00e951
-    assemblyName: UnityEngine.UI
-    namespaceName: UnityEngine.UI
-    className: CanvasScaler
+      Hash: e05bd5e2c0bdd4f38959827f6f211d43
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: BlendshapeController
   - hash:
       serializedVersion: 2
       Hash: 55060a7bf226ac385ce19ebd450f199f
@@ -172,12 +168,6 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI
     namespaceName: UnityEngine.UI
     className: RawImage
-  - hash:
-      serializedVersion: 2
-      Hash: bc424b2a2d87ceeb0740af0a41a0d0ad
-    assemblyName: Assembly-CSharp
-    namespaceName: 
-    className: SceneLoader
   - hash:
       serializedVersion: 2
       Hash: 1321993db8249e1e05e1e0492b2bbdc3
@@ -360,19 +350,13 @@ ScriptsOnlyBuild:
     className: BaseInput
   - hash:
       serializedVersion: 2
-      Hash: e47d77dff9f7fd0f54480d10a98b411f
-    assemblyName: Assembly-CSharp
-    namespaceName: 
-    className: GameManager
-  - hash:
-      serializedVersion: 2
       Hash: e6f8333cc8a800e2866870a5ef7efc35
     assemblyName: Unity.VisualScripting.Core
     namespaceName: Unity.VisualScripting
     className: UnityOnControllerColliderHitMessageListener
   - hash:
       serializedVersion: 2
-      Hash: 9a186db5032ac854f4bb710b479113c7
+      Hash: 960935b102b3064f4b924de16426e340
     assemblyName: Unity.TextMeshPro
     namespaceName: TMPro
     className: TextMeshPro
@@ -450,12 +434,6 @@ ScriptsOnlyBuild:
     className: ControlPlayableAsset
   - hash:
       serializedVersion: 2
-      Hash: a74c442e594695c7c8c6becf7b3eb98c
-    assemblyName: Assembly-CSharp
-    namespaceName: 
-    className: AudioTest
-  - hash:
-      serializedVersion: 2
       Hash: 1a680d9a08de79b0d2c779e78c9843b4
     assemblyName: UnityEngine.UI
     namespaceName: UnityEngine.UI
@@ -472,12 +450,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core
     namespaceName: Unity.VisualScripting
     className: UnityOnJointBreak2DMessageListener
-  - hash:
-      serializedVersion: 2
-      Hash: 0c9772970f5fb4758b65e5437b5d9a90
-    assemblyName: Assembly-CSharp
-    namespaceName: FlutterUnityIntegration
-    className: UnityMessageManager
   - hash:
       serializedVersion: 2
       Hash: 9ebc0a3016506a0cbb7e0306dfcb9497
@@ -648,10 +620,10 @@ ScriptsOnlyBuild:
     className: StateGraphAsset
   - hash:
       serializedVersion: 2
-      Hash: 043e2772a038ea5aae739a54b296cc21
-    assemblyName: Assembly-CSharp
-    namespaceName: 
-    className: Rotate
+      Hash: 540882762544409cc4530e60db00e951
+    assemblyName: UnityEngine.UI
+    namespaceName: UnityEngine.UI
+    className: CanvasScaler
   - hash:
       serializedVersion: 2
       Hash: ef38c1407dba8c1f5d69f5db61a694fe
@@ -684,6 +656,12 @@ ScriptsOnlyBuild:
     className: UnityOnTriggerStay2DMessageListener
   - hash:
       serializedVersion: 2
+      Hash: 9104447b683bf70406fa01f12ecb564a
+    assemblyName: UnityEngine.UI
+    namespaceName: UnityEngine.EventSystems
+    className: StandaloneInputModule
+  - hash:
+      serializedVersion: 2
       Hash: a90f6a00b23520788be7d89ee3b0773d
     assemblyName: UnityEngine.UI
     namespaceName: UnityEngine.UI
@@ -700,12 +678,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline
     namespaceName: UnityEngine.Timeline
     className: MarkerTrack
-  - hash:
-      serializedVersion: 2
-      Hash: e05bd5e2c0bdd4f38959827f6f211d43
-    assemblyName: Assembly-CSharp
-    namespaceName: 
-    className: BlendshapeController
   - hash:
       serializedVersion: 2
       Hash: 672716ae97f6ddb615fa5ac3ec9da349
@@ -922,8 +894,44 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core
     namespaceName: Unity.VisualScripting
     className: UnityOnSliderValueChangedMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: a74c442e594695c7c8c6becf7b3eb98c
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: AudioTest
+  - hash:
+      serializedVersion: 2
+      Hash: bc424b2a2d87ceeb0740af0a41a0d0ad
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: SceneLoader
+  - hash:
+      serializedVersion: 2
+      Hash: f3541ee8cc2e52b170f4474ef029b546
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: UnityToFlutterCommunicator
+  - hash:
+      serializedVersion: 2
+      Hash: e47d77dff9f7fd0f54480d10a98b411f
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: GameManager
+  - hash:
+      serializedVersion: 2
+      Hash: 043e2772a038ea5aae739a54b296cc21
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: Rotate
+  - hash:
+      serializedVersion: 2
+      Hash: 0c9772970f5fb4758b65e5437b5d9a90
+    assemblyName: Assembly-CSharp
+    namespaceName: FlutterUnityIntegration
+    className: UnityMessageManager
   platform: 13
   scenePathNames:
   - Assets/Scenes/SampleScene.unity
-  playerPath: /home/mohamed/Desktop/GP/Talk2Statue/Unity/My project (2)/Builds/My
-    project (2).apk
+  playerPath: E:/Collage/My GP/Repo/Talk2Statue/Unity/My project (2)/Builds/My project
+    (2).apk

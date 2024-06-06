@@ -69,6 +69,7 @@
     <Compile Include="Assets\AudioTest.cs" />
     <Compile Include="Assets\BlendshapeController.cs" />
     <Compile Include="Assets\FlutterUnityIntegration\Demo\SceneLoader.cs" />
+    <Compile Include="Assets\UnityToFlutterCommunicator.cs" />
     <Compile Include="Assets\FlutterUnityIntegration\UnityMessageManager.cs" />
     <Compile Include="Assets\FlutterUnityIntegration\Demo\Rotate.cs" />
   </ItemGroup>

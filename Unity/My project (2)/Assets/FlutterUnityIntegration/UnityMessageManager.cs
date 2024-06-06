@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using FlutterUnityIntegration;
 
 namespace FlutterUnityIntegration
 {

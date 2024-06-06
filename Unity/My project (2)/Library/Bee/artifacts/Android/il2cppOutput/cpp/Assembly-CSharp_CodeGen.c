@@ -13,6 +13,7 @@
 
 
 extern void AudioTest_Start_m9A708D63C8D4C69634E096CA25EDCDD381999CFB (void);
+extern void AudioTest_PlayAud_mC37C8C83912A3FCC2DAF0FCF13FEF6742FE5A7DF (void);
 extern void AudioTest__ctor_mB4B73A665299542326E4C0A8B5684B35BAE482F1 (void);
 extern void BlendshapeController_Start_mFE9D35F0E702770F3C12B502E8D15BA65EAE7324 (void);
 extern void BlendshapeController_Update_mCE768BE74FFF70D961E89CDB8F27B81DFB4066F7 (void);
@@ -50,6 +51,11 @@ extern void SceneLoader_SwitchNative_m68C165016C6A7B1F29960507F65455523EA3A5F8 (
 extern void SceneLoader_UnloadNative_mA699427D00E7DD75BD5EFA4B0D54AFE5A0AFEACA (void);
 extern void SceneLoader_QuitNative_mFE5B0B163F9D560A10ADB3574AFE755BAF6BFA43 (void);
 extern void SceneLoader__ctor_m2248766DF38AF07562AD31501C7275B8DF1B7D29 (void);
+extern void UnityToFlutterCommunicator_Start_m80AE1C5A06017C09DD90E2E23CFE3D7425BB9720 (void);
+extern void UnityToFlutterCommunicator_Update_m29F023746062995AD27476ACF36A2C31244B4FEB (void);
+extern void UnityToFlutterCommunicator_SendMessageToFlutter_m3F8EEE53093BF96892181C46F4D26C00657ECB2C (void);
+extern void UnityToFlutterCommunicator_ReceiveMessage_mDCB0CBFE53F9C179D51332364C4E67879330D86C (void);
+extern void UnityToFlutterCommunicator__ctor_m7F4144D590D3F138FCB6318E2F00DF108DA0AF84 (void);
 extern void UnitySourceGeneratedAssemblyMonoScriptTypes_v1_Get_mBEB95BEB954BB63E9710BBC7AD5E78C4CB0A0033 (void);
 extern void UnitySourceGeneratedAssemblyMonoScriptTypes_v1__ctor_mE70FB23ACC1EA12ABC948AA22C2E78B2D0AA39B1 (void);
 extern void NativeAPI_OnSceneLoaded_m200A791C356A252E1D5F2BB13BC2CED455A02259 (void);
@@ -85,7 +91,7 @@ extern void MessageHandlerDelegate__ctor_m287CBD25D77011FC5A52D1090F6CC31353AB63
 extern void MessageHandlerDelegate_Invoke_mD1EC9E1841D5014C40A26D4C4BA076482FFC8A4B (void);
 extern void MessageHandlerDelegate_BeginInvoke_m0CC5C5B29E11DD03F1726B49E4B1E516479AC58D (void);
 extern void MessageHandlerDelegate_EndInvoke_mAD2746E001DB9A3D18A1D806610542321FE0CF16 (void);
-static Il2CppMethodPointer s_methodPointers[86] = 
+static Il2CppMethodPointer s_methodPointers[92] = 
 {
 	NULL,
 	NULL,
@@ -96,6 +102,7 @@ static Il2CppMethodPointer s_methodPointers[86] =
 	NULL,
 	NULL,
 	AudioTest_Start_m9A708D63C8D4C69634E096CA25EDCDD381999CFB,
+	AudioTest_PlayAud_mC37C8C83912A3FCC2DAF0FCF13FEF6742FE5A7DF,
 	AudioTest__ctor_mB4B73A665299542326E4C0A8B5684B35BAE482F1,
 	BlendshapeController_Start_mFE9D35F0E702770F3C12B502E8D15BA65EAE7324,
 	BlendshapeController_Update_mCE768BE74FFF70D961E89CDB8F27B81DFB4066F7,
@@ -133,6 +140,11 @@ static Il2CppMethodPointer s_methodPointers[86] =
 	SceneLoader_UnloadNative_mA699427D00E7DD75BD5EFA4B0D54AFE5A0AFEACA,
 	SceneLoader_QuitNative_mFE5B0B163F9D560A10ADB3574AFE755BAF6BFA43,
 	SceneLoader__ctor_m2248766DF38AF07562AD31501C7275B8DF1B7D29,
+	UnityToFlutterCommunicator_Start_m80AE1C5A06017C09DD90E2E23CFE3D7425BB9720,
+	UnityToFlutterCommunicator_Update_m29F023746062995AD27476ACF36A2C31244B4FEB,
+	UnityToFlutterCommunicator_SendMessageToFlutter_m3F8EEE53093BF96892181C46F4D26C00657ECB2C,
+	UnityToFlutterCommunicator_ReceiveMessage_mDCB0CBFE53F9C179D51332364C4E67879330D86C,
+	UnityToFlutterCommunicator__ctor_m7F4144D590D3F138FCB6318E2F00DF108DA0AF84,
 	UnitySourceGeneratedAssemblyMonoScriptTypes_v1_Get_mBEB95BEB954BB63E9710BBC7AD5E78C4CB0A0033,
 	UnitySourceGeneratedAssemblyMonoScriptTypes_v1__ctor_mE70FB23ACC1EA12ABC948AA22C2E78B2D0AA39B1,
 	NativeAPI_OnSceneLoaded_m200A791C356A252E1D5F2BB13BC2CED455A02259,
@@ -174,7 +186,7 @@ static Il2CppMethodPointer s_methodPointers[86] =
 	MessageHandlerDelegate_BeginInvoke_m0CC5C5B29E11DD03F1726B49E4B1E516479AC58D,
 	MessageHandlerDelegate_EndInvoke_mAD2746E001DB9A3D18A1D806610542321FE0CF16,
 };
-static const int32_t s_InvokerIndices[86] = 
+static const int32_t s_InvokerIndices[92] = 
 {
 	0,
 	0,
@@ -185,6 +197,7 @@ static const int32_t s_InvokerIndices[86] =
 	0,
 	0,
 	1813,
+	1602,
 	1813,
 	1813,
 	1813,
@@ -221,6 +234,11 @@ static const int32_t s_InvokerIndices[86] =
 	1813,
 	1813,
 	1813,
+	1813,
+	1813,
+	1813,
+	1602,
+	1602,
 	1813,
 	3677,
 	1813,
@@ -266,8 +284,8 @@ static const int32_t s_InvokerIndices[86] =
 static const Il2CppTokenRangePair s_rgctxIndices[3] = 
 {
 	{ 0x02000002, { 0, 29 } },
-	{ 0x0200000D, { 29, 11 } },
-	{ 0x0600003C, { 40, 2 } },
+	{ 0x0200000E, { 29, 11 } },
+	{ 0x06000042, { 40, 2 } },
 };
 extern const uint32_t g_rgctx_U3CU3Ef__AnonymousType0_4_t93FD0713D40011506D6B5581D9D5064D1A1A31B8;
 extern const uint32_t g_rgctx_U3CidU3Ej__TPar_tB4283D6614B0A1B9713411CF590AE6445EC76C76;
@@ -361,7 +379,7 @@ IL2CPP_EXTERN_C const Il2CppCodeGenModule g_AssemblyU2DCSharp_CodeGenModule;
 const Il2CppCodeGenModule g_AssemblyU2DCSharp_CodeGenModule = 
 {
 	"Assembly-CSharp.dll",
-	86,
+	92,
 	s_methodPointers,
 	0,
 	NULL,
