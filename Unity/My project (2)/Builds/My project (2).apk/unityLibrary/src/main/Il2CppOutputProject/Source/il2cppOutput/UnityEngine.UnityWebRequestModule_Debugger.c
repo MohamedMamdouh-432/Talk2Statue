@@ -960,12 +960,12 @@ static const Il2CppCatchPoint g_catchPoints[1] = { { 0, 0, 0, 0, } };
 #if IL2CPP_MONO_DEBUGGER
 static const Il2CppSequencePointSourceFile g_sequencePointSourceFiles[] = {
 { "", { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0} },
-{ "\\home\\bokken\\build\\output\\unity\\unity\\Modules\\UnityWebRequest\\Public\\WebRequestUtils.cs", { 205, 68, 33, 81, 137, 101, 236, 199, 252, 47, 229, 203, 220, 234, 118, 236} },
-{ "\\home\\bokken\\build\\output\\unity\\unity\\Modules\\UnityWebRequest\\Public\\CertificateHandler\\CertificateHandler.bindings.cs", { 63, 110, 225, 140, 166, 236, 157, 118, 45, 170, 13, 140, 76, 145, 243, 103} },
-{ "\\home\\bokken\\build\\output\\unity\\unity\\Modules\\UnityWebRequest\\Public\\DownloadHandler\\DownloadHandler.bindings.cs", { 191, 125, 140, 136, 165, 236, 135, 105, 71, 47, 117, 187, 10, 87, 138, 123} },
-{ "\\home\\bokken\\build\\output\\unity\\unity\\Modules\\UnityWebRequest\\Public\\UnityWebRequest.bindings.cs", { 230, 7, 201, 148, 88, 218, 219, 116, 87, 218, 3, 66, 36, 108, 42, 14} },
-{ "\\home\\bokken\\build\\output\\unity\\unity\\Modules\\UnityWebRequest\\Public\\WebRequestExtensions.cs", { 34, 57, 120, 161, 137, 146, 81, 14, 158, 221, 118, 195, 116, 81, 4, 90} },
-{ "\\home\\bokken\\build\\output\\unity\\unity\\Modules\\UnityWebRequest\\Public\\UploadHandler\\UploadHandler.bindings.cs", { 208, 82, 255, 227, 101, 151, 37, 117, 253, 38, 13, 57, 196, 212, 206, 150} },
+{ "/home/bokken/build/output/unity/unity/Modules/UnityWebRequest/Public/WebRequestUtils.cs", { 205, 68, 33, 81, 137, 101, 236, 199, 252, 47, 229, 203, 220, 234, 118, 236} },
+{ "/home/bokken/build/output/unity/unity/Modules/UnityWebRequest/Public/CertificateHandler/CertificateHandler.bindings.cs", { 63, 110, 225, 140, 166, 236, 157, 118, 45, 170, 13, 140, 76, 145, 243, 103} },
+{ "/home/bokken/build/output/unity/unity/Modules/UnityWebRequest/Public/DownloadHandler/DownloadHandler.bindings.cs", { 191, 125, 140, 136, 165, 236, 135, 105, 71, 47, 117, 187, 10, 87, 138, 123} },
+{ "/home/bokken/build/output/unity/unity/Modules/UnityWebRequest/Public/UnityWebRequest.bindings.cs", { 230, 7, 201, 148, 88, 218, 219, 116, 87, 218, 3, 66, 36, 108, 42, 14} },
+{ "/home/bokken/build/output/unity/unity/Modules/UnityWebRequest/Public/WebRequestExtensions.cs", { 34, 57, 120, 161, 137, 146, 81, 14, 158, 221, 118, 195, 116, 81, 4, 90} },
+{ "/home/bokken/build/output/unity/unity/Modules/UnityWebRequest/Public/UploadHandler/UploadHandler.bindings.cs", { 208, 82, 255, 227, 101, 151, 37, 117, 253, 38, 13, 57, 196, 212, 206, 150} },
 };
 #else
 static const Il2CppSequencePointSourceFile g_sequencePointSourceFiles[1] = { NULL, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };

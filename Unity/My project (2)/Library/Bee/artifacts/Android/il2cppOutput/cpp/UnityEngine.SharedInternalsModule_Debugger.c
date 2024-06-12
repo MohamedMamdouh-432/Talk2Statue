@@ -480,9 +480,9 @@ static const Il2CppCatchPoint g_catchPoints[1] = { { 0, 0, 0, 0, } };
 #if IL2CPP_MONO_DEBUGGER
 static const Il2CppSequencePointSourceFile g_sequencePointSourceFiles[] = {
 { "", { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0} },
-{ "\\home\\bokken\\build\\output\\unity\\unity\\Modules\\SharedInternals\\Attributes.cs", { 223, 53, 104, 32, 81, 211, 55, 232, 252, 60, 34, 171, 54, 13, 0, 197} },
-{ "\\home\\bokken\\build\\output\\unity\\unity\\Modules\\SharedInternals\\UnityString.cs", { 255, 198, 38, 66, 227, 5, 96, 140, 169, 6, 83, 253, 218, 221, 105, 186} },
-{ "\\home\\bokken\\build\\output\\unity\\unity\\Modules\\SharedInternals\\BindingsAttributes.cs", { 108, 5, 131, 214, 72, 214, 230, 108, 119, 224, 140, 144, 214, 237, 215, 122} },
+{ "/home/bokken/build/output/unity/unity/Modules/SharedInternals/Attributes.cs", { 223, 53, 104, 32, 81, 211, 55, 232, 252, 60, 34, 171, 54, 13, 0, 197} },
+{ "/home/bokken/build/output/unity/unity/Modules/SharedInternals/UnityString.cs", { 255, 198, 38, 66, 227, 5, 96, 140, 169, 6, 83, 253, 218, 221, 105, 186} },
+{ "/home/bokken/build/output/unity/unity/Modules/SharedInternals/BindingsAttributes.cs", { 108, 5, 131, 214, 72, 214, 230, 108, 119, 224, 140, 144, 214, 237, 215, 122} },
 };
 #else
 static const Il2CppSequencePointSourceFile g_sequencePointSourceFiles[1] = { NULL, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };

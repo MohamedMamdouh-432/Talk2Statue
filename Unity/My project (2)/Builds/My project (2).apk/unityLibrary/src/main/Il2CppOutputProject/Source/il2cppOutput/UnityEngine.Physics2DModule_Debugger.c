@@ -76,7 +76,7 @@ static const Il2CppCatchPoint g_catchPoints[1] = { { 0, 0, 0, 0, } };
 #if IL2CPP_MONO_DEBUGGER
 static const Il2CppSequencePointSourceFile g_sequencePointSourceFiles[] = {
 { "", { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0} },
-{ "\\home\\bokken\\build\\output\\unity\\unity\\Modules\\Physics2D\\ScriptBindings\\Physics2D.bindings.cs", { 202, 82, 204, 216, 30, 21, 7, 128, 38, 171, 118, 18, 108, 250, 26, 243} },
+{ "/home/bokken/build/output/unity/unity/Modules/Physics2D/ScriptBindings/Physics2D.bindings.cs", { 202, 82, 204, 216, 30, 21, 7, 128, 38, 171, 118, 18, 108, 250, 26, 243} },
 };
 #else
 static const Il2CppSequencePointSourceFile g_sequencePointSourceFiles[1] = { NULL, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };

@@ -388,8 +388,8 @@ static const Il2CppCatchPoint g_catchPoints[1] = { { 0, 0, 0, 0, } };
 #if IL2CPP_MONO_DEBUGGER
 static const Il2CppSequencePointSourceFile g_sequencePointSourceFiles[] = {
 { "", { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0} },
-{ "\\home\\bokken\\build\\output\\unity\\unity\\Modules\\TextRendering\\TextGenerator.cs", { 7, 38, 113, 126, 212, 36, 235, 173, 57, 4, 10, 255, 128, 119, 204, 180} },
-{ "\\home\\bokken\\build\\output\\unity\\unity\\Modules\\TextRendering\\TextRendering.bindings.cs", { 16, 105, 135, 11, 85, 98, 178, 111, 127, 57, 111, 15, 187, 88, 203, 2} },
+{ "/home/bokken/build/output/unity/unity/Modules/TextRendering/TextGenerator.cs", { 7, 38, 113, 126, 212, 36, 235, 173, 57, 4, 10, 255, 128, 119, 204, 180} },
+{ "/home/bokken/build/output/unity/unity/Modules/TextRendering/TextRendering.bindings.cs", { 16, 105, 135, 11, 85, 98, 178, 111, 127, 57, 111, 15, 187, 88, 203, 2} },
 };
 #else
 static const Il2CppSequencePointSourceFile g_sequencePointSourceFiles[1] = { NULL, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };

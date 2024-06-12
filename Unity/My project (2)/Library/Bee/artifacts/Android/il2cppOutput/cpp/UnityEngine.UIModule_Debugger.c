@@ -477,10 +477,10 @@ static const Il2CppCatchPoint g_catchPoints[1] = { { 0, 0, 0, 0, } };
 #if IL2CPP_MONO_DEBUGGER
 static const Il2CppSequencePointSourceFile g_sequencePointSourceFiles[] = {
 { "", { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0} },
-{ "\\home\\bokken\\build\\output\\unity\\unity\\Modules\\UI\\ScriptBindings\\CanvasGroup.bindings.cs", { 95, 5, 239, 61, 209, 226, 205, 182, 140, 185, 147, 80, 77, 9, 100, 186} },
-{ "\\home\\bokken\\build\\output\\unity\\unity\\Modules\\UI\\ScriptBindings\\CanvasRenderer.bindings.cs", { 135, 199, 204, 121, 216, 244, 162, 129, 69, 183, 190, 70, 97, 148, 38, 229} },
-{ "\\home\\bokken\\build\\output\\unity\\unity\\Modules\\UI\\ScriptBindings\\RectTransformUtility.cs", { 37, 153, 240, 31, 183, 222, 142, 197, 21, 182, 96, 12, 38, 58, 123, 215} },
-{ "\\home\\bokken\\build\\output\\unity\\unity\\Modules\\UI\\ScriptBindings\\UICanvas.bindings.cs", { 131, 105, 250, 183, 35, 102, 124, 86, 164, 177, 236, 17, 155, 3, 221, 154} },
+{ "/home/bokken/build/output/unity/unity/Modules/UI/ScriptBindings/CanvasGroup.bindings.cs", { 95, 5, 239, 61, 209, 226, 205, 182, 140, 185, 147, 80, 77, 9, 100, 186} },
+{ "/home/bokken/build/output/unity/unity/Modules/UI/ScriptBindings/CanvasRenderer.bindings.cs", { 135, 199, 204, 121, 216, 244, 162, 129, 69, 183, 190, 70, 97, 148, 38, 229} },
+{ "/home/bokken/build/output/unity/unity/Modules/UI/ScriptBindings/RectTransformUtility.cs", { 37, 153, 240, 31, 183, 222, 142, 197, 21, 182, 96, 12, 38, 58, 123, 215} },
+{ "/home/bokken/build/output/unity/unity/Modules/UI/ScriptBindings/UICanvas.bindings.cs", { 131, 105, 250, 183, 35, 102, 124, 86, 164, 177, 236, 17, 155, 3, 221, 154} },
 };
 #else
 static const Il2CppSequencePointSourceFile g_sequencePointSourceFiles[1] = { NULL, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };

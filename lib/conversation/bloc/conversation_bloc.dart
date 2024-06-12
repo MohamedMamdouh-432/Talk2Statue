@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:data_repository/data_repository.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_unity_widget/flutter_unity_widget.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:models_repository/models_repository.dart';
 import 'package:path_provider/path_provider.dart';
@@ -12,9 +13,21 @@ part 'conversation_event.dart';
 part 'conversation_state.dart';
 
 class ConversationBloc extends Bloc<ConversationEvent, ConversationState> {
+  // data repository dependency
+  final DataRepository _dataRepository;
+
+  // bloc controllers
   late AudioPlayer statuePlayer;
   late AudioRecorder statueRecorder;
-  final DataRepository _dataRepository;
+  late UnityWidgetController unityController;
+
+  // bloc helpers data
+  bool isModelReady = false;
+  Map<String, String> modelsData = {
+    'Nefertiti': 'nefertitiQueen',
+    // TODO: add Akhenaten GameObject name
+    'Akhenaten': '',
+  };
 
   ConversationBloc({
     required DataRepository dataRepo,
@@ -50,6 +63,7 @@ class ConversationBloc extends Bloc<ConversationEvent, ConversationState> {
         "I'm a tourist in Egypt, please act as king ${event.statueName} and chat with me to know more about you, start with greeting word to me";
     log(msg);
     try {
+      isModelReady = modelsData.containsKey(event.statueName);
       final result = await _dataRepository.replaytoVisitorQuestion(msg);
       result.fold(
           (l) => emit(state.copyWith(
@@ -147,23 +161,33 @@ class ConversationBloc extends Bloc<ConversationEvent, ConversationState> {
     );
   }
 
-  Future<void> _onStatueBeginTalking(event, emit) async {
+  Future<void> _onStatueBeginTalking(
+      StatueTalkingEventRequested event, emit) async {
     try {
       emit(
           state.copyWith(requestState: ConversationRequestState.StatueTalking));
-      await statuePlayer.setAudioSource(
-          AudioSource.uri(Uri.parse(state.statueAudioFilePath)));
 
-      if (statuePlayer.processingState != ProcessingState.ready) {
-        await statuePlayer.processingStateStream
-            .firstWhere((state) => state == ProcessingState.ready);
-      }
+      if (isModelReady) {
+        await unityController.postMessage(
+          modelsData[event.statueName]!,
+          'PlayAudioClip',
+          state.statueAudioFilePath,
+        );
+      } else {
+        await statuePlayer.setAudioSource(
+            AudioSource.uri(Uri.parse(state.statueAudioFilePath)));
 
-      await statuePlayer.play();
+        if (statuePlayer.processingState != ProcessingState.ready) {
+          await statuePlayer.processingStateStream
+              .firstWhere((state) => state == ProcessingState.ready);
+        }
 
-      if (statuePlayer.processingState != ProcessingState.completed) {
-        await statuePlayer.processingStateStream
-            .firstWhere((state) => state == ProcessingState.completed);
+        await statuePlayer.play();
+
+        if (statuePlayer.processingState != ProcessingState.completed) {
+          await statuePlayer.processingStateStream
+              .firstWhere((state) => state == ProcessingState.completed);
+        }
       }
 
       emit(state.copyWith(requestState: ConversationRequestState.Done));
@@ -180,5 +204,6 @@ class ConversationBloc extends Bloc<ConversationEvent, ConversationState> {
   Future<void> _onDisposeConversation(event, emit) async {
     await statuePlayer.dispose();
     await statueRecorder.dispose();
+    unityController.dispose();
   }
 }

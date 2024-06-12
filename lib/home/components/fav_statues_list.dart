@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:talk2statue/shared/data/dummy.dart';
+import 'package:talk2statue/core/utils/app_constants.dart';
 import 'package:talk2statue/home/widgets/fav_statue_card.dart';
 
 class FavStatuesList extends StatelessWidget {
@@ -12,9 +12,9 @@ class FavStatuesList extends StatelessWidget {
       margin: const EdgeInsets.only(top: 5),
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
-        itemCount: statueImages.length,
+        itemCount: AppConstants.statueImages.length,
         itemBuilder: (_, index) => FavStatueCard(
-          statueImage: statueImages[index],
+          statueImage: AppConstants.statueImages[index],
         ),
       ),
     );
