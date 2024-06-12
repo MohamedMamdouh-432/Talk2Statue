@@ -1,5 +1,10 @@
 include: package:flutter_lints/flutter.yaml
 
+analyzer:
+  exclude:
+    - Unity/**
+    - android/unityLibrary/**
+
 linter:
   rules:
     avoid_print: false  

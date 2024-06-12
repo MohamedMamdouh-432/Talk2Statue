@@ -124,7 +124,7 @@ static const Il2CppCatchPoint g_catchPoints[1] = { { 0, 0, 0, 0, } };
 #if IL2CPP_MONO_DEBUGGER
 static const Il2CppSequencePointSourceFile g_sequencePointSourceFiles[] = {
 { "", { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0} },
-{ "\\home\\bokken\\build\\output\\unity\\unity\\Modules\\UnityWebRequestWWW\\Public\\WWW.cs", { 17, 248, 16, 119, 156, 84, 111, 200, 28, 220, 190, 101, 118, 29, 225, 94} },
+{ "/home/bokken/build/output/unity/unity/Modules/UnityWebRequestWWW/Public/WWW.cs", { 17, 248, 16, 119, 156, 84, 111, 200, 28, 220, 190, 101, 118, 29, 225, 94} },
 };
 #else
 static const Il2CppSequencePointSourceFile g_sequencePointSourceFiles[1] = { NULL, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };

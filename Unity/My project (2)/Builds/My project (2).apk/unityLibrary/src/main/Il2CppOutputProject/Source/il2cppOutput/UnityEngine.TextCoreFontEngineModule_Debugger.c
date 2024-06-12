@@ -1044,12 +1044,12 @@ static const Il2CppCatchPoint g_catchPoints[1] = { { 0, 0, 0, 0, } };
 #if IL2CPP_MONO_DEBUGGER
 static const Il2CppSequencePointSourceFile g_sequencePointSourceFiles[] = {
 { "", { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0} },
-{ "\\home\\bokken\\build\\output\\unity\\unity\\Modules\\TextCoreFontEngine\\Managed\\FaceInfo.cs", { 128, 167, 11, 92, 144, 139, 80, 145, 80, 2, 77, 19, 102, 28, 177, 100} },
-{ "\\home\\bokken\\build\\output\\unity\\unity\\Modules\\TextCoreFontEngine\\Managed\\Glyph.cs", { 137, 19, 38, 223, 79, 162, 161, 226, 43, 20, 53, 159, 250, 103, 44, 185} },
-{ "\\home\\bokken\\build\\output\\unity\\unity\\Modules\\TextCoreFontEngine\\Managed\\FontEngine.bindings.cs", { 187, 66, 28, 167, 245, 226, 203, 225, 0, 88, 178, 91, 30, 239, 25, 177} },
-{ "\\home\\bokken\\build\\output\\unity\\unity\\Modules\\TextCoreFontEngine\\Managed\\FontFeatureCommon.cs", { 58, 180, 94, 48, 225, 187, 118, 209, 12, 70, 207, 131, 26, 124, 48, 51} },
-{ "\\home\\bokken\\build\\output\\unity\\unity\\Modules\\TextCoreFontEngine\\Managed\\FontFeatureCommonGPOS.cs", { 73, 152, 166, 112, 78, 127, 188, 178, 66, 10, 35, 31, 50, 121, 36, 176} },
-{ "\\home\\bokken\\build\\output\\unity\\unity\\Modules\\TextCoreFontEngine\\Managed\\FontFeatureCommonGSUB.cs", { 206, 176, 205, 136, 10, 63, 74, 187, 248, 75, 210, 110, 218, 107, 37, 43} },
+{ "/home/bokken/build/output/unity/unity/Modules/TextCoreFontEngine/Managed/FaceInfo.cs", { 128, 167, 11, 92, 144, 139, 80, 145, 80, 2, 77, 19, 102, 28, 177, 100} },
+{ "/home/bokken/build/output/unity/unity/Modules/TextCoreFontEngine/Managed/Glyph.cs", { 137, 19, 38, 223, 79, 162, 161, 226, 43, 20, 53, 159, 250, 103, 44, 185} },
+{ "/home/bokken/build/output/unity/unity/Modules/TextCoreFontEngine/Managed/FontEngine.bindings.cs", { 187, 66, 28, 167, 245, 226, 203, 225, 0, 88, 178, 91, 30, 239, 25, 177} },
+{ "/home/bokken/build/output/unity/unity/Modules/TextCoreFontEngine/Managed/FontFeatureCommon.cs", { 58, 180, 94, 48, 225, 187, 118, 209, 12, 70, 207, 131, 26, 124, 48, 51} },
+{ "/home/bokken/build/output/unity/unity/Modules/TextCoreFontEngine/Managed/FontFeatureCommonGPOS.cs", { 73, 152, 166, 112, 78, 127, 188, 178, 66, 10, 35, 31, 50, 121, 36, 176} },
+{ "/home/bokken/build/output/unity/unity/Modules/TextCoreFontEngine/Managed/FontFeatureCommonGSUB.cs", { 206, 176, 205, 136, 10, 63, 74, 187, 248, 75, 210, 110, 218, 107, 37, 43} },
 };
 #else
 static const Il2CppSequencePointSourceFile g_sequencePointSourceFiles[1] = { NULL, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };

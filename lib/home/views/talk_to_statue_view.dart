@@ -6,7 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:models_repository/models_repository.dart';
 import 'package:talk2statue/core/utils/app_constants.dart';
 import 'package:talk2statue/home/bloc/recognition_bloc.dart';
-import 'package:talk2statue/shared/data/functions.dart';
+import 'package:talk2statue/shared/functions.dart';
 
 class TalkToStatueView extends StatelessWidget {
   const TalkToStatueView({super.key});

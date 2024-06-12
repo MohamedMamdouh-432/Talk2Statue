@@ -541,8 +541,8 @@ static const Il2CppCatchPoint g_catchPoints[1] = { { 0, 0, 0, 0, } };
 #if IL2CPP_MONO_DEBUGGER
 static const Il2CppSequencePointSourceFile g_sequencePointSourceFiles[] = {
 { "", { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0} },
-{ "\\home\\bokken\\build\\output\\unity\\unity\\Modules\\InputLegacy\\Input.bindings.cs", { 97, 62, 246, 130, 192, 78, 193, 170, 118, 230, 201, 187, 233, 213, 208, 131} },
-{ "\\home\\bokken\\build\\output\\unity\\unity\\Modules\\InputLegacy\\MouseEvents.cs", { 127, 57, 223, 71, 228, 1, 5, 71, 218, 159, 93, 209, 50, 201, 100, 254} },
+{ "/home/bokken/build/output/unity/unity/Modules/InputLegacy/Input.bindings.cs", { 97, 62, 246, 130, 192, 78, 193, 170, 118, 230, 201, 187, 233, 213, 208, 131} },
+{ "/home/bokken/build/output/unity/unity/Modules/InputLegacy/MouseEvents.cs", { 127, 57, 223, 71, 228, 1, 5, 71, 218, 159, 93, 209, 50, 201, 100, 254} },
 };
 #else
 static const Il2CppSequencePointSourceFile g_sequencePointSourceFiles[1] = { NULL, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };

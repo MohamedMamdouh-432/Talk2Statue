@@ -31,9 +31,9 @@ class Talk2Statue extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      designSize: const Size(320, 690),
       minTextAdapt: true,
       splitScreenMode: true,
+      designSize: const Size(320, 690),
       builder: (context, child) {
         return MultiRepositoryProvider(
           providers: [
@@ -78,10 +78,9 @@ class AppView extends StatelessWidget {
       theme: AppConstants.theme,
       debugShowCheckedModeBanner: false,
       getPages: RouteManager.appRoutes,
-      initialRoute: RouteManager.statuemodelRoute
-      	  // sharedPref.getBool('newToApp?')!
-          // ? RouteManager.onboardingRoute
-          // : RouteManager.signInRoute,
+      initialRoute: sharedPref.getBool('newToApp?')!
+          ? RouteManager.onboardingRoute
+          : RouteManager.signInRoute,
     );
   }
 }

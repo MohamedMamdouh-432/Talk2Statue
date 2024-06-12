@@ -6168,11 +6168,11 @@ static const Il2CppCatchPoint g_catchPoints[1] = { { 0, 0, 0, 0, } };
 #if IL2CPP_MONO_DEBUGGER
 static const Il2CppSequencePointSourceFile g_sequencePointSourceFiles[] = {
 { "", { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0} },
-{ "\\home\\bokken\\build\\output\\unity\\unity\\Modules\\AndroidJNI\\AndroidJNI.bindings.cs", { 239, 80, 57, 7, 21, 35, 172, 136, 51, 95, 178, 69, 113, 15, 217, 185} },
-{ "\\home\\bokken\\build\\output\\unity\\unity\\Modules\\AndroidJNI\\AndroidJNISafe.cs", { 155, 173, 156, 9, 34, 12, 15, 238, 105, 82, 63, 10, 155, 23, 148, 157} },
-{ "\\home\\bokken\\build\\output\\unity\\unity\\Modules\\AndroidJNI\\AndroidJava.cs", { 144, 42, 104, 35, 213, 85, 203, 130, 142, 221, 89, 174, 143, 133, 187, 21} },
-{ "\\home\\bokken\\build\\output\\unity\\unity\\Modules\\AndroidJNI\\AndroidAssetPacks.bindings.cs", { 41, 235, 255, 239, 23, 112, 218, 50, 237, 200, 148, 228, 83, 121, 188, 222} },
-{ "\\home\\bokken\\build\\output\\unity\\unity\\Modules\\AndroidJNI\\AndroidPermissions.cs", { 30, 47, 73, 54, 130, 78, 169, 143, 110, 0, 163, 255, 34, 195, 44, 153} },
+{ "/home/bokken/build/output/unity/unity/Modules/AndroidJNI/AndroidJNI.bindings.cs", { 239, 80, 57, 7, 21, 35, 172, 136, 51, 95, 178, 69, 113, 15, 217, 185} },
+{ "/home/bokken/build/output/unity/unity/Modules/AndroidJNI/AndroidJNISafe.cs", { 155, 173, 156, 9, 34, 12, 15, 238, 105, 82, 63, 10, 155, 23, 148, 157} },
+{ "/home/bokken/build/output/unity/unity/Modules/AndroidJNI/AndroidJava.cs", { 144, 42, 104, 35, 213, 85, 203, 130, 142, 221, 89, 174, 143, 133, 187, 21} },
+{ "/home/bokken/build/output/unity/unity/Modules/AndroidJNI/AndroidAssetPacks.bindings.cs", { 41, 235, 255, 239, 23, 112, 218, 50, 237, 200, 148, 228, 83, 121, 188, 222} },
+{ "/home/bokken/build/output/unity/unity/Modules/AndroidJNI/AndroidPermissions.cs", { 30, 47, 73, 54, 130, 78, 169, 143, 110, 0, 163, 255, 34, 195, 44, 153} },
 };
 #else
 static const Il2CppSequencePointSourceFile g_sequencePointSourceFiles[1] = { NULL, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
