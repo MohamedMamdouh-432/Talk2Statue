@@ -42,5 +42,13 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 /android/unityLibrary
-Unity/
+# Unity/
+/Unity/NefertitiQueen/Library/Bee/Android/Prj/Mono2x/Gradle/
+/Unity/NefertitiQueen/Library/Bee/Android/Prj/Mono2x/Gradle/
+/Unity/NefertitiQueen/Library/Bee/Android/Prj/Mono2x/Gradle/
+/Unity/NefertitiQueen/Library/Bee/Android/Prj/Mono2x/Gradle/
+/Unity/NefertitiQueen/Library/Bee/Android/Prj/Mono2x/Gradle/
+/Unity/NefertitiQueen/Library/Bee/Android/Prj/Mono2x/Gradle/
+/Unity/NefertitiQueen/Library/Bee/Android/Prj/Mono2x/Gradle/
+/Unity/NefertitiQueen/Library/PackageCache/com.unity.burst@1.8.12/.Runtime/libburst-llvm-16.dylib
 
