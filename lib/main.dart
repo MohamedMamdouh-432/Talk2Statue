@@ -26,16 +26,16 @@ void main(List<String> args) async {
   sharedPref.getBool('newToApp?') ?? sharedPref.setBool('newToApp?', true);
 
   runApp(
-      Talk2Statue(
-        sharedPref: sharedPref,
-        dataRepo: DataRepository(dio: Dio()),
-        userRepo: UserRepository(sharedPreferences: sharedPref),
-        authRepo: AuthenticationRepository(
-          firebaseAuth: firebaseAuth,
-          googleSignIn: googleSignIn,
-          firestore: firebaseStore,
-          sharedPreferences: sharedPref,
-        ),
+    Talk2Statue(
+      sharedPref: sharedPref,
+      dataRepo: DataRepository(dio: Dio()),
+      userRepo: UserRepository(sharedPreferences: sharedPref),
+      authRepo: AuthenticationRepository(
+        firebaseAuth: firebaseAuth,
+        googleSignIn: googleSignIn,
+        firestore: firebaseStore,
+        sharedPreferences: sharedPref,
       ),
+    ),
   );
 }
