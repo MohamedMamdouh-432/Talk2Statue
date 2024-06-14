@@ -8,12 +8,10 @@ class Statue3dModelView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: UnityWidget(
-        onUnityCreated: (controller) {
-          context.read<ConversationBloc>().unityController = controller;
-        },
-      ),
+    return UnityWidget(
+      onUnityCreated: (controller) {
+        context.read<ConversationBloc>().unityController = controller;
+      },
     );
   }
 }

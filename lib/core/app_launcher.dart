@@ -8,7 +8,6 @@ import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:talk2statue/authentication/cubit/login_cubit.dart';
 import 'package:talk2statue/conversation/bloc/conversation_bloc.dart';
-import 'package:talk2statue/conversation/views/statue_3dmodel_view.dart';
 import 'package:talk2statue/core/utils/app_constants.dart';
 import 'package:talk2statue/core/utils/route_manager.dart';
 import 'package:talk2statue/home/bloc/recognition_bloc.dart';
@@ -79,11 +78,9 @@ class AppView extends StatelessWidget {
       theme: AppConstants.theme,
       debugShowCheckedModeBanner: false,
       getPages: RouteManager.appRoutes,
-      home: Statue3dModelView(),
-      // initialRoute:
-      // sharedPref.getBool('newToApp?')!
-      //     ? RouteManager.onboardingRoute
-      //     : RouteManager.signInRoute,
+      initialRoute: sharedPref.getBool('newToApp?')!
+          ? RouteManager.onboardingRoute
+          : RouteManager.signInRoute,
     );
   }
 }
