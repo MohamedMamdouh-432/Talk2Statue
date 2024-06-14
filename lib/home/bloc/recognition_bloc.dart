@@ -47,24 +47,30 @@ class RecognitionBloc extends Bloc<RecognitionEvent, RecognitionState> {
   Future<void> _onRecognizeStatue(RecognitionEventRequested event, emit) async {
     try {
       emit(state.copyWith(requestState: RecongnitionRequestState.OnProgress));
-      final result =
-          await _dataRepository.recognizeStatue(state.statueImagePath);
-      result.fold(
-        (left) => emit(
-          state.copyWith(
-            message: left.errorMessage,
-            requestState: RecongnitionRequestState.FailedInRecognizing,
-          ),
-        ),
-        (right) => emit(
-          state.copyWith(
-            message: 'No Error',
-            statueName: right.name,
-            statueGender: right.gender,
-            requestState: RecongnitionRequestState.SuccessfulInRecognizing,
-          ),
-        ),
-      );
+      // final result =
+      //     await _dataRepository.recognizeStatue(state.statueImagePath);
+      // result.fold(
+      // (left) => emit(
+      //   state.copyWith(
+      //     message: left.errorMessage,
+      //     requestState: RecongnitionRequestState.FailedInRecognizing,
+      //   ),
+      // ),
+      // (right) => emit(
+      //   state.copyWith(
+      //     message: 'No Error',
+      //     statueName: right.name,
+      //     statueGender: right.gender,
+      //     requestState: RecongnitionRequestState.SuccessfulInRecognizing,
+      //   ),
+      // ),
+      // );
+      emit(state.copyWith(
+        message: 'No Error',
+        statueName: "Nefertiti",
+        statueGender: "female",
+        requestState: RecongnitionRequestState.SuccessfulInRecognizing,
+      ));
     } catch (e) {
       emit(
         state.copyWith(
