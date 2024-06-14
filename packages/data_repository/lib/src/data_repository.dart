@@ -48,7 +48,7 @@ class DataRepository {
       if (response.statusCode == 200) {
         return Right(response.data['text']);
       } else {
-        return Left(Failure('Error while Transcriping Audio File'));
+        return const Left(Failure('Error while Transcriping Audio File'));
       }
     } catch (e) {
       throw Left(Failure('Error in transcribeAudioFile $e'));
@@ -84,7 +84,7 @@ class DataRepository {
         await file.writeAsBytes(response.data!);
         return Right(filePath);
       } else {
-        return Left(Failure('Error while Creating Speech Audio File'));
+        return const Left(Failure('Error while Creating Speech Audio File'));
       }
     } catch (e) {
       return Left(Failure('Error in createTextSpeech $e'));
@@ -128,7 +128,7 @@ class DataRepository {
             return await replaytoVisitorQuestion(question);
           }
         }
-        return Left(Failure(
+        return const Left(Failure(
             'Received a 429 error without a valid Retry-After header.'));
       } else {
         return Left(Failure(
@@ -142,15 +142,22 @@ class DataRepository {
   Future<Either<Failure, String>> makeStatueReplaying(
       String audioFile, String speechVoice) async {
     try {
+      // process 1: transcribe audio file
       final transcibeResult = await transcribeAudioFile(audioFile);
       if (transcibeResult.isLeft) return Left(transcibeResult.left);
+
+      // process 2: get answer from gpt
       final gptResult = await replaytoVisitorQuestion(transcibeResult.right);
       if (gptResult.isLeft) return Left(gptResult.left);
+
+      // process 3: convert text answer to voice file
       final speechResult = await createTextSpeech(
         gptResult.right,
         speechVoice,
       );
       if (speechResult.isLeft) return Left(speechResult.left);
+
+      // return voice to tourist
       return Right(speechResult.right);
     } catch (e) {
       return Left(Failure(e.toString()));
