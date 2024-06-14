@@ -22,7 +22,7 @@ class ConversationBloc extends Bloc<ConversationEvent, ConversationState> {
   late UnityWidgetController unityController;
 
   // bloc helpers data
-  bool isModelReady = false;
+  bool isModelReady = true;
   Map<String, String> modelsData = {
     'Nefertiti': 'nefertitiQueen',
     // TODO: add Akhenaten GameObject name

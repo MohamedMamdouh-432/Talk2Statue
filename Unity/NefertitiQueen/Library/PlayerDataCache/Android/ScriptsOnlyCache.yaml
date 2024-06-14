@@ -41,9 +41,7 @@ ScriptsOnlyBuild:
     - UnityEditor.Rendering.HighDefinition.HDProjectSettings
     - UnityEditor.Rendering.HighDefinition.HDUserSettings
     Unity.RenderPipelines.HighDefinition.Runtime.dll:
-    - UnityEngine.Rendering.HighDefinition.DiffusionProfileSettings
     - UnityEngine.Rendering.HighDefinition.HDRenderPipelineGlobalSettings
-    - UnityEngine.Rendering.HighDefinition.HDRenderPipelineRuntimeResources
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
     Unity.Timeline.Editor.dll:
@@ -77,13 +75,7 @@ ScriptsOnlyBuild:
     - UnityEngine.Rendering.ProbeVolumeSceneData
     - UnityEngine.Rendering.UI.DebugUIPrefabBundle
     Unity.RenderPipelines.HighDefinition.Runtime:
-    - UnityEngine.Rendering.HighDefinition.DiffusionProfile
     - UnityEngine.Rendering.HighDefinition.FrameSettings
-    - UnityEngine.Rendering.HighDefinition.HDRenderPipelineRuntimeResources/AssetResources
-    - UnityEngine.Rendering.HighDefinition.HDRenderPipelineRuntimeResources/MaterialResources
-    - UnityEngine.Rendering.HighDefinition.HDRenderPipelineRuntimeResources/ShaderGraphResources
-    - UnityEngine.Rendering.HighDefinition.HDRenderPipelineRuntimeResources/ShaderResources
-    - UnityEngine.Rendering.HighDefinition.HDRenderPipelineRuntimeResources/TextureResources
     UnityEngine.CoreModule:
     - UnityEngine.Events.ArgumentCache
     - UnityEngine.Events.PersistentCallGroup
@@ -169,9 +161,7 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 16882}
-    - Class: 114
-      Script: {instanceID: 16884}
+      Script: {instanceID: 16848}
     - Class: 114
       Script: {instanceID: 16886}
     - Class: 114
@@ -179,93 +169,95 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 16890}
     - Class: 114
-      Script: {instanceID: 16896}
+      Script: {instanceID: 16892}
     - Class: 114
-      Script: {instanceID: 16928}
+      Script: {instanceID: 16894}
     - Class: 114
-      Script: {instanceID: 17044}
+      Script: {instanceID: 16900}
     - Class: 114
-      Script: {instanceID: 17408}
+      Script: {instanceID: 16932}
     - Class: 114
-      Script: {instanceID: 17626}
+      Script: {instanceID: 17048}
     - Class: 114
-      Script: {instanceID: 18002}
+      Script: {instanceID: 17412}
     - Class: 114
-      Script: {instanceID: 18500}
+      Script: {instanceID: 17630}
     - Class: 114
-      Script: {instanceID: 18570}
+      Script: {instanceID: 18006}
     - Class: 114
-      Script: {instanceID: 18712}
+      Script: {instanceID: 18506}
     - Class: 114
-      Script: {instanceID: 19298}
+      Script: {instanceID: 18576}
     - Class: 114
-      Script: {instanceID: 20068}
+      Script: {instanceID: 18718}
     - Class: 114
-      Script: {instanceID: 20110}
+      Script: {instanceID: 20072}
     - Class: 114
-      Script: {instanceID: 20166}
+      Script: {instanceID: 20114}
     - Class: 114
-      Script: {instanceID: 20222}
+      Script: {instanceID: 20170}
     - Class: 114
-      Script: {instanceID: 20394}
+      Script: {instanceID: 20226}
     - Class: 114
-      Script: {instanceID: 20412}
+      Script: {instanceID: 20398}
     - Class: 114
-      Script: {instanceID: 20868}
+      Script: {instanceID: 20416}
     - Class: 114
-      Script: {instanceID: 20948}
+      Script: {instanceID: 20872}
     - Class: 114
-      Script: {instanceID: 21066}
+      Script: {instanceID: 20952}
     - Class: 114
-      Script: {instanceID: 21148}
+      Script: {instanceID: 21070}
     - Class: 114
-      Script: {instanceID: 21538}
+      Script: {instanceID: 21152}
     - Class: 114
-      Script: {instanceID: 21582}
+      Script: {instanceID: 21542}
     - Class: 114
-      Script: {instanceID: 22422}
+      Script: {instanceID: 21586}
     - Class: 114
-      Script: {instanceID: 23432}
+      Script: {instanceID: 22426}
     - Class: 114
-      Script: {instanceID: 23584}
+      Script: {instanceID: 23436}
     - Class: 114
-      Script: {instanceID: 23844}
+      Script: {instanceID: 23588}
     - Class: 114
-      Script: {instanceID: 23954}
+      Script: {instanceID: 23956}
     - Class: 114
-      Script: {instanceID: 24620}
+      Script: {instanceID: 24622}
     - Class: 114
-      Script: {instanceID: 24684}
+      Script: {instanceID: 24686}
     - Class: 114
-      Script: {instanceID: 24952}
+      Script: {instanceID: 24954}
     - Class: 114
-      Script: {instanceID: 25054}
+      Script: {instanceID: 25056}
     - Class: 114
-      Script: {instanceID: 25318}
+      Script: {instanceID: 25320}
     - Class: 114
-      Script: {instanceID: 25992}
+      Script: {instanceID: 25994}
     - Class: 114
-      Script: {instanceID: 26242}
+      Script: {instanceID: 26244}
     - Class: 114
-      Script: {instanceID: 26458}
+      Script: {instanceID: 26460}
     - Class: 114
-      Script: {instanceID: 26758}
+      Script: {instanceID: 26760}
     - Class: 114
-      Script: {instanceID: 26902}
+      Script: {instanceID: 26904}
     - Class: 114
-      Script: {instanceID: 26994}
+      Script: {instanceID: 26996}
     - Class: 114
-      Script: {instanceID: 27080}
+      Script: {instanceID: 27082}
     - Class: 114
-      Script: {instanceID: 27204}
+      Script: {instanceID: 27206}
     - Class: 114
-      Script: {instanceID: 27330}
+      Script: {instanceID: 27332}
     - Class: 114
-      Script: {instanceID: 27604}
+      Script: {instanceID: 27606}
     - Class: 114
-      Script: {instanceID: 28434}
+      Script: {instanceID: 28436}
     - Class: 114
-      Script: {instanceID: 29696}
+      Script: {instanceID: 28826}
+    - Class: 114
+      Script: {instanceID: 28830}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -285,6 +277,12 @@ ScriptsOnlyBuild:
     - Class: 224
       Script: {instanceID: 0}
   scriptHashData:
+  - hash:
+      serializedVersion: 2
+      Hash: e05bd5e2c0bdd4f38959827f6f211d43
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: BlendshapeController
   - hash:
       serializedVersion: 2
       Hash: d41ab9b5ea92474f9c0a6937a0607ce1
@@ -645,12 +643,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.RenderPipelines.Core.Runtime
     namespaceName: UnityEngine.Rendering
     className: SceneRenderPipeline
-  - hash:
-      serializedVersion: 2
-      Hash: e05bd5e2c0bdd4f38959827f6f211d43
-    assemblyName: Assembly-CSharp
-    namespaceName: 
-    className: BlendshapeController
   - hash:
       serializedVersion: 2
       Hash: c933b590b3badb5918fa01e73cd5cc0c
@@ -1355,12 +1347,6 @@ ScriptsOnlyBuild:
     className: UnityOnCollisionEnterMessageListener
   - hash:
       serializedVersion: 2
-      Hash: a74c442e594695c7c8c6becf7b3eb98c
-    assemblyName: Assembly-CSharp
-    namespaceName: 
-    className: AudioTest
-  - hash:
-      serializedVersion: 2
       Hash: ec05001696db744d87b013c44a25e9b4
     assemblyName: Unity.RenderPipelines.HighDefinition.Runtime
     namespaceName: UnityEngine.Rendering.HighDefinition
@@ -2055,6 +2041,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp
     namespaceName: FlutterUnityIntegration
     className: UnityMessageManager
+  - hash:
+      serializedVersion: 2
+      Hash: a74c442e594695c7c8c6becf7b3eb98c
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: AudioTest
   platform: 13
   scenePathNames:
   - Assets/Scenes/SampleScene.unity

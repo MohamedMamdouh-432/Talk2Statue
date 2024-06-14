@@ -5,16 +5,16 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638448782375642372
-    m_Hash: 1646839560
+      ticks: 638539824233896381
+    m_Hash: 2699237912
   m_LockFileStatus:
     m_FilePath: E:/Collage/My GP/Repo/Talk2Statue/Unity/NefertitiQueen/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638448782376106821
-    m_Hash: 3284607574
+      ticks: 638539824233896381
+    m_Hash: 973693756
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_LocalPackages:

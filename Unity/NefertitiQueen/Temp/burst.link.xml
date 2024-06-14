@@ -1,0 +1,30 @@
+<linker>
+ <assembly fullname="Unity.RenderPipelines.HighDefinition.Runtime">
+  <type fullname="UnityEngine.Rendering.HighDefinition.DecalSystem.UpdateJob">
+   <method name=".cctor"/>
+  </type>
+ </assembly>
+ <assembly fullname="UnityEngine.CoreModule">
+  <type fullname="Unity.Jobs.LowLevel.Unsafe.JobsUtility">
+   <method name="GetWorkStealingRange"/>
+  </type>
+  <type fullname="UnityEngine.Jobs.TransformAccessArray">
+   <method name="GetSortedToUserIndex"/>
+  </type>
+  <type fullname="UnityEngine.Jobs.TransformAccessArray">
+   <method name="GetSortedTransformAccess"/>
+  </type>
+  <type fullname="UnityEngine.Jobs.TransformAccess">
+   <method name="GetPosition"/>
+  </type>
+  <type fullname="UnityEngine.Jobs.TransformAccess">
+   <method name="GetLocalToWorldMatrix"/>
+  </type>
+  <type fullname="UnityEngine.Jobs.TransformAccess">
+   <method name="GetRotation"/>
+  </type>
+  <type fullname="UnityEngine.Matrix4x4">
+   <method name="GetLossyScale_Injected"/>
+  </type>
+ </assembly>
+</linker>
