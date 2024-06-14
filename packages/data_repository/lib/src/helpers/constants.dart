@@ -1,7 +1,7 @@
 class ApiConstants {
   static const String openaikey =
       'sk-proj-G4RPCqFkRaQyykZxQH0HT3BlbkFJfFvb5znlHDiUygQjBwzK';
-  static const String objRecUrl = 'https://gpapp-s75tsx6xfa-as.a.run.app/obj';
+  static const String objRecUrl = 'https://srapi-ptjztkf3ba-ue.a.run.app/statue_recognition';
   static const String openaiTranscriptionUrl =
       'https://api.openai.com/v1/audio/transcriptions';
   static const String openaiSpeechUrl =
