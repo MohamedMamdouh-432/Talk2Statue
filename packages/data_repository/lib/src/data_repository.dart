@@ -26,10 +26,33 @@ class DataRepository {
       if (response.statusCode == 200) {
         return Right(Statue.fromJson(response.data));
       } else {
-        return Left(Failure(response.data['error']));
+        String errorMsg;
+        switch (response.data['errorCode']) {
+          case "voice-file-not-found":
+            errorMsg = 'First you should pick statue image';
+            break;
+          case "empty-file-content":
+            errorMsg = 'Statue Image is Empty';
+            break;
+          case "internal-model-error":
+            errorMsg = 'Couldn\'t Process Statue Image';
+            break;
+          case "invalid-file-type":
+            errorMsg =
+                'File Type Not Supported: Only Allowed Extensions: [jpg, jpeg, png, svg]';
+            break;
+          case "provided-image-either-have-unknown-statue-or-have-no-statue":
+            errorMsg =
+                'Statue Image Either Have Unknown Statue Or Have No Statue';
+            break;
+          default:
+            errorMsg = 'Error While Recognizing Statue';
+            break;
+        }
+        return Left(Failure(errorMsg));
       }
     } catch (e) {
-      return Left(Failure('Error while Handling Request => $e'));
+      return Left(Failure('Something went wrong. try again !'));
     }
   }
 

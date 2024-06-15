@@ -10,6 +10,10 @@ public class AudioTest : MonoBehaviour
         blendshapeController.PlayAudioClip(audioFilePath);
     }
 
+    void loadModelScene(string scene){
+        UnityEngine.SceneManagement.SceneManager.LoadScene(scene);
+    }
+
     void PlayAud(string filePath){
         string audioFilePath = @filePath;
         blendshapeController.PlayAudioClip(audioFilePath);

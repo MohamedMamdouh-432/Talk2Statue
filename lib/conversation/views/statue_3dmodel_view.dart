@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_unity_widget/flutter_unity_widget.dart';
@@ -10,8 +12,12 @@ class Statue3dModelView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: UnityWidget(
-        onUnityCreated: (controller) {
+        onUnityCreated: (UnityWidgetController controller) {
           context.read<ConversationBloc>().unityController = controller;
+        },
+        borderRadius: const BorderRadius.all(Radius.circular(30)),
+        onUnityMessage: (message) {
+          log('Message from Unity: $message');
         },
       ),
     );
