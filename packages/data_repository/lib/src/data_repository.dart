@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:data_repository/src/helpers/constants.dart';
+import 'package:data_repository/src/helpers/openai_apikey.dart';
 import 'package:dio/dio.dart';
 import 'package:either_dart/either.dart';
 import 'package:http/http.dart' as http;
@@ -58,7 +59,7 @@ class DataRepository {
 
   Future<Either<Failure, String>> transcribeAudioFile(String filePath) async {
     try {
-      dio.options.headers["Authorization"] = "Bearer ${ApiConstants.openaikey}";
+      dio.options.headers["Authorization"] = "Bearer ${OpenAIConstants.openaikey}";
 
       var formData = FormData.fromMap({
         "model": "whisper-1",
@@ -84,7 +85,7 @@ class DataRepository {
   ) async {
     try {
       dio.options.headers = {
-        'Authorization': 'Bearer ${ApiConstants.openaikey}',
+        'Authorization': 'Bearer ${OpenAIConstants.openaikey}',
         'Content-Type': 'application/json',
       };
 
@@ -127,7 +128,7 @@ class DataRepository {
         Uri.parse('https://api.openai.com/v1/chat/completions'),
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer ${ApiConstants.openaikey}',
+          'Authorization': 'Bearer ${OpenAIConstants.openaikey}',
         },
         body: jsonEncode({
           "model": "gpt-3.5-turbo",
