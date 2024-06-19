@@ -59,7 +59,8 @@ class DataRepository {
 
   Future<Either<Failure, String>> transcribeAudioFile(String filePath) async {
     try {
-      dio.options.headers["Authorization"] = "Bearer ${OpenAIConstants.openaikey}";
+      dio.options.headers["Authorization"] =
+          "Bearer ${OpenAIConstants.openaikey}";
 
       var formData = FormData.fromMap({
         "model": "whisper-1",
@@ -152,11 +153,14 @@ class DataRepository {
             return await replaytoVisitorQuestion(question);
           }
         }
-        return const Left(Failure(
-            'Received a 429 error without a valid Retry-After header.'));
+        return const Left(
+          Failure('Received a 429 error without a valid Retry-After header.'),
+        );
       } else {
-        return Left(Failure(
-            'Failed to send bot message. Status code: ${response.statusCode}'));
+        return Left(
+          Failure(
+              'Failed to send bot message. Status code: ${response.statusCode}'),
+        );
       }
     } catch (e) {
       return Left(Failure('Error in replaytoVisitorQuestion $e'));
@@ -171,7 +175,8 @@ class DataRepository {
       if (transcibeResult.isLeft) return Left(transcibeResult.left);
 
       // process 2: get answer from gpt
-      final gptResult = await replaytoVisitorQuestion(transcibeResult.right);
+      String question = "In brief and without details, ${transcibeResult.right}";
+      final gptResult = await replaytoVisitorQuestion(question);
       if (gptResult.isLeft) return Left(gptResult.left);
 
       // process 3: convert text answer to voice file

@@ -12,7 +12,7 @@ class Statue extends Equatable {
   factory Statue.fromJson(Map<String, dynamic> jsonData) {
     return Statue(
       name: jsonData['name'], 
-      gender: jsonData['gender'] ?? 'male',
+      gender: jsonData['gender'],
     );
   }
 
