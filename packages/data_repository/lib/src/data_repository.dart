@@ -53,12 +53,14 @@ class DataRepository {
         return Left(Failure(errorMsg));
       }
     } catch (e) {
-      return Left(Failure('Something went wrong. try again !'));
+      return const Left(Failure('Something went wrong. try again !'));
     }
   }
 
   Future<Either<Failure, String>> transcribeAudioFile(String filePath) async {
     try {
+      dio.options.headers["Authorization"] =
+          "Bearer ${OpenAIConstants.openaikey}";
       dio.options.headers["Authorization"] =
           "Bearer ${OpenAIConstants.openaikey}";
 
@@ -102,7 +104,7 @@ class DataRepository {
       );
 
       if (response.statusCode == 200) {
-        const fileName = 'statue_speech.wav';
+        const fileName = 'statue_speech.mp3';
         final directory = await getApplicationDocumentsDirectory();
         final filePath = '${directory.path}/$fileName';
         final file = File(filePath);
@@ -175,7 +177,8 @@ class DataRepository {
       if (transcibeResult.isLeft) return Left(transcibeResult.left);
 
       // process 2: get answer from gpt
-      String question = "In brief and without details, ${transcibeResult.right}";
+      String question =
+          "In brief and without details, ${transcibeResult.right}";
       final gptResult = await replaytoVisitorQuestion(question);
       if (gptResult.isLeft) return Left(gptResult.left);
 
