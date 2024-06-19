@@ -8,10 +8,10 @@ class Statue extends Equatable {
     required this.name,
     required this.gender,
   });
-  
+
   factory Statue.fromJson(Map<String, dynamic> jsonData) {
     return Statue(
-      name: jsonData['name'], 
+      name: jsonData['name'],
       gender: jsonData['gender'],
     );
   }

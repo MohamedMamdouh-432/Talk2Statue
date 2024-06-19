@@ -65,11 +65,13 @@ class ConversationBloc extends Bloc<ConversationEvent, ConversationState> {
     try {
       isModelReady = modelsData.containsKey(event.statueName);
       final result = await _dataRepository.replaytoVisitorQuestion(msg);
-      result.fold(
-          (l) => emit(state.copyWith(
-                message: l.errorMessage,
-                requestState: ConversationRequestState.Failure,
-              )), (r) {
+      result.fold((l) {
+        log(l.errorMessage.toString());
+        emit(state.copyWith(
+          message: l.errorMessage.toString(),
+          requestState: ConversationRequestState.Failure,
+        ));
+      }, (r) {
         log('ChatGPT Answer: $r');
         emit(
           state.copyWith(
@@ -93,7 +95,7 @@ class ConversationBloc extends Bloc<ConversationEvent, ConversationState> {
         final appDir = await getApplicationDocumentsDirectory();
         await statueRecorder.start(
           const RecordConfig(),
-          path: '${appDir.path}/visitor_speech.wav',
+          path: '${appDir.path}/visitor_speech.mp3',
         );
         emit(
           state.copyWith(
@@ -148,7 +150,7 @@ class ConversationBloc extends Bloc<ConversationEvent, ConversationState> {
     result.fold(
       (l) => emit(
         state.copyWith(
-          message: l.errorMessage,
+          message: l.errorMessage.toString(),
           requestState: ConversationRequestState.Failure,
         ),
       ),
