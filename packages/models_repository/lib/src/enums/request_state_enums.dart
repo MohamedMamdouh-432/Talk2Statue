@@ -10,6 +10,9 @@ enum ConversationRequestState {
   StatueTalking,
   Done,
   Failed,
+  ModelLoading,
+  MuseumSuccess,
+  MuseumFailure,
 }
 
 enum RecongnitionRequestState {

@@ -1,6 +1,8 @@
 import 'dart:convert';
 import 'dart:io';
+import 'dart:math';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:data_repository/src/helpers/constants.dart';
 import 'package:data_repository/src/helpers/openai_apikey.dart';
 import 'package:dio/dio.dart';
@@ -11,9 +13,13 @@ import 'package:path_provider/path_provider.dart';
 
 class DataRepository {
   final Dio dio;
+  final FirebaseFirestore firestore;
+  List<Map<String, dynamic>> prevList = [];
+  String speechVoice = "fable";
 
   DataRepository({
     required this.dio,
+    required this.firestore,
   });
 
   Future<Either<Failure, Statue>> recognizeStatue(String statueImgPath) async {
@@ -25,7 +31,12 @@ class DataRepository {
         }),
       );
       if (response.statusCode == 200) {
-        return Right(Statue.fromJson(response.data));
+        final statue = Statue.fromJson(response.data);
+        if (statue.gender == 'male')
+          speechVoice = ApiConstants.maleVoices[Random().nextInt(4)];
+        else
+          speechVoice = ApiConstants.femaleVoices[Random().nextInt(2)];
+        return Right(statue);
       } else {
         String errorMsg;
         switch (response.data['errorCode']) {
@@ -70,8 +81,10 @@ class DataRepository {
         "file": await MultipartFile.fromFile(filePath),
       });
 
-      final response =
-          await dio.post(ApiConstants.openaiTranscriptionUrl, data: formData);
+      final response = await dio.post(
+        ApiConstants.openaiTranscriptionUrl,
+        data: formData,
+      );
       if (response.statusCode == 200) {
         return Right(response.data['text']);
       } else {
@@ -82,10 +95,7 @@ class DataRepository {
     }
   }
 
-  Future<Either<Failure, String>> createTextSpeech(
-    String text,
-    String speechVoice,
-  ) async {
+  Future<Either<Failure, String>> createTextSpeech(String text) async {
     try {
       dio.options.headers = {
         'Authorization': 'Bearer ${OpenAIConstants.openaikey}',
@@ -98,7 +108,6 @@ class DataRepository {
           "input": text,
           "model": 'tts-1',
           "voice": speechVoice,
-          "response_format": 'wav',
         },
         options: Options(responseType: ResponseType.bytes),
       );
@@ -122,7 +131,6 @@ class DataRepository {
     String question,
   ) async {
     try {
-      List<Map<String, dynamic>> prevList = [];
       prevList.add({
         "role": "user",
         "content": question,
@@ -169,8 +177,7 @@ class DataRepository {
     }
   }
 
-  Future<Either<Failure, String>> makeStatueReplaying(
-      String audioFile, String speechVoice) async {
+  Future<Either<Failure, String>> makeStatueReplaying(String audioFile) async {
     try {
       // process 1: transcribe audio file
       final transcibeResult = await transcribeAudioFile(audioFile);
@@ -183,14 +190,26 @@ class DataRepository {
       if (gptResult.isLeft) return Left(gptResult.left);
 
       // process 3: convert text answer to voice file
-      final speechResult = await createTextSpeech(
-        gptResult.right,
-        speechVoice,
-      );
+      final speechResult = await createTextSpeech(gptResult.right);
       if (speechResult.isLeft) return Left(speechResult.left);
 
       // return voice to tourist
       return Right(speechResult.right);
+    } catch (e) {
+      return Left(Failure(e.toString()));
+    }
+  }
+
+  Future<Either<Failure, Museum>> fetchMuseumData(String museumName) async {
+    try {
+      final museumDoc = await firestore
+          .collection('museums')
+          .where('name', isEqualTo: museumName)
+          .get();
+      if (museumDoc.docs.isEmpty) {
+        return const Left(Failure('Museum Not Found'));
+      }
+      return Right(Museum.fromJson(museumDoc.docs.first.data()));
     } catch (e) {
       return Left(Failure(e.toString()));
     }

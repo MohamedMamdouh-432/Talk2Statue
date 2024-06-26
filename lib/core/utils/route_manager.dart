@@ -3,6 +3,7 @@ import 'package:talk2statue/authentication/views/sign_in.dart';
 import 'package:talk2statue/authentication/views/sign_up.dart';
 import 'package:talk2statue/conversation/views/converstaion_screen.dart';
 import 'package:talk2statue/home/views/home_view.dart';
+import 'package:talk2statue/home/views/museum_guide_view.dart';
 import 'package:talk2statue/home/views/talk_to_statue_view.dart';
 import 'package:talk2statue/onboarding/view/onboarding_view.dart';
 
@@ -13,6 +14,7 @@ class RouteManager {
   static const String homeRoute = '/home';
   static const String talkToStatueRoute = '/talkToStatue';
   static const String conversationRoute = '/conversation';
+  static const String musuemguideRoute = '/museumGuide';
 
   static List<GetPage> appRoutes = [
     GetPage(
@@ -37,7 +39,11 @@ class RouteManager {
     ),
     GetPage(
       name: conversationRoute,
-      page: () => const ConversationScreen(),
+      page: () => const StatueConversationScreen(),
+    ),
+    GetPage(
+      name: musuemguideRoute,
+      page: () => const MuseumGuideView(),
     ),
   ];
 }

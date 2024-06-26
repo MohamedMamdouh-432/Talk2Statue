@@ -1,7 +1,4 @@
-import 'dart:math';
-
 import 'package:awesome_dialog/awesome_dialog.dart';
-import 'package:data_repository/data_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:models_repository/models_repository.dart';
@@ -16,14 +13,7 @@ BlocListener<ConversationBloc, ConversationState> conversationListener({
     listenWhen: (prev, cur) => prev != cur,
     listener: (context, state) {
       if (state.requestState == ConversationRequestState.RecordingCompleted) {
-        String voiceSound;
-        if (context.read<RecognitionBloc>().state.statueGender == 'male')
-          voiceSound = ApiConstants.maleVoices[Random().nextInt(4)];
-        else
-          voiceSound = ApiConstants.femaleVoices[Random().nextInt(2)];
-        context
-            .read<ConversationBloc>()
-            .add(StatueReplayEventRequested(voiceSound));
+        context.read<ConversationBloc>().add(StatueReplayEventRequested());
         showMessage(context, 'Recording is Completed', DialogType.success, 2);
       } else if (state.requestState == ConversationRequestState.Successful) {
         context.read<ConversationBloc>().add(StatueTalkingEventRequested(

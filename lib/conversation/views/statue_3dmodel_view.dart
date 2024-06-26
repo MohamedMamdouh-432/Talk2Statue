@@ -13,7 +13,9 @@ class Statue3dModelView extends StatelessWidget {
     return Expanded(
       child: UnityWidget(
         onUnityCreated: (UnityWidgetController controller) {
-          context.read<ConversationBloc>().unityController = controller;
+          context
+              .read<ConversationBloc>()
+              .add(ConverstaionUnityControllerIntialized(controller));
         },
         borderRadius: const BorderRadius.all(Radius.circular(30)),
         onUnityMessage: (message) {
