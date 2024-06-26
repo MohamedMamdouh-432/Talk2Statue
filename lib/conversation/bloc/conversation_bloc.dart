@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:developer';
 
 import 'package:data_repository/data_repository.dart';
@@ -12,21 +13,26 @@ import 'package:record/record.dart';
 part 'conversation_event.dart';
 part 'conversation_state.dart';
 
-class ConversationBloc extends Bloc<ConversationEvent, ConversationState> {
-  // data repository dependency
-  final DataRepository _dataRepository;
+final List<String> museumList = [
+  'Egyptian Museum',
+  'Luxor Museum',
+  'Nubian Museum',
+  'Coptic Museum',
+  'National Museum of Egyptian Civilization',
+  'Alexandria National Museum',
+  'Grand Egyptian Museum',
+  'Imhotep Museum',
+];
 
-  // bloc controllers
+class ConversationBloc extends Bloc<ConversationEvent, ConversationState> {
+  final DataRepository _dataRepository;
   late AudioPlayer statuePlayer;
   late AudioRecorder statueRecorder;
   late UnityWidgetController unityController;
-
-  // bloc helpers data
-  bool isModelReady = false;
-  Map<String, String> modelsData = {
-    'Nefertiti': 'nefertitiQueen',
-    // TODO: add Akhenaten GameObject name
-    'Akhenaten': '',
+  bool isModelReady = false, isModelLoaded = false;
+  Map<String, String> statueScenes = {
+    'Nefertiti': 'Nefertiti',
+    'Akhenaten': 'Akhenaten',
   };
 
   ConversationBloc({
@@ -34,37 +40,100 @@ class ConversationBloc extends Bloc<ConversationEvent, ConversationState> {
   })  : _dataRepository = dataRepo,
         super(ConversationState.initial) {
     on<ConversationInitialEvent>(_onInitializeConversation);
+    on<MuseumInitialEvent>(_onInitializeMuseum);
     on<ConversationStatuePreperationEvent>(_onprepareStatue);
     on<VisitorStartRecordingEventRequested>(_onStartRecordingVisitorVoice);
     on<VisitorStopRecordingEventRequested>(_onStopRecordingVisitorVoice);
     on<ResetRecordingEventRequested>(_onResetRecording);
+    on<ConverstaionUnityControllerIntialized>(_onInitializeUnityController);
     on<StatueReplayEventRequested>(_onStatueReplaying);
     on<StatueTalkingEventRequested>(_onStatueBeginTalking);
     on<ConversationDisposeEvent>(_onDisposeConversation);
+    on<MuseumNameChangedEvent>(_onMuseumNameChanged);
+    on<MuseumPreparingEvent>(_onPrepareMuseum);
   }
 
   Future<void> _onInitializeConversation(event, emit) async {
     try {
       statuePlayer = AudioPlayer();
       statueRecorder = AudioRecorder();
+      isModelLoaded = false;
       emit(state.copyWith(
           requestState: ConversationRequestState.RecordingStopped));
     } catch (e) {
       emit(state.copyWith(
-        message: e.toString(),
+        message: 'Line 65 $e',
         requestState: ConversationRequestState.Failure,
       ));
     }
   }
 
+  Future<void> _onInitializeMuseum(event, emit) async {
+    String msg =
+        "I'm a tourist in Egypt, please answer for only questions about ${state.museumName} Museum";
+    log(msg);
+    try {
+      emit(state.copyWith(requestState: ConversationRequestState.ModelLoading));
+      final result = await _dataRepository.replaytoVisitorQuestion(msg);
+      isModelReady = true;
+      if (isModelLoaded) {
+        unityController
+            .postMessage(
+              'SceneController',
+              'LoadSceneByStatue',
+              'Akhenaten',
+            );
+      }
+      result.fold((l) {
+        log(l.errorMessage.toString());
+        emit(state.copyWith(
+          message: l.errorMessage,
+          requestState: ConversationRequestState.Failure,
+        ));
+      }, (r) {
+        log('ChatGPT Answer: $r');
+        emit(
+          state.copyWith(
+            requestState: ConversationRequestState.Prepared,
+          ),
+        );
+      });
+    } catch (e) {
+      emit(
+        state.copyWith(
+          requestState: ConversationRequestState.Failure,
+          message: 'Line 105 $e',
+        ),
+      );
+    }
+  }
+
+  Future<void> _onInitializeUnityController(
+      ConverstaionUnityControllerIntialized event, emit) async {
+    isModelLoaded = true;
+    unityController = event.controller;
+  }
+
   Future<void> _onprepareStatue(
-      ConversationStatuePreperationEvent event, emit) async {
+    ConversationStatuePreperationEvent event,
+    emit,
+  ) async {
     String msg =
         "I'm a tourist in Egypt, please act as king ${event.statueName} and chat with me to know more about you, start with greeting word to me";
     log(msg);
     try {
-      isModelReady = modelsData.containsKey(event.statueName);
+      emit(state.copyWith(requestState: ConversationRequestState.ModelLoading));
       final result = await _dataRepository.replaytoVisitorQuestion(msg);
+      if (statueScenes.containsKey(event.statueName)) {
+        isModelReady = true;
+        if (isModelLoaded) {
+          unityController.postMessage(
+            'SceneController',
+            'LoadSceneByStatue',
+            statueScenes[event.statueName]!,
+          );
+        }
+      }
       result.fold((l) {
         log(l.errorMessage.toString());
         emit(state.copyWith(
@@ -143,10 +212,8 @@ class ConversationBloc extends Bloc<ConversationEvent, ConversationState> {
   Future<void> _onStatueReplaying(
       StatueReplayEventRequested event, emit) async {
     emit(state.copyWith(requestState: ConversationRequestState.OnProgress));
-    final result = await _dataRepository.makeStatueReplaying(
-      state.userAudioFilePath,
-      event.speechVoice,
-    );
+    final result =
+        await _dataRepository.makeStatueReplaying(state.userAudioFilePath);
     result.fold(
       (l) => emit(
         state.copyWith(
@@ -170,9 +237,10 @@ class ConversationBloc extends Bloc<ConversationEvent, ConversationState> {
           state.copyWith(requestState: ConversationRequestState.StatueTalking));
 
       if (isModelReady) {
-        await unityController.postMessage(
-          modelsData[event.statueName]!,
-          'PlayAudioClip',
+        log('Play Audio');
+        unityController.postMessage(
+          statueScenes[event.statueName]!,
+          'PlayAud',
           state.statueAudioFilePath,
         );
       } else {
@@ -206,6 +274,58 @@ class ConversationBloc extends Bloc<ConversationEvent, ConversationState> {
   Future<void> _onDisposeConversation(event, emit) async {
     await statuePlayer.dispose();
     await statueRecorder.dispose();
-    unityController.dispose();
+    // unityController.dispose();
+  }
+
+  Future<void> _onMuseumNameChanged(MuseumNameChangedEvent event, emit) async {
+    emit(state.copyWith(museumName: event.name));
+  }
+
+  Future<void> _onPrepareMuseum(event, emit) async {
+    try {
+      emit(state.copyWith(requestState: ConversationRequestState.OnProgress));
+      // send request (firebase) to get museum
+      final museumResult =
+          await _dataRepository.fetchMuseumData(state.museumName);
+      if (museumResult.isLeft)
+        return emit(state.copyWith(
+          message: 'Line 268 : ${museumResult.left.errorMessage}',
+          requestState: ConversationRequestState.MuseumFailure,
+        ));
+      // load Akhnaten scene
+      if (isModelLoaded) {
+        unityController
+            .postMessage(
+              'SceneController',
+              'LoadSceneByStatue',
+              'Akhenaten',
+            );
+      }
+
+      // create audio file to run desc
+      final audioPathResult =
+          await _dataRepository.createTextSpeech(museumResult.right.desc);
+      if (audioPathResult.isLeft)
+        return emit(state.copyWith(
+          message: 'Line 291 ${audioPathResult.left.errorMessage}',
+          requestState: ConversationRequestState.MuseumFailure,
+        ));
+
+      // send audio to unity
+      unityController.postMessage(
+        'Akhenaten',
+        'PlayAud',
+        audioPathResult.right,
+      );
+
+      emit(
+        state.copyWith(requestState: ConversationRequestState.MuseumSuccess),
+      );
+    } catch (e) {
+      emit(state.copyWith(
+        message: e.toString(),
+        requestState: ConversationRequestState.MuseumFailure,
+      ));
+    }
   }
 }

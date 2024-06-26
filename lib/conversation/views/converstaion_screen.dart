@@ -7,21 +7,22 @@ import 'package:models_repository/models_repository.dart';
 import 'package:talk2statue/conversation/bloc/conversation_bloc.dart';
 import 'package:talk2statue/conversation/components/conversation_listener.dart';
 import 'package:talk2statue/conversation/components/loading_indicator_component.dart';
+import 'package:talk2statue/conversation/views/statue_3dmodel_view.dart';
+import 'package:talk2statue/conversation/views/statue_image_view.dart';
 import 'package:talk2statue/conversation/widgets/statue_record_button.dart';
 import 'package:talk2statue/home/bloc/recognition_bloc.dart';
 import 'package:talk2statue/shared/functions.dart';
 import 'package:talk2statue/shared/widgets/curved_appbar.dart';
-import 'package:talk2statue/conversation/views/statue_image_view.dart';
-import 'package:talk2statue/conversation/views/statue_3dmodel_view.dart';
 
-class ConversationScreen extends StatefulWidget {
-  const ConversationScreen({super.key});
+class StatueConversationScreen extends StatefulWidget {
+  const StatueConversationScreen({super.key});
 
   @override
-  State<ConversationScreen> createState() => _ConversationScreenState();
+  State<StatueConversationScreen> createState() =>
+      _StatueConversationScreenState();
 }
 
-class _ConversationScreenState extends State<ConversationScreen> {
+class _StatueConversationScreenState extends State<StatueConversationScreen> {
   @override
   void initState() {
     context.read<ConversationBloc>().add(ConversationInitialEvent());
@@ -43,7 +44,6 @@ class _ConversationScreenState extends State<ConversationScreen> {
           } else if (state.requestState ==
               RecongnitionRequestState.FailedInRecognizing) {
             showMessage(
-              // TODO: use another dialog which display error and 'ok' button then getBack
               context,
               'Oops ! ${state.message} \nTry Again after while 😅',
               DialogType.error,
@@ -64,28 +64,34 @@ class _ConversationScreenState extends State<ConversationScreen> {
             ),
             body: Padding(
               padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-              child: ConditionalBuilder(
-                condition:
-                    state.requestState == RecongnitionRequestState.OnProgress,
-                builder: (_) => const ConversationLoadingIndicator(),
-                fallback: (_) => ConditionalBuilder(
-                  condition: state.requestState ==
-                      RecongnitionRequestState.SuccessfulInRecognizing,
-                  builder: (_) => Column(
-                    children: [
-                      ConditionalBuilder(
-                        condition:
-                            context.read<ConversationBloc>().isModelReady,
-                        builder: (_) => const Statue3dModelView(),
-                        fallback: (_) => StatueImageView(
-                          statueFileImage: state.statueImagePath,
-                        ),
+              child: BlocBuilder<ConversationBloc, ConversationState>(
+                builder: (context, modelState) {
+                  return ConditionalBuilder(
+                    condition: state.requestState ==
+                            RecongnitionRequestState.OnProgress ||
+                        modelState.requestState ==
+                            ConversationRequestState.ModelLoading,
+                    builder: (_) => const ConversationLoadingIndicator(),
+                    fallback: (_) => ConditionalBuilder(
+                      condition: state.requestState ==
+                          RecongnitionRequestState.SuccessfulInRecognizing,
+                      builder: (_) => Column(
+                        children: [
+                          ConditionalBuilder(
+                            condition:
+                                context.read<ConversationBloc>().isModelReady,
+                            builder: (_) => const Statue3dModelView(),
+                            fallback: (_) => StatueImageView(
+                              statueFileImage: state.statueImagePath,
+                            ),
+                          ),
+                          const StatueRecordingButton(),
+                        ],
                       ),
-                      const StatueRecordingButton(),
-                    ],
-                  ),
-                  fallback: (_) => const SizedBox(),
-                ),
+                      fallback: (_) => const SizedBox(),
+                    ),
+                  );
+                },
               ),
             ),
           );

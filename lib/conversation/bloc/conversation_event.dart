@@ -8,6 +8,8 @@ sealed class ConversationEvent extends Equatable {
 
 class ConversationInitialEvent extends ConversationEvent {}
 
+class MuseumInitialEvent extends ConversationEvent {}
+
 class ConversationStatuePreperationEvent extends ConversationEvent {
   final String statueName;
   const ConversationStatuePreperationEvent({
@@ -23,12 +25,7 @@ class VisitorStopRecordingEventRequested extends ConversationEvent {}
 
 class ResetRecordingEventRequested extends ConversationEvent {}
 
-class StatueReplayEventRequested extends ConversationEvent {
-  final String speechVoice;
-  const StatueReplayEventRequested(this.speechVoice);
-  @override
-  List<Object> get props => [speechVoice];
-}
+class StatueReplayEventRequested extends ConversationEvent {}
 
 class StatueTalkingEventRequested extends ConversationEvent {
   final String statueName;
@@ -38,3 +35,19 @@ class StatueTalkingEventRequested extends ConversationEvent {
 }
 
 class ConversationDisposeEvent extends ConversationEvent {}
+
+class ConverstaionUnityControllerIntialized extends ConversationEvent {
+  final UnityWidgetController controller;
+  const ConverstaionUnityControllerIntialized(this.controller);
+  @override
+  List<Object> get props => [controller];
+}
+
+class MuseumNameChangedEvent extends ConversationEvent {
+  final String name;
+  const MuseumNameChangedEvent(this.name);
+  @override
+  List<Object> get props => [name];
+}
+
+class MuseumPreparingEvent extends ConversationEvent {}

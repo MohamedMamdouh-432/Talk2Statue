@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:talk2statue/core/utils/route_manager.dart';
 
 class IntroduceMuseumCard extends StatelessWidget {
   const IntroduceMuseumCard({
@@ -11,7 +12,7 @@ class IntroduceMuseumCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () => Get.toNamed(RouteManager.musuemguideRoute),
       child: Container(
         width: context.width * 0.8,
         height: 280.h,

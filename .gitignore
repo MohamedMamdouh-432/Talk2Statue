@@ -44,13 +44,6 @@ app.*.map.json
 /android/unityLibrary
 
 # Unity/
-/Unity/NefertitiQueen/Library/Bee/Android/Prj/Mono2x/Gradle/
-/Unity/NefertitiQueen/Library/Bee/Android/Prj/Mono2x/Gradle/
-/Unity/NefertitiQueen/Library/Bee/Android/Prj/Mono2x/Gradle/
-/Unity/NefertitiQueen/Library/Bee/Android/Prj/Mono2x/Gradle/
-/Unity/NefertitiQueen/Library/Bee/Android/Prj/Mono2x/Gradle/
-/Unity/NefertitiQueen/Library/Bee/Android/Prj/Mono2x/Gradle/
-/Unity/NefertitiQueen/Library/Bee/Android/Prj/Mono2x/Gradle/
-/Unity/NefertitiQueen/Library/PackageCache/com.unity.burst@1.8.12/.Runtime/libburst-llvm-16.dylib
+/Unity/Statues/Library
 
 # OpenAI

@@ -16,7 +16,6 @@ import 'package:user_repository/user_repository.dart';
 void main(List<String> args) async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-
   final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
   final FirebaseFirestore firebaseStore = FirebaseFirestore.instance;
   final GoogleSignIn googleSignIn = GoogleSignIn.standard();
@@ -28,7 +27,10 @@ void main(List<String> args) async {
   runApp(
     Talk2Statue(
       sharedPref: sharedPref,
-      dataRepo: DataRepository(dio: Dio()),
+      dataRepo: DataRepository(
+        dio: Dio(),
+        firestore: firebaseStore,
+      ),
       userRepo: UserRepository(sharedPreferences: sharedPref),
       authRepo: AuthenticationRepository(
         firebaseAuth: firebaseAuth,
